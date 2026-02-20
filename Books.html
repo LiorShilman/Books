@@ -5,605 +5,1561 @@
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1.0, minimum-scale=0.2, maximum-scale=3.0, user-scalable=yes" name="viewport" />
         <title>ציטוטי ספרים</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
         <style>
-			body {
-				width: 80%; /* קובע את הרוחב של כל התוכן ל-90% */
-				margin: 0 auto; /* מרכז את התוכן בעמוד */
-			    background-color: lightslategrey;
-				//color: lavenderblush;
-				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-			}
+            :root {
+                --bg-primary: #0f0f1a;
+                --bg-secondary: #1a1a2e;
+                --bg-tertiary: #16213e;
+                --bg-glass: rgba(255,255,255,0.05);
+                --bg-glass-hover: rgba(255,255,255,0.08);
+                --accent-gold: #d4a853;
+                --accent-gold-light: #e8c97a;
+                --accent-gold-glow: rgba(212,168,83,0.3);
+                --accent-blue: #4a9eff;
+                --accent-blue-soft: #2d6cb5;
+                --accent-teal: #2dd4bf;
+                --accent-purple: #8b5cf6;
+                --text-primary: #e8e6e3;
+                --text-secondary: #a0a0b0;
+                --text-heading: #ffffff;
+                --text-gold: #d4a853;
+                --border-subtle: rgba(255,255,255,0.08);
+                --border-accent: rgba(212,168,83,0.3);
+                --shadow-card: 0 8px 32px rgba(0,0,0,0.3);
+                --shadow-card-hover: 0 16px 48px rgba(0,0,0,0.4);
+                --shadow-gold: 0 0 20px rgba(212,168,83,0.15);
+                --radius-sm: 8px;
+                --radius-md: 12px;
+                --radius-lg: 16px;
+                --radius-xl: 24px;
+                --transition-fast: 0.2s ease;
+                --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                --font-heading: 'Heebo', sans-serif;
+                --font-body: 'Rubik', sans-serif;
+            }
 
-			h1, h2, h3, h4, h5, h6 {
-				color: #1565c0; /* Medium, lively blue for headings */
-			}
+            *, *::before, *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
 
-			a {
-				color: #0d47a1; /* Deep blue for links */
-				text-decoration: none;
-			}
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 80px;
+            }
 
-			a:hover {
-				color: #1976d2; /* Lighter blue on hover */
-				text-decoration: underline;
-			}
+            body {
+                width: 100%;
+                margin: 0;
+                background-color: var(--bg-primary);
+                color: var(--text-primary);
+                font-family: var(--font-body);
+                font-size: 16px;
+                line-height: 1.7;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
 
-			.button {
-				background-color: #1565c0; /* Medium blue background for buttons */
-				color: #ffffff; /* White text for buttons */
-				border: none;
-				border-radius: 5px;
-				padding: 10px 20px;
-				cursor: pointer;
-			}
+            h1, h2, h3, h4, h5, h6 {
+                color: var(--text-heading);
+                font-family: var(--font-heading);
+            }
 
-			.button:hover {
-				background-color: #004d8c; /* Darker blue on hover */
-			}
+            a {
+                color: var(--accent-blue);
+                text-decoration: none;
+                transition: var(--transition-fast);
+            }
 
-			.header, .footer {
-				background-color: #0d47a1; /* Deep blue for header and footer */
-				color: #ffffff; /* White text */
-				padding: 20px;
-				text-align: center;
-			}
+            a:hover {
+                color: var(--accent-gold);
+                text-decoration: none;
+            }
 
-			/* Main container that holds the sidebar and book list */
-			.container {
-				width: 100%; /* קובע שהקונטיינר ייקח את כל ה-90% מהרוחב */
-				margin: 0 auto; /* מרכז את הקונטיינר */
-				display: flex;
-				justify-content: space-between;
-				margin: 10px auto;
-			}
+            ::selection {
+                background: rgba(212, 168, 83, 0.3);
+                color: var(--text-heading);
+            }
 
-			/* Sidebar for category selection */
-			.sidebar {
-				width: 200px; /* Fixed width for the category selection */
-				padding: 10px;
-				//background-color: #f5f5f5;
-				border-right: 1px solid #ccc;
-			}
-			
-			.quote {
-				background-color: #b2ebf2; /* Light turquoise */
-				padding: 20px;
-				border-left: 5px solid #00838f; /* Dark turquoise border */
-				margin-bottom: 20px;
-				border-radius: 10px;
-				position: relative;
-			}
+            ::-webkit-scrollbar { width: 8px; }
+            ::-webkit-scrollbar-track { background: var(--bg-primary); }
+            ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+            ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-			.favorite-icon {
-				cursor: pointer;
-				font-size: 3em;
-				color: #ccc !important; /* Default color with higher priority */
-				position: absolute;
-				top: 5px;
-				right: 20px;
-				z-index: 10; /* Ensure it appears above other elements */
-			}
+            /* ===== HEADER ===== */
+            .site-header {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                z-index: 1000;
+                background: rgba(15, 15, 26, 0.85);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 0 2rem;
+                height: 64px;
+                transition: var(--transition-normal);
+            }
 
-			.favorite-icon.favorited {
-				color: yellow !important; /* Color when favorited with higher priority */
-			}
+            .site-header.scrolled {
+                background: rgba(15, 15, 26, 0.95);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            }
 
-			.filter {
-				margin-top: 20px;
-			}
+            .header-inner {
+                max-width: 1400px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+            }
 
-			.filter button {
-				padding: 10px 20px;
-				margin-right: 10px;
-				border: none;
-				background-color: #1565c0;
-				color: white;
-				cursor: pointer;
-				border-radius: 5px;
-			}
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--accent-gold);
+                font-family: var(--font-heading);
+                font-weight: 900;
+                font-size: 1.4rem;
+            }
 
-			.filter button:hover {
-				background-color: #004ba0;
-			}
+            .header-nav {
+                display: flex;
+                gap: 2rem;
+            }
 
-			.personal-feed {
-				margin-top: 30px;
-				padding: 20px;
-				background-color: #e0f7fa;
-				border-radius: 10px;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-			}
+            .header-nav a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-family: var(--font-body);
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: var(--transition-fast);
+                position: relative;
+            }
 
-			.personal-feed h3 {
-				color: #1565c0;
-			}
+            .header-nav a::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                right: 0;
+                width: 0;
+                height: 2px;
+                background: var(--accent-gold);
+                transition: width var(--transition-normal);
+            }
 
-			.quote:nth-child(even) {
-				background-color: #b2dfdb; /* Alternate mint green background */
-				border-left-color: #004d40; /* Dark green border for alternate quotes */
-			}
+            .header-nav a:hover {
+                color: var(--accent-gold);
+            }
 
-			.quote:hover {
-				transform: scale(1.03); /* Subtle zoom effect on hover */
-				box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-			}
+            .header-nav a:hover::after {
+                width: 100%;
+            }
 
-			.quote h2 {
-				font-family: "Segoe UI", sans-serif;
-				font-size: 2.5em;
-				margin-top: 0;
-				text-transform: uppercase; /* Uppercase for emphasis */
-				letter-spacing: 1.5px; /* Spacing for a modern look */
-				font-weight: bold;
-				text-align: center; /* Centered heading */
-				padding: 15px; /* Internal padding */
-				margin-bottom: 20px; /* Bottom margin */
-				border-radius: 15px; /* Rounded corners */
-				background: linear-gradient(to right, #e3f2fd, #bbdefb); /* Subtle blue gradient */
-				color: #0d47a1; /* Deep blue text */
-				border: 2px solid #1565c0; /* Medium blue border */
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* External shadow for emphasis */
-				position: relative;
-				overflow: hidden;
-			}
+            .search-toggle {
+                background: var(--bg-glass);
+                border: 1px solid var(--border-subtle);
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                color: var(--text-secondary);
+                transition: var(--transition-fast);
+            }
 
-			.implementation-guidelines {
-				margin-top: 30px;
-				background-color: #b2dfdb; /* Mint green background */
-				padding: 20px;
-				border-radius: 10px;
-				border-left: 5px solid #004d40; /* Dark green left border */
-			}
+            .search-toggle:hover {
+                background: var(--bg-glass-hover);
+                color: var(--accent-gold);
+                border-color: var(--accent-gold);
+            }
 
-			.implementation-guidelines h3 {
-				color: #004d40; /* Dark green text */
-				font-size: 1.8em;
-				margin-bottom: 15px;
-			}
+            /* ===== HERO ===== */
+            .hero {
+                margin-top: 64px;
+                padding: 80px 2rem 60px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            }
 
-			.implementation-guidelines ul {
-				list-style-type: disc;
-				padding-left: 20px;
-			}
+            .hero-bg-pattern {
+                position: absolute;
+                inset: 0;
+                background-image:
+                    radial-gradient(circle at 20% 50%, rgba(212,168,83,0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(74,158,255,0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(139,92,246,0.05) 0%, transparent 50%);
+                pointer-events: none;
+            }
 
-			.implementation-guidelines li {
-				font-size: 1.2em;
-				color: #0d47a1; /* Deep blue text */
-				margin-bottom: 10px;
-			}
+            .hero-content {
+                position: relative;
+                z-index: 1;
+                max-width: 800px;
+                margin: 0 auto;
+            }
 
-			.daily-success-plan-table table {
-				width: 100%;
-				border-spacing: 15px 10px; /* Spacing between cells */
-			}
+            .hero-title {
+                font-family: var(--font-heading);
+                font-weight: 900;
+                font-size: clamp(2.5rem, 5vw, 4rem);
+                margin-bottom: 1rem;
+                background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
 
-			.daily-success-plan-table .section-title {
-				width: 20%; /* Fixed width for titles */
-				font-size: 1.5em;
-				font-weight: bold;
-				color: #00796b;
-				text-align: right; /* Text alignment to the right */
-				vertical-align: top; /* Aligns titles to the top */
-			}
+            .hero-subtitle {
+                font-family: var(--font-body);
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+                margin-bottom: 2.5rem;
+                line-height: 1.8;
+                animation: fadeInUp 0.8s ease 0.2s forwards;
+                opacity: 0;
+            }
 
-			.daily-success-plan-table td {
-				padding: 10px;
-			}
+            .highlight-count {
+                color: var(--accent-gold);
+                font-weight: 700;
+                -webkit-text-fill-color: var(--accent-gold);
+            }
 
-			.daily-success-plan-table ul {
-				list-style: disc;
-				padding-left: 20px;
-			}
+            .hero-stats {
+                display: flex;
+                justify-content: center;
+                gap: 3rem;
+                animation: fadeInUp 0.8s ease 0.4s forwards;
+                opacity: 0;
+            }
 
-			.daily-success-plan-table li {
-				margin-bottom: 10px;
-				font-size: 1.2em;
-				color: #0d47a1; /* Deep blue text */
-			}
+            .stat-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-			.books-container {
-				width: 90%; /* הרוחב יהיה 90% מהרוחב הכולל של המסך */
-				margin: 0 auto; /* מרכז את התוכן על ידי קביעת שוליים אוטומטיים */
-				padding: 20px; /* מרווח פנימי אם יש צורך */
-				max-width: 1200px; /* הגדר רוחב מקסימלי כדי למנוע מתיחה על מסכים גדולים מאוד */
-				display: flex;
-				flex-wrap: wrap; /* עוטף את התמונות אם הן חורגות מהרוחב */
-				justify-content: space-between; /* מאפשר ריווח שווה בין התמונות */
-			}
+            .stat-number {
+                font-family: var(--font-heading);
+                font-size: 2.5rem;
+                font-weight: 900;
+                color: var(--accent-gold);
+                line-height: 1;
+            }
 
-			.book-image-container {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				margin-bottom: 20px;
-				position: relative;
-				width: 180px; /* Uniform size for images */
-				height: 270px; /* Uniform size for images */
-				background-color: #ffffff; /* White background */
-				border-radius: 10px; /* Rounded corners */
-				overflow: hidden;
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-			}
+            .stat-label {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                margin-top: 0.5rem;
+            }
 
-			.book-image-container img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover; /* Perfect fit within the container */
-				border-radius: 10px; /* Slightly rounded image */
-				transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
-			}
+            /* ===== SEARCH OVERLAY ===== */
+            .search-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 2000;
+                background: rgba(15, 15, 26, 0.95);
+                backdrop-filter: blur(30px);
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding-top: 15vh;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition-normal);
+            }
 
-			.book-image-container img:hover {
-				transform: scale(1.05); /* Slight enlargement on hover */
-				box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
-			}
-			
+            .search-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
 
-			.book-summary {
-				background-color: #f0f4f8; /* Subtle background color */
-				padding: 20px;
-				border-radius: 10px;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-				margin-bottom: 20px;
-			}
+            .search-overlay-inner {
+                width: 90%;
+                max-width: 700px;
+            }
 
-			.book-summary h3 {
-				font-size: 1.8em;
-				color: #1565c0; /* Heading color */
-				margin-bottom: 15px;
-			}
+            .search-close {
+                position: absolute;
+                top: 2rem;
+                left: 2rem;
+                background: none;
+                border: none;
+                color: var(--text-secondary);
+                font-size: 2rem;
+                cursor: pointer;
+                transition: var(--transition-fast);
+            }
 
-			.book-summary p {
-				font-size: 1.2em;
-				color: #37474f; /* Text color */
-				line-height: 1.6;
-			}
+            .search-close:hover {
+                color: var(--accent-gold);
+            }
 
-			.book-summary ul {
-				list-style-type: disc;
-				padding-left: 20px;
-			}
+            .search-box {
+                display: flex;
+                align-items: center;
+                background: var(--bg-glass);
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-lg);
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+            }
 
-			.book-summary li {
-				margin-bottom: 10px;
-				font-size: 1.2em;
-				color: #37474f; /* Text color */
-			}
+            .search-box:focus-within {
+                border-color: var(--accent-gold);
+                box-shadow: var(--shadow-gold);
+            }
 
-			.book-categories .category {
-				display: inline-block;
-				background-color: #f0f0f0;
-				padding: 5px;
-				margin-right: 5px;
-				border-radius: 5px;
-				font-size: 0.85em;
-			}
-			
-			.category {
-				background-color: #f0f0f0; /* רקע בהיר יותר לבולט */
-				color: #005f73; /* טקסט כחול כהה */
-				padding: 6px 12px;
-				margin: 0 5px 10px 0;
-				border-radius: 5px;
-				display: inline-block;
-				font-size: 0.9em;
-				font-weight: bold; /* הופך את הטקסט לבולט יותר */
-				box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6); /* מעמיק את האפקט התלת מימדי */
-				transition: all 0.3s ease; /* מעבר חלק בין מצבים */
-			}
-		
-			.category:hover {
-				transform: translateY(-3px) translateX(-1px); /* Enhances the 3D effect on hover */
-				box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.7), -6px -6px 10px rgba(255, 255, 255, 0.1); /* Even deeper shadow for a more lifted effect */
-			}
-			
-			.book-gallery {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 20px;
-				justify-content: center;
-			}
+            .search-icon {
+                color: var(--text-secondary);
+                font-size: 1.5rem;
+            }
 
-			/* Outer container for centering the entire book list */
-			.book-list {
-				display: flex;
-				justify-content: center; /* Center the book grid horizontally */
-				width: 100%; /* Ensure the book list takes up the full width of the container */
-			}
+            #searchInput {
+                background: none;
+                border: none;
+                outline: none;
+                color: var(--text-primary);
+                font-family: var(--font-body);
+                font-size: 1.2rem;
+                width: 100%;
+            }
 
-			/* Inner grid to display the books */
-			.book-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure horizontal layout with min-width of 150px */
-				grid-gap: 30px; /* Space between the books */
-				justify-content: center; /* Center the books within the grid */
-				max-width: 1900px; /* Optional: Limit the grid width */
-				align-content: center; /* Center items vertically (optional if needed) */
-			}
+            #searchInput::placeholder {
+                color: var(--text-secondary);
+            }
 
-			/* Book items with fixed width */
-			.book-item {
-				width: 200px; /* Fixed width for each book item */
-				text-align: center;
-				margin: auto; /* Ensure that the item itself is centered */
-			}
+            .search-results {
+                margin-top: 1.5rem;
+                max-height: 50vh;
+                overflow-y: auto;
+            }
 
-			/* Style for book cover images */
-			.book-cover {
-				width: 100%; /* Full width of the book item */
-				height: auto;
-				border-radius: 5px;
-				transition: transform 0.3s ease;
-			}
+            .search-result-item {
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius-md);
+                cursor: pointer;
+                transition: var(--transition-fast);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
 
-			.book-cover:hover {
-				transform: scale(1.05); /* Slight zoom effect on hover */
-			}
+            .search-result-item:hover {
+                background: var(--bg-glass-hover);
+            }
 
-			/* Media query for smaller screens (like portrait mode on mobile) */
-			@media screen and (max-width: 768px) {
-				.book-grid {
-					grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Reduce width to fit more books in a row */
-					grid-gap: 10px; /* Smaller gaps between books */
-				}
+            .search-result-item img {
+                width: 40px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 4px;
+            }
 
-				.book-item {
-					width: 100px; /* Smaller fixed width for book items */
-				}
+            .result-text {
+                color: var(--text-primary);
+                font-size: 1rem;
+                font-weight: 600;
+            }
 
-				.book-cover {
-					width: 100%; /* Ensure the image fits the reduced width */
-				}
-			}
+            .result-category {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+                margin-top: 0.25rem;
+            }
 
-			/* Media query for extra small screens (like small smartphones) */
-			@media screen and (max-width: 480px) {
-				.book-grid {
-					grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Smaller width for phones */
-					grid-gap: 8px; /* Even smaller gaps */
-				}
+            /* ===== MAIN LAYOUT ===== */
+            .main-wrapper {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 2rem;
+                display: flex;
+                gap: 2rem;
+            }
 
-				.book-item {
-					width: 80px; /* Further reduced width for book items */
-				}
+            .content {
+                flex: 1;
+                min-width: 0;
+            }
 
-				.book-cover {
-					width: 100%; /* Ensure the image fits the reduced width */
-				}
-			}
+            /* ===== SIDEBAR ===== */
+            .sidebar {
+                position: sticky;
+                top: 80px;
+                width: 260px;
+                min-width: 260px;
+                height: calc(100vh - 100px);
+                overflow-y: auto;
+                padding: 1.5rem;
+                background: var(--bg-secondary);
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border-subtle);
+                scrollbar-width: thin;
+                scrollbar-color: var(--border-subtle) transparent;
+            }
+
+            .sidebar-header {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
+                color: var(--accent-gold);
+            }
+
+            .sidebar-header h3 {
+                font-family: var(--font-heading);
+                font-size: 1.1rem;
+                color: var(--accent-gold);
+                margin: 0;
+            }
+
+            .sidebar-search input {
+                width: 100%;
+                padding: 0.6rem 1rem;
+                background: var(--bg-glass);
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-md);
+                color: var(--text-primary);
+                font-family: var(--font-body);
+                font-size: 0.9rem;
+                outline: none;
+                margin-bottom: 1rem;
+                transition: var(--transition-fast);
+            }
+
+            .sidebar-search input:focus {
+                border-color: var(--accent-gold);
+            }
+
+            .category-pills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .pill {
+                padding: 0.4rem 1rem;
+                border-radius: 20px;
+                border: 1px solid var(--border-subtle);
+                background: var(--bg-glass);
+                color: var(--text-secondary);
+                font-family: var(--font-body);
+                font-size: 0.85rem;
+                cursor: pointer;
+                transition: var(--transition-fast);
+                white-space: nowrap;
+            }
+
+            .pill:hover {
+                border-color: var(--accent-gold);
+                color: var(--accent-gold);
+                background: rgba(212, 168, 83, 0.1);
+            }
+
+            .pill.active {
+                background: var(--accent-gold);
+                color: #0f0f1a;
+                border-color: var(--accent-gold);
+                font-weight: 600;
+            }
+
+            .sidebar-stats {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border-subtle);
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+            }
+
+            .sidebar-stats span {
+                color: var(--accent-gold);
+                font-weight: 700;
+            }
+
+            /* ===== SECTIONS ===== */
+            .section {
+                margin-bottom: 3rem;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-family: var(--font-heading);
+                font-size: 1.8rem;
+                color: var(--text-heading);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .section-title .material-symbols-outlined {
+                color: var(--accent-gold);
+            }
+
+            .section-subtitle {
+                color: var(--text-secondary);
+                font-size: 1rem;
+                margin-top: 0.3rem;
+            }
+
+            /* ===== BOOK GALLERY ===== */
+            .book-list {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .book-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 1.5rem;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .book-item {
+                width: 100%;
+                text-align: center;
+                transition: var(--transition-normal);
+                opacity: 0;
+                animation: fadeInUp 0.5s ease forwards;
+            }
+
+            .book-link {
+                text-decoration: none;
+                display: block;
+            }
+
+            .book-cover {
+                width: 100%;
+                height: 210px;
+                object-fit: cover;
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-card);
+                transition: var(--transition-normal);
+            }
+
+            .book-item:hover .book-cover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: var(--shadow-card-hover), var(--shadow-gold);
+                filter: brightness(1.1);
+            }
+
+            .book-item p {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+                font-family: var(--font-body);
+                transition: var(--transition-fast);
+            }
+
+            .book-item:hover p {
+                color: var(--accent-gold);
+            }
+
+            /* ===== QUOTE CARDS ===== */
+            .quote {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-xl);
+                padding: 2.5rem;
+                margin-bottom: 2rem;
+                position: relative;
+                transition: var(--transition-normal);
+                overflow: hidden;
+                border-left: none;
+            }
+
+            .quote::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                height: 3px;
+                background: linear-gradient(90deg, var(--accent-gold), var(--accent-blue), var(--accent-purple));
+                opacity: 0.6;
+                transition: var(--transition-normal);
+            }
+
+            .quote:hover::before {
+                opacity: 1;
+                height: 4px;
+            }
+
+            .quote:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-card-hover);
+                border-color: var(--border-accent);
+            }
+
+            .quote:nth-child(even) {
+                background: var(--bg-secondary);
+                border-left: none;
+            }
+
+            .quote h2 {
+                font-family: var(--font-heading);
+                font-weight: 700;
+                font-size: 2rem;
+                color: var(--text-heading);
+                text-align: center;
+                padding: 1rem 1.5rem;
+                margin-bottom: 1.5rem;
+                margin-top: 0;
+                border-radius: var(--radius-lg);
+                background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(74,158,255,0.05));
+                border: 1px solid var(--border-accent);
+                text-transform: none;
+                letter-spacing: 0;
+                box-shadow: none;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .favorite-icon {
+                cursor: pointer;
+                font-size: 2rem;
+                color: var(--text-secondary) !important;
+                position: absolute;
+                top: 1.5rem;
+                left: 1.5rem;
+                z-index: 10;
+                transition: var(--transition-normal);
+                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            }
+
+            .favorite-icon:hover {
+                transform: scale(1.2);
+                color: var(--accent-gold) !important;
+            }
+
+            .favorite-icon.favorited {
+                color: var(--accent-gold) !important;
+                filter: drop-shadow(0 0 8px rgba(212,168,83,0.5));
+                animation: starPulse 0.5s ease;
+            }
+
+            @keyframes starPulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.4); }
+                100% { transform: scale(1); }
+            }
+
+            .book-image-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200px;
+                height: 300px;
+                margin: 0 auto 1.5rem;
+                border-radius: var(--radius-md);
+                overflow: hidden;
+                box-shadow: var(--shadow-card);
+                transition: var(--transition-normal);
+                position: relative;
+                background-color: var(--bg-tertiary);
+            }
+
+            .book-image-container::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to top, rgba(15,15,26,0.3) 0%, transparent 50%);
+                pointer-events: none;
+            }
+
+            .book-image-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: var(--transition-slow);
+                border-radius: var(--radius-md);
+            }
+
+            .quote:hover .book-image-container img {
+                transform: scale(1.05);
+            }
+
+            .quote:hover .book-image-container {
+                box-shadow: var(--shadow-card-hover), var(--shadow-gold);
+            }
+
+            .book-categories {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .category {
+                display: inline-block;
+                padding: 0.3rem 0.8rem;
+                margin: 0.2rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 500;
+                font-family: var(--font-body);
+                background: rgba(212, 168, 83, 0.1);
+                color: var(--accent-gold);
+                border: 1px solid rgba(212, 168, 83, 0.2);
+                box-shadow: none;
+                transition: var(--transition-fast);
+            }
+
+            .category:hover {
+                background: rgba(212, 168, 83, 0.2);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(212, 168, 83, 0.2);
+            }
+
+            .book-summary {
+                background: var(--bg-glass);
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-lg);
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .book-summary h3 {
+                font-family: var(--font-heading);
+                font-size: 1.3rem;
+                color: var(--accent-gold);
+                margin-bottom: 1rem;
+            }
+
+            .book-summary p {
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.8;
+            }
+
+            .book-summary h4 {
+                color: var(--accent-blue);
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
+                font-family: var(--font-heading);
+            }
+
+            .book-summary ul {
+                padding-right: 1.5rem;
+                list-style-type: none;
+            }
+
+            .book-summary li {
+                font-size: 1rem;
+                color: var(--text-secondary);
+                margin-bottom: 0.5rem;
+                position: relative;
+                padding-right: 1rem;
+            }
+
+            .book-summary li::before {
+                content: '\25C6';
+                color: var(--accent-gold);
+                position: absolute;
+                right: -0.5rem;
+                font-size: 0.6rem;
+                top: 0.3rem;
+            }
+
+            .quote > p {
+                font-family: var(--font-body);
+                font-size: 1.1rem;
+                line-height: 1.9;
+                color: var(--text-primary);
+                padding: 1rem 1.5rem;
+                margin-bottom: 0.8rem;
+                border-radius: var(--radius-md);
+                border-right: 3px solid transparent;
+                transition: var(--transition-fast);
+                position: relative;
+            }
+
+            .quote > p:hover {
+                background: var(--bg-glass);
+                border-right-color: var(--accent-gold);
+            }
+
+            .quote > p strong {
+                color: var(--accent-gold);
+                font-weight: 600;
+            }
+
+            .quote > p:nth-of-type(odd) {
+                border-right-color: rgba(212, 168, 83, 0.15);
+            }
+
+            .quote > p:nth-of-type(even) {
+                border-right-color: rgba(74, 158, 255, 0.15);
+            }
+
+            /* ===== DAILY SUCCESS PLAN ===== */
+            .daily-success-plan {
+                background: var(--bg-secondary) !important;
+                border: 1px solid var(--border-subtle) !important;
+                border-radius: var(--radius-xl) !important;
+                padding: 3rem !important;
+                box-shadow: var(--shadow-card) !important;
+                color: var(--text-primary) !important;
+                margin: 3rem 0 !important;
+                font-family: var(--font-body) !important;
+                line-height: 1.8 !important;
+                background-image: none !important;
+            }
+
+            .daily-plan-title {
+                font-family: var(--font-heading) !important;
+                color: var(--accent-gold) !important;
+                text-shadow: none !important;
+                font-size: 2.2rem !important;
+                border-bottom: 2px solid var(--border-accent);
+                padding-bottom: 1rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .daily-success-plan-table table {
+                width: 100%;
+                border-spacing: 0;
+            }
+
+            .daily-success-plan-table .section-title {
+                font-family: var(--font-heading);
+                color: var(--accent-gold) !important;
+                font-size: 1.2rem;
+                padding: 1.5rem 1rem;
+                vertical-align: top;
+                width: 180px;
+                border-bottom: 1px solid var(--border-subtle);
+                font-weight: bold;
+                text-align: right;
+            }
+
+            .daily-success-plan-table td {
+                padding: 1.5rem 1rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+
+            .daily-success-plan-table ul {
+                list-style: disc;
+                padding-right: 1.5rem;
+            }
+
+            .daily-success-plan-table li {
+                color: var(--text-primary) !important;
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+                line-height: 1.8;
+            }
+
+            .daily-success-plan-table li strong {
+                color: var(--accent-gold);
+            }
+
+            .implementation-guidelines {
+                background: var(--bg-glass) !important;
+                border: 1px solid var(--border-subtle) !important;
+                border-radius: var(--radius-lg) !important;
+                border-left: none !important;
+                padding: 2rem !important;
+                margin-top: 2rem;
+            }
+
+            .implementation-guidelines h3 {
+                color: var(--accent-gold) !important;
+                font-family: var(--font-heading);
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                text-shadow: none !important;
+            }
+
+            .implementation-guidelines .section-title strong {
+                color: var(--accent-blue);
+            }
+
+            .implementation-guidelines td {
+                color: var(--text-primary);
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+
+            .implementation-guidelines ul {
+                list-style-type: disc;
+                padding-right: 1.5rem;
+            }
+
+            .implementation-guidelines li {
+                color: var(--text-primary) !important;
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            /* ===== PERSONAL FEED ===== */
+            .personal-feed {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-accent);
+                border-radius: var(--radius-xl);
+                padding: 2.5rem;
+                margin: 3rem 0;
+                box-shadow: var(--shadow-card);
+            }
+
+            .personal-feed h3 {
+                font-family: var(--font-heading);
+                color: var(--accent-gold);
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            /* ===== FOOTER ===== */
+            .site-footer {
+                background: var(--bg-secondary);
+                border-top: 1px solid var(--border-subtle);
+                padding: 3rem 2rem 2rem;
+                text-align: center;
+                margin-top: 4rem;
+            }
+
+            .footer-inner {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .footer-brand {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                color: var(--accent-gold);
+                font-family: var(--font-heading);
+                font-weight: 700;
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-tagline {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-divider {
+                width: 60px;
+                height: 2px;
+                background: var(--accent-gold);
+                margin: 0 auto 1.5rem;
+                opacity: 0.5;
+            }
+
+            .footer-copyright {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+                opacity: 0.7;
+            }
+
+            /* ===== SCROLL TO TOP ===== */
+            .scroll-to-top {
+                position: fixed;
+                bottom: 2rem;
+                left: 2rem;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--accent-gold);
+                color: #0f0f1a;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 15px rgba(212, 168, 83, 0.4);
+                transition: var(--transition-normal);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(20px);
+                z-index: 900;
+            }
+
+            .scroll-to-top.visible {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .scroll-to-top:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(212, 168, 83, 0.6);
+            }
+
+            /* ===== ANIMATIONS ===== */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .animate-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* ===== RESPONSIVE ===== */
+            @media screen and (max-width: 1024px) {
+                .main-wrapper {
+                    flex-direction: column;
+                }
+
+                .sidebar {
+                    position: relative;
+                    top: 0;
+                    width: 100%;
+                    min-width: 100%;
+                    height: auto;
+                    margin-bottom: 2rem;
+                }
+
+                .category-pills {
+                    max-height: 200px;
+                    overflow-y: auto;
+                }
+
+                .header-nav {
+                    display: none;
+                }
+
+                .hero-stats {
+                    gap: 2rem;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                .site-header {
+                    padding: 0 1rem;
+                }
+
+                .hero {
+                    padding: 60px 1rem 40px;
+                }
+
+                .hero-title {
+                    font-size: 2rem;
+                }
+
+                .hero-stats {
+                    gap: 1.5rem;
+                }
+
+                .stat-number {
+                    font-size: 2rem;
+                }
+
+                .main-wrapper {
+                    padding: 0 1rem;
+                }
+
+                .book-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                    gap: 1rem;
+                }
+
+                .book-cover {
+                    height: 150px;
+                }
+
+                .quote {
+                    padding: 1.5rem;
+                    border-radius: var(--radius-lg);
+                }
+
+                .quote h2 {
+                    font-size: 1.5rem;
+                }
+
+                .book-image-container {
+                    width: 150px;
+                    height: 225px;
+                }
+
+                .daily-success-plan-table table,
+                .daily-success-plan-table tbody,
+                .daily-success-plan-table tr,
+                .daily-success-plan-table td {
+                    display: block;
+                    width: 100%;
+                }
+
+                .daily-success-plan-table .section-title {
+                    width: 100%;
+                    padding-bottom: 0.5rem;
+                    border-bottom: none;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                .book-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                    gap: 0.5rem;
+                }
+
+                .book-cover {
+                    height: 120px;
+                }
+
+                .quote > p {
+                    padding: 0.8rem 1rem;
+                    font-size: 1rem;
+                }
+
+                .hero-stats {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+            }
 
         </style>
     </head>
     <body>
 		<script>
-           /*  document.getElementById("book-select").addEventListener("change", function () {
-                if (this.value) {
-                    window.location.href = this.value;
-                }
-            }); */
-
+            // ===== FAVORITES =====
             function toggleFavorite(element) {
-                // Toggle the 'favorited' class
                 element.classList.toggle("favorited");
-
-                // אם ה-class לא קיים, הסר כל סגנון צבע מוגדר
                 if (!element.classList.contains("favorited")) {
-                    element.style.color = ""; // הסר את הצבע מהסגנונות המוגדרים באופן אינליין
+                    element.style.color = "";
                 }
-
-                // Update the personal feed
                 updatePersonalFeed();
             }
-			function filterByTag(tag) {
-				// Filter the quotes based on the selected tag
-				var quotes = document.querySelectorAll(".quote");
-				quotes.forEach(function (quote) {
-					// נניח שה-tags מאוחסנים בתוך ה-data-attribute בשם data-tags
-					var quoteTags = quote.dataset.tags ? quote.dataset.tags.split(",") : [];
-
-					// בדיקה אם ה-tag שנבחר קיים בתוך ה-tags של הציטוט או אם כל התגיות נבחרו
-					if (quoteTags.includes(tag) || tag === "") {
-						quote.style.display = "block"; // Show the quote
-					} else {
-						quote.style.display = "none"; // Hide the quote
-					}
-				});
-
-				// Filter the book items (images) based on the matching quote img src
-				var books = document.querySelectorAll(".book-item");
-				books.forEach(function (book) {
-					// Get the full img src of the book in the book-item
-					var bookImgSrc = book.querySelector("img").getAttribute("src");
-
-					// Decode the full file path to handle special characters (like %20 for spaces)
-					var decodedBookImgSrc = decodeURIComponent(bookImgSrc);
-
-					// Extract only the filename from the decoded bookImgSrc (removing the file path)
-					var bookImgFileName = decodedBookImgSrc.split('/').pop(); // Get the last part of the path (the filename)
-
-					// Find the matching quote with the same img filename (without path)
-					var matchingQuote = Array.from(quotes).find(function (quote) {
-						var quoteImgSrc = quote.querySelector("img") ? quote.querySelector("img").getAttribute("src") : "";
-						return quoteImgSrc === bookImgFileName; // Compare only the filenames
-					});
-
-					// Show or hide the book based on whether its matching quote is visible
-					if (matchingQuote && matchingQuote.style.display === "block") {
-						book.style.display = "block"; // Show the book item
-					} else {
-						book.style.display = "none"; // Hide the book item
-					}
-				});
-				}
 
             function updatePersonalFeed() {
                 var feed = document.querySelector(".personal-feed");
                 var favoriteQuotes = document.querySelectorAll(".favorited");
-
                 feed.innerHTML = "<h3>הפיד האישי שלך</h3>";
+                if (favoriteQuotes.length === 0) {
+                    feed.innerHTML += '<p style="text-align:center;color:var(--text-secondary);padding:2rem;border:2px dashed var(--border-subtle);border-radius:var(--radius-lg);font-style:italic;">לחץ על כוכב ליד ציטוט כדי להוסיף אותו למועדפים</p>';
+                }
                 favoriteQuotes.forEach(function (icon) {
                     var quote = icon.closest(".quote").cloneNode(true);
-                    quote.querySelector(".favorite-icon").remove(); // הסר את אייקון המועדף מהפיד
+                    quote.querySelector(".favorite-icon").remove();
                     feed.appendChild(quote);
                 });
             }
 
+            // ===== FILTERING =====
+            function filterByTag(tag) {
+                // Update active pill
+                document.querySelectorAll('.pill').forEach(function(pill) {
+                    pill.classList.remove('active');
+                    if (pill.getAttribute('data-tag') === tag) {
+                        pill.classList.add('active');
+                    }
+                });
+
+                var quotes = document.querySelectorAll(".quote");
+                var visibleCount = 0;
+
+                quotes.forEach(function (quote) {
+                    var quoteTags = quote.dataset.tags ? quote.dataset.tags.split(",") : [];
+                    if (quoteTags.includes(tag) || tag === "") {
+                        quote.style.display = "block";
+                        visibleCount++;
+                    } else {
+                        quote.style.display = "none";
+                    }
+                });
+
+                // Update visible count
+                var countEl = document.getElementById('visibleCount');
+                if (countEl) countEl.textContent = visibleCount;
+
+                // Filter book gallery items
+                var books = document.querySelectorAll(".book-item");
+                books.forEach(function (book) {
+                    var bookImgSrc = book.querySelector("img").getAttribute("src");
+                    var decodedBookImgSrc = decodeURIComponent(bookImgSrc);
+                    var bookImgFileName = decodedBookImgSrc.split('/').pop();
+                    var matchingQuote = Array.from(quotes).find(function (quote) {
+                        var quoteImgSrc = quote.querySelector("img") ? quote.querySelector("img").getAttribute("src") : "";
+                        return quoteImgSrc === bookImgFileName;
+                    });
+                    if (matchingQuote && matchingQuote.style.display === "block") {
+                        book.parentElement.style.display = "block";
+                    } else {
+                        book.parentElement.style.display = "none";
+                    }
+                });
+            }
+
+            function filterCategories(query) {
+                var pills = document.querySelectorAll('.pill');
+                pills.forEach(function(pill) {
+                    var text = pill.textContent.toLowerCase();
+                    if (text.includes(query.toLowerCase()) || query === '') {
+                        pill.style.display = '';
+                    } else {
+                        pill.style.display = 'none';
+                    }
+                });
+            }
+
+            // ===== TRANSLATIONS =====
+            function getHebrewTranslation(tag) {
+                const translations = {
+                    "action": "פעולה",
+                    "behavior-change": "שינוי התנהגות",
+                    "business": "עסקים",
+                    "business-strategy": "אסטרטגיה עסקית",
+                    "communication": "תקשורת",
+                    "compassion": "חמלה",
+                    "change-management": "ניהול שינויים",
+                    "decision-making": "קבלת החלטות",
+                    "digital-marketing": "שיווק דיגיטלי",
+                    "discipline": "משמעת",
+                    "dreams": "חלומות",
+                    "effectiveness": "אפקטיביות",
+                    "financial-education": "חינוך פיננסי",
+                    "financial-management": "ניהול פיננסי",
+                    "financial-wisdom": "חוכמה פיננסית",
+                    "frugality": "קמצנות",
+                    "goal-setting": "קביעת מטרות",
+                    "good-deeds": "מעשים טובים",
+                    "habits": "הרגלים",
+                    "happiness": "אושר",
+                    "inner-strength": "עוצמה פנימית",
+                    "innovation": "חדשנות",
+                    "investing": "השקעות",
+                    "investments": "השקעות",
+                    "leadership": "מנהיגות",
+                    "life-lessons": "לקחי חיים",
+                    "life-mastery": "שליטה בחיים",
+                    "lifestyle-design": "עיצוב אורח חיים",
+                    "manipulation": "מניפולציה",
+                    "mental-health": "בריאות נפשית",
+                    "mindfulness": "מיינדפולנס",
+                    "mindset": "מיינדסט",
+                    "minimalism": "מינימליזם",
+                    "motivation": "מוטיבציה",
+                    "organization": "ארגון",
+                    "personal-development": "פיתוח אישי",
+                    "personal-freedom": "חירות אישית",
+                    "personal-growth": "צמיחה אישית",
+                    "personal-power": "כוח אישי",
+                    "productivity": "פרודוקטיביות",
+                    "psychology": "פסיכולוגיה",
+                    "relationships": "מערכות יחסים",
+                    "resilience": "חוסן",
+                    "saving": "חיסכון",
+                    "self-awareness": "מודעות עצמית",
+                    "self-confidence": "ביטחון עצמי",
+                    "self-discipline": "משמעת עצמית",
+                    "self-improvement": "שיפור עצמי",
+                    "spirituality": "רוחניות",
+                    "strategy": "אסטרטגיה",
+                    "success": "הצלחה",
+                    "vulnerability": "פגיעות",
+                    "wealth": "עושר",
+                    "wisdom": "חכמה"
+                };
+                return translations[tag] || tag;
+            }
+
+            // ===== BOOK GALLERY =====
+            function buildQueuesFromQuotes() {
+                const quotes = document.querySelectorAll('.quote');
+                const queues = [];
+                quotes.forEach((quote) => {
+                    const titleElement = quote.querySelector('h2');
+                    const imgElement = quote.querySelector('img');
+                    const title = titleElement ? titleElement.textContent : '';
+                    const img = imgElement ? imgElement.src : '';
+                    const id = quote.id;
+                    queues.push({ title, img, id });
+                });
+                return queues;
+            }
+
+            function createBookList() {
+                const bookGrid = document.getElementById('bookGrid');
+                const queues = buildQueuesFromQuotes();
+                queues.forEach((book, index) => {
+                    const bookLink = document.createElement('a');
+                    bookLink.href = '#' + book.id;
+                    bookLink.classList.add('book-link');
+                    const bookItem = document.createElement('div');
+                    bookItem.classList.add('book-item');
+                    bookItem.style.animationDelay = (index * 0.04) + 's';
+                    const bookImage = document.createElement('img');
+                    bookImage.src = book.img;
+                    bookImage.alt = '\u05EA\u05DE\u05D5\u05E0\u05EA \u05E1\u05E4\u05E8 - ' + book.title;
+                    bookImage.classList.add('book-cover');
+                    bookImage.loading = 'lazy';
+                    const bookTitle = document.createElement('p');
+                    bookTitle.textContent = (index + 1) + '. ' + book.title;
+                    bookItem.appendChild(bookImage);
+                    bookItem.appendChild(bookTitle);
+                    bookLink.appendChild(bookItem);
+                    bookGrid.appendChild(bookLink);
+                });
+            }
+
+            // ===== SEARCH =====
+            function toggleSearch() {
+                var overlay = document.getElementById('searchOverlay');
+                overlay.classList.toggle('active');
+                if (overlay.classList.contains('active')) {
+                    document.getElementById('searchInput').focus();
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('searchResults').innerHTML = '';
+                }
+            }
+
+            function performSearch(query) {
+                var resultsDiv = document.getElementById('searchResults');
+                if (query.length < 2) {
+                    resultsDiv.innerHTML = '';
+                    return;
+                }
+                var quotes = document.querySelectorAll('.quote');
+                var results = [];
+                quotes.forEach(function(quote) {
+                    var title = quote.querySelector('h2') ? quote.querySelector('h2').textContent : '';
+                    var allText = quote.textContent;
+                    var img = quote.querySelector('img');
+                    var imgSrc = img ? img.getAttribute('src') : '';
+                    if (allText.includes(query) || title.includes(query)) {
+                        var matchSnippet = title;
+                        var paragraphs = quote.querySelectorAll('p');
+                        paragraphs.forEach(function(p) {
+                            if (p.textContent.includes(query)) {
+                                matchSnippet = p.textContent.substring(0, 100) + '...';
+                            }
+                        });
+                        results.push({ id: quote.id, title: title, snippet: matchSnippet, imgSrc: imgSrc });
+                    }
+                });
+                if (results.length === 0) {
+                    resultsDiv.innerHTML = '<p style="text-align:center;color:var(--text-secondary);padding:2rem;">לא נמצאו תוצאות</p>';
+                    return;
+                }
+                resultsDiv.innerHTML = results.map(function(r) {
+                    return '<div class="search-result-item" onclick="goToResult(\'' + r.id + '\')">' +
+                        '<img src="' + r.imgSrc + '" alt="' + r.title + '">' +
+                        '<div><div class="result-text">' + r.title + '</div>' +
+                        '<div class="result-category">' + r.snippet + '</div></div></div>';
+                }).join('');
+            }
+
+            function goToResult(id) {
+                toggleSearch();
+                var element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    element.style.boxShadow = '0 0 30px rgba(212,168,83,0.4)';
+                    setTimeout(function() { element.style.boxShadow = ''; }, 2000);
+                }
+            }
+
+            // ===== SCROLL EFFECTS =====
+            function initScrollEffects() {
+                // Scroll-to-top visibility + header effect
+                window.addEventListener('scroll', function() {
+                    var scrollBtn = document.getElementById('scrollToTop');
+                    var header = document.querySelector('.site-header');
+                    if (window.scrollY > 400) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+
+                // Intersection Observer for scroll animations
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+                document.querySelectorAll('.quote, .daily-success-plan').forEach(function(el) {
+                    el.classList.add('animate-on-scroll');
+                    observer.observe(el);
+                });
+            }
+
+            // ===== KEYBOARD SHORTCUTS =====
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    var overlay = document.getElementById('searchOverlay');
+                    if (overlay.classList.contains('active')) {
+                        toggleSearch();
+                    }
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    toggleSearch();
+                }
+            });
+
+            // ===== INIT =====
             document.addEventListener("DOMContentLoaded", function () {
-                const books = document.querySelectorAll(".quote"); // מוצא את כל הספרים בעמוד
+                const books = document.querySelectorAll(".quote");
                 const tags = new Set();
 
-                books.forEach((book) => {
-                    const dataTags = book.getAttribute("data-tags");
+                books.forEach(function(book) {
+                    var dataTags = book.getAttribute("data-tags");
                     if (dataTags) {
-                        const bookTags = dataTags.split(",").map((tag) => tag.trim()); // Trim spaces around tags
-                        bookTags.forEach((tag) => {
-                            if (tag) {
-                                // Make sure the tag is not empty
-                                tags.add(tag);
-                            }
+                        dataTags.split(",").map(function(t) { return t.trim(); }).forEach(function(tag) {
+                            if (tag) tags.add(tag);
                         });
                     }
                 });
 
-                const selectElement = document.getElementById("category-select");
-                tags.forEach((tag) => {
-                    const option = document.createElement("option");
-                    option.value = tag;
-                    option.textContent = getHebrewTranslation(tag);
-                    selectElement.appendChild(option);
+                // Generate pills
+                var pillsContainer = document.getElementById("categoryPills");
+                var sortedTags = Array.from(tags).sort();
+                sortedTags.forEach(function(tag) {
+                    var pill = document.createElement("button");
+                    pill.className = "pill";
+                    pill.setAttribute("data-tag", tag);
+                    pill.textContent = getHebrewTranslation(tag);
+                    pill.onclick = function() { filterByTag(tag); };
+                    pillsContainer.appendChild(pill);
                 });
-				
-				  document.querySelectorAll('.category').forEach(function(categoryElement) {
-					let tag = categoryElement.getAttribute('data-tag');
-					categoryElement.innerText = getHebrewTranslation(tag);
-				});
-	
+
+                // Translate category labels
+                document.querySelectorAll('.category').forEach(function(categoryElement) {
+                    var tag = categoryElement.getAttribute('data-tag');
+                    categoryElement.innerText = getHebrewTranslation(tag);
+                });
+
+                // Update stats
+                var countEl = document.getElementById('visibleCount');
+                if (countEl) countEl.textContent = books.length;
+
+                // Init scroll effects
+                initScrollEffects();
             });
 
-            function getHebrewTranslation(tag) {
-                const translations = {
-					"action": "פעולה",
-					"behavior-change": "שינוי התנהגות",
-					"communication": "תקשורת",
-					"decision-making": "קבלת החלטות",
-					"discipline": "משמעת",
-					"dreams": "חלומות",
-					"effectiveness": "אפקטיביות",
-					"financial-education": "חינוך פיננסי",
-					"financial-wisdom": "חוכמה פיננסית",
-					"frugality": "קמצנות",
-					"goal-setting": "קביעת מטרות",
-					"habits": "הרגלים",
-					"inner-strength": "עוצמה פנימית",
-					"investing": "השקעות",
-					"life-lessons": "לקחי חיים",
-					"life-mastery": "שליטה בחיים",
-					"lifestyle-design": "עיצוב אורח חיים",
-					"mindfulness": "מיינדפולנס",
-					"motivation": "מוטיבציה",
-					"organization": "ארגון",
-					"personal-development": "פיתוח אישי",
-					"personal-freedom": "חירות אישית",
-					"personal-growth": "צמיחה אישית",
-					"personal-power": "כוח אישי",
-					"productivity": "פרודוקטיביות",
-					"relationships": "מערכות יחסים",
-					"resilience": "חוסן",
-					"saving": "חיסכון",
-					"self-awareness": "מודעות עצמית",
-					"self-improvement": "שיפור עצמי",
-					"spirituality": "רוחניות",
-					"success": "הצלחה",
-					"wealth": "עושר",
-					"wisdom": "חכמה",
-					"change-management": "ניהול שינויים",
-					"strategy": "אסטרטגיה",
-					"financial-education": "חינוך פיננסי",
-					"wealth": "עושר",
-					"self-discipline": "משמעת עצמית",
-					"compassion": "חמלה",
-					"good-deeds": "מעשים טובים",
-					"leadership": "מנהיגות"
-				};
-                return translations[tag] || tag;
-            }
-			
-			// פונקציה ליצירת רשימת ה-queues מתוך אלמנטים עם class="quote"
-			function buildQueuesFromQuotes() {
-				const quotes = document.querySelectorAll('.quote');
-				const queues = [];
-
-				quotes.forEach((quote, index) => {
-					const titleElement = quote.querySelector('h2'); // לוקח את הכותרת מתוך ה-h2
-					const imgElement = quote.querySelector('img'); // לוקח את ה-img source
-
-					const title = titleElement ? titleElement.textContent : ''; // מקבל את הכותרת מה-h2
-					const img = imgElement ? imgElement.src : ''; // מקבל את ה-img source
-					const id = quote.id; // לוקח את ה-id של הספר
-
-					queues.push({ title, img, id });
-				});
-
-				return queues;
-			}
-
-			// פונקציה ליצירת התמונות ב-HTML על בסיס ה-queues
-			function createBookList() {
-				const bookGrid = document.getElementById('bookGrid');
-				const queues = buildQueuesFromQuotes(); // יצירת ה-queues מהאלמנטים
-
-				queues.forEach((book, index) => {
-					// יצירת קישור עבור תיבת הספר
-					const bookLink = document.createElement('a');
-					bookLink.href = `#${book.id}`; // הגדרת קישור ל-id של הספר
-					bookLink.classList.add('book-link');
-
-					// יצירת תיבת ספר
-					const bookItem = document.createElement('div');
-					bookItem.classList.add('book-item');
-
-					// הוספת התמונה
-					const bookImage = document.createElement('img');
-					bookImage.src = book.img;
-					bookImage.alt = `תמונת ספר - ${book.title}`;
-					bookImage.classList.add('book-cover');
-
-					// הוספת הכותרת עם מספר
-					const bookTitle = document.createElement('p');
-					bookTitle.textContent = `${index + 1}. ${book.title}`;
-					bookTitle.style.color = 'lavenderblush'; // קביעת צבע לכותרת
-
-					// הוספת התמונה והכותרת ל-bookItem
-					bookItem.appendChild(bookImage);
-					bookItem.appendChild(bookTitle);
-
-					// הוספת bookItem לתוך הקישור
-					bookLink.appendChild(bookItem);
-					bookGrid.appendChild(bookLink); // הוספת הקישור לתוך bookGrid
-				});
-			}
-			
-			// קריאה לפונקציה לאחר טעינת הדף
-			window.onload = createBookList;
-	
+            window.onload = createBookList;
         </script>
-		<div class="container">
-			<!-- Sidebar for category selection -->
-			<div class="sidebar">
-				<label for="category-select" style="font-size: 1.2em;color: lavenderblush;">בחר קטגוריה:</label>
-				<select id="category-select" onchange="filterByTag(this.value)" style="width: 100%; padding: 10px;">
-					<option value="">--בחר קטגוריה--</option>
-				</select>
-			</div>
-					
-			<!-- Main content: Book list with fixed width grid -->
-			<div class="book-list">
-				<div id="bookGrid"  class="book-grid">
-				</div>	
-			</div>
-		</div>
-        
-        <h1>ציטוטי ספרים</h1>
+        <!-- ===== HEADER ===== -->
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="logo">
+                    <span class="material-symbols-outlined">auto_stories</span>
+                    <span>ציטוטי ספרים</span>
+                </div>
+                <nav class="header-nav">
+                    <a href="#book-gallery-section">גלריית ספרים</a>
+                    <a href="#quotes-section">ציטוטים</a>
+                    <a href="#daily-plan-section">תכנית יומית</a>
+                    <a href="#personal-feed-section">המועדפים שלי</a>
+                </nav>
+                <button class="search-toggle" onclick="toggleSearch()">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="top">
+            <div class="hero-bg-pattern"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">ציטוטי ספרים</h1>
+                <p class="hero-subtitle">אוסף של <span class="highlight-count">67</span> ספרים מעוררי השראה, ציטוטים נבחרים ותובנות לחיים</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">67</span>
+                        <span class="stat-label">ספרים</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">ציטוטים</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">קטגוריות</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MAIN LAYOUT ===== -->
+        <div class="main-wrapper">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <span class="material-symbols-outlined">filter_list</span>
+                    <h3>סינון לפי קטגוריה</h3>
+                </div>
+                <div class="sidebar-search">
+                    <input type="text" id="categorySearch" placeholder="חפש קטגוריה..." oninput="filterCategories(this.value)">
+                </div>
+                <div class="category-pills" id="categoryPills">
+                    <button class="pill active" data-tag="" onclick="filterByTag('')">הכל</button>
+                </div>
+                <div class="sidebar-stats">
+                    <div>מציג: <span id="visibleCount">67</span> ספרים</div>
+                </div>
+            </aside>
+
+            <!-- Main content -->
+            <main class="content">
+                <!-- Book Gallery -->
+                <section id="book-gallery-section" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">library_books</span>
+                            גלריית ספרים
+                        </h2>
+                        <p class="section-subtitle">לחץ על כריכת ספר כדי לקפוץ אל הציטוטים שלו</p>
+                    </div>
+                    <div class="book-list">
+                        <div id="bookGrid" class="book-grid"></div>
+                    </div>
+                </section>
+
+                <!-- Quotes Section -->
+                <section id="quotes-section" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">format_quote</span>
+                            ציטוטים וסיכומי ספרים
+                        </h2>
+                    </div>
         <div class="quote" data-tags="mindfulness,personal-growth" id="the-secret">
 			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
 			<div class="book-image-container">
@@ -2794,24 +3750,12 @@
 			<p>"אנשים זוכרים את האנרגיה שאתה משדר הרבה יותר מהמילים שאתה אומר."</p>
 		</div>
 
+                </section><!-- end quotes-section -->
 
-
-		<div
-            class="daily-success-plan"
-            style="
-                background-color: #e0f7fa;
-                padding: 40px;
-                border-radius: 15px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-                font-family: 'Segoe UI', sans-serif;
-                color: #003366;
-                line-height: 1.8;
-                margin-top: 60px;
-                margin-bottom: 60px;
-                border: 3px solid #005b9a;
-                background: linear-gradient(to bottom, #d0f7ff, #80deea);
-            ">
-            <h2 class="daily-plan-title" style="font-size: 2.8em; text-align: center; color: #002851; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); margin-bottom: 30px;">תכנית יומית להצלחה מקסימלית</h2>
+                <!-- Daily Plan Section -->
+                <section id="daily-plan-section" class="section">
+		<div class="daily-success-plan">
+            <h2 class="daily-plan-title" style="text-align: center;">תכנית יומית להצלחה מקסימלית</h2>
 			<div class="daily-success-plan-table">
 				<table>
 					<tr>
@@ -2937,7 +3881,7 @@
 				</table>
 			</div>
 			<div class="implementation-guidelines">
-				<h3 style="font-size: 2em; text-align: center; color: #002851; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); margin-bottom: 20px;">הנחיות ליישום משודרגות</h3>
+				<h3 style="text-align: center;">הנחיות ליישום משודרגות</h3>
 				<table>
 					<tr>
 						<td width="20%" class="section-title"><strong>מיקוד במשימות עיקריות:</strong></td>
@@ -3136,13 +4080,56 @@
 				</table>
 			</div>
         </div>
-        <!-- Personal feed that updates based on user interaction -->
-        <div class="personal-feed">
-            <h3>הפיד האישי שלך</h3>
-            <!-- Favorite quotes will be appended here -->
-        </div>
-        <footer>
-            © כל הזכויות שמורות - ציטוטי ספרים
+                </section><!-- end daily-plan-section -->
+
+                <!-- Personal Feed -->
+                <section id="personal-feed-section" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="material-symbols-outlined">star</span>
+                            המועדפים שלי
+                        </h2>
+                    </div>
+                    <div class="personal-feed">
+                        <h3>הפיד האישי שלך</h3>
+                        <p style="text-align:center;color:var(--text-secondary);padding:2rem;border:2px dashed var(--border-subtle);border-radius:var(--radius-lg);font-style:italic;">לחץ על כוכב ליד ציטוט כדי להוסיף אותו למועדפים</p>
+                    </div>
+                </section>
+
+            </main><!-- end content -->
+        </div><!-- end main-wrapper -->
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="material-symbols-outlined">auto_stories</span>
+                    <span>ציטוטי ספרים</span>
+                </div>
+                <p class="footer-tagline">אוסף תובנות וציטוטים מהספרים שעיצבו חיים</p>
+                <div class="footer-divider"></div>
+                <p class="footer-copyright">&copy; כל הזכויות שמורות - ציטוטי ספרים</p>
+            </div>
         </footer>
+
+        <!-- ===== SCROLL TO TOP ===== -->
+        <button class="scroll-to-top" id="scrollToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <span class="material-symbols-outlined">keyboard_arrow_up</span>
+        </button>
+
+        <!-- ===== SEARCH OVERLAY ===== -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-overlay-inner">
+                <button class="search-close" onclick="toggleSearch()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <div class="search-box">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" id="searchInput" placeholder="חפש ספר, ציטוט או נושא..." oninput="performSearch(this.value)" autocomplete="off">
+                </div>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </div>
+
     </body>
 </html>
