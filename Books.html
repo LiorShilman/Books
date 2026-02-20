@@ -1,0 +1,3148 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=0.2, maximum-scale=3.0, user-scalable=yes" name="viewport" />
+        <title>ציטוטי ספרים</title>
+        <style>
+			body {
+				width: 80%; /* קובע את הרוחב של כל התוכן ל-90% */
+				margin: 0 auto; /* מרכז את התוכן בעמוד */
+			    background-color: lightslategrey;
+				//color: lavenderblush;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #1565c0; /* Medium, lively blue for headings */
+			}
+
+			a {
+				color: #0d47a1; /* Deep blue for links */
+				text-decoration: none;
+			}
+
+			a:hover {
+				color: #1976d2; /* Lighter blue on hover */
+				text-decoration: underline;
+			}
+
+			.button {
+				background-color: #1565c0; /* Medium blue background for buttons */
+				color: #ffffff; /* White text for buttons */
+				border: none;
+				border-radius: 5px;
+				padding: 10px 20px;
+				cursor: pointer;
+			}
+
+			.button:hover {
+				background-color: #004d8c; /* Darker blue on hover */
+			}
+
+			.header, .footer {
+				background-color: #0d47a1; /* Deep blue for header and footer */
+				color: #ffffff; /* White text */
+				padding: 20px;
+				text-align: center;
+			}
+
+			/* Main container that holds the sidebar and book list */
+			.container {
+				width: 100%; /* קובע שהקונטיינר ייקח את כל ה-90% מהרוחב */
+				margin: 0 auto; /* מרכז את הקונטיינר */
+				display: flex;
+				justify-content: space-between;
+				margin: 10px auto;
+			}
+
+			/* Sidebar for category selection */
+			.sidebar {
+				width: 200px; /* Fixed width for the category selection */
+				padding: 10px;
+				//background-color: #f5f5f5;
+				border-right: 1px solid #ccc;
+			}
+			
+			.quote {
+				background-color: #b2ebf2; /* Light turquoise */
+				padding: 20px;
+				border-left: 5px solid #00838f; /* Dark turquoise border */
+				margin-bottom: 20px;
+				border-radius: 10px;
+				position: relative;
+			}
+
+			.favorite-icon {
+				cursor: pointer;
+				font-size: 3em;
+				color: #ccc !important; /* Default color with higher priority */
+				position: absolute;
+				top: 5px;
+				right: 20px;
+				z-index: 10; /* Ensure it appears above other elements */
+			}
+
+			.favorite-icon.favorited {
+				color: yellow !important; /* Color when favorited with higher priority */
+			}
+
+			.filter {
+				margin-top: 20px;
+			}
+
+			.filter button {
+				padding: 10px 20px;
+				margin-right: 10px;
+				border: none;
+				background-color: #1565c0;
+				color: white;
+				cursor: pointer;
+				border-radius: 5px;
+			}
+
+			.filter button:hover {
+				background-color: #004ba0;
+			}
+
+			.personal-feed {
+				margin-top: 30px;
+				padding: 20px;
+				background-color: #e0f7fa;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			}
+
+			.personal-feed h3 {
+				color: #1565c0;
+			}
+
+			.quote:nth-child(even) {
+				background-color: #b2dfdb; /* Alternate mint green background */
+				border-left-color: #004d40; /* Dark green border for alternate quotes */
+			}
+
+			.quote:hover {
+				transform: scale(1.03); /* Subtle zoom effect on hover */
+				box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+			}
+
+			.quote h2 {
+				font-family: "Segoe UI", sans-serif;
+				font-size: 2.5em;
+				margin-top: 0;
+				text-transform: uppercase; /* Uppercase for emphasis */
+				letter-spacing: 1.5px; /* Spacing for a modern look */
+				font-weight: bold;
+				text-align: center; /* Centered heading */
+				padding: 15px; /* Internal padding */
+				margin-bottom: 20px; /* Bottom margin */
+				border-radius: 15px; /* Rounded corners */
+				background: linear-gradient(to right, #e3f2fd, #bbdefb); /* Subtle blue gradient */
+				color: #0d47a1; /* Deep blue text */
+				border: 2px solid #1565c0; /* Medium blue border */
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* External shadow for emphasis */
+				position: relative;
+				overflow: hidden;
+			}
+
+			.implementation-guidelines {
+				margin-top: 30px;
+				background-color: #b2dfdb; /* Mint green background */
+				padding: 20px;
+				border-radius: 10px;
+				border-left: 5px solid #004d40; /* Dark green left border */
+			}
+
+			.implementation-guidelines h3 {
+				color: #004d40; /* Dark green text */
+				font-size: 1.8em;
+				margin-bottom: 15px;
+			}
+
+			.implementation-guidelines ul {
+				list-style-type: disc;
+				padding-left: 20px;
+			}
+
+			.implementation-guidelines li {
+				font-size: 1.2em;
+				color: #0d47a1; /* Deep blue text */
+				margin-bottom: 10px;
+			}
+
+			.daily-success-plan-table table {
+				width: 100%;
+				border-spacing: 15px 10px; /* Spacing between cells */
+			}
+
+			.daily-success-plan-table .section-title {
+				width: 20%; /* Fixed width for titles */
+				font-size: 1.5em;
+				font-weight: bold;
+				color: #00796b;
+				text-align: right; /* Text alignment to the right */
+				vertical-align: top; /* Aligns titles to the top */
+			}
+
+			.daily-success-plan-table td {
+				padding: 10px;
+			}
+
+			.daily-success-plan-table ul {
+				list-style: disc;
+				padding-left: 20px;
+			}
+
+			.daily-success-plan-table li {
+				margin-bottom: 10px;
+				font-size: 1.2em;
+				color: #0d47a1; /* Deep blue text */
+			}
+
+			.books-container {
+				width: 90%; /* הרוחב יהיה 90% מהרוחב הכולל של המסך */
+				margin: 0 auto; /* מרכז את התוכן על ידי קביעת שוליים אוטומטיים */
+				padding: 20px; /* מרווח פנימי אם יש צורך */
+				max-width: 1200px; /* הגדר רוחב מקסימלי כדי למנוע מתיחה על מסכים גדולים מאוד */
+				display: flex;
+				flex-wrap: wrap; /* עוטף את התמונות אם הן חורגות מהרוחב */
+				justify-content: space-between; /* מאפשר ריווח שווה בין התמונות */
+			}
+
+			.book-image-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 20px;
+				position: relative;
+				width: 180px; /* Uniform size for images */
+				height: 270px; /* Uniform size for images */
+				background-color: #ffffff; /* White background */
+				border-radius: 10px; /* Rounded corners */
+				overflow: hidden;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+			}
+
+			.book-image-container img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover; /* Perfect fit within the container */
+				border-radius: 10px; /* Slightly rounded image */
+				transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+			}
+
+			.book-image-container img:hover {
+				transform: scale(1.05); /* Slight enlargement on hover */
+				box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+			}
+			
+
+			.book-summary {
+				background-color: #f0f4f8; /* Subtle background color */
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				margin-bottom: 20px;
+			}
+
+			.book-summary h3 {
+				font-size: 1.8em;
+				color: #1565c0; /* Heading color */
+				margin-bottom: 15px;
+			}
+
+			.book-summary p {
+				font-size: 1.2em;
+				color: #37474f; /* Text color */
+				line-height: 1.6;
+			}
+
+			.book-summary ul {
+				list-style-type: disc;
+				padding-left: 20px;
+			}
+
+			.book-summary li {
+				margin-bottom: 10px;
+				font-size: 1.2em;
+				color: #37474f; /* Text color */
+			}
+
+			.book-categories .category {
+				display: inline-block;
+				background-color: #f0f0f0;
+				padding: 5px;
+				margin-right: 5px;
+				border-radius: 5px;
+				font-size: 0.85em;
+			}
+			
+			.category {
+				background-color: #f0f0f0; /* רקע בהיר יותר לבולט */
+				color: #005f73; /* טקסט כחול כהה */
+				padding: 6px 12px;
+				margin: 0 5px 10px 0;
+				border-radius: 5px;
+				display: inline-block;
+				font-size: 0.9em;
+				font-weight: bold; /* הופך את הטקסט לבולט יותר */
+				box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6); /* מעמיק את האפקט התלת מימדי */
+				transition: all 0.3s ease; /* מעבר חלק בין מצבים */
+			}
+		
+			.category:hover {
+				transform: translateY(-3px) translateX(-1px); /* Enhances the 3D effect on hover */
+				box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.7), -6px -6px 10px rgba(255, 255, 255, 0.1); /* Even deeper shadow for a more lifted effect */
+			}
+			
+			.book-gallery {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+				justify-content: center;
+			}
+
+			/* Outer container for centering the entire book list */
+			.book-list {
+				display: flex;
+				justify-content: center; /* Center the book grid horizontally */
+				width: 100%; /* Ensure the book list takes up the full width of the container */
+			}
+
+			/* Inner grid to display the books */
+			.book-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ensure horizontal layout with min-width of 150px */
+				grid-gap: 30px; /* Space between the books */
+				justify-content: center; /* Center the books within the grid */
+				max-width: 1900px; /* Optional: Limit the grid width */
+				align-content: center; /* Center items vertically (optional if needed) */
+			}
+
+			/* Book items with fixed width */
+			.book-item {
+				width: 200px; /* Fixed width for each book item */
+				text-align: center;
+				margin: auto; /* Ensure that the item itself is centered */
+			}
+
+			/* Style for book cover images */
+			.book-cover {
+				width: 100%; /* Full width of the book item */
+				height: auto;
+				border-radius: 5px;
+				transition: transform 0.3s ease;
+			}
+
+			.book-cover:hover {
+				transform: scale(1.05); /* Slight zoom effect on hover */
+			}
+
+			/* Media query for smaller screens (like portrait mode on mobile) */
+			@media screen and (max-width: 768px) {
+				.book-grid {
+					grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Reduce width to fit more books in a row */
+					grid-gap: 10px; /* Smaller gaps between books */
+				}
+
+				.book-item {
+					width: 100px; /* Smaller fixed width for book items */
+				}
+
+				.book-cover {
+					width: 100%; /* Ensure the image fits the reduced width */
+				}
+			}
+
+			/* Media query for extra small screens (like small smartphones) */
+			@media screen and (max-width: 480px) {
+				.book-grid {
+					grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Smaller width for phones */
+					grid-gap: 8px; /* Even smaller gaps */
+				}
+
+				.book-item {
+					width: 80px; /* Further reduced width for book items */
+				}
+
+				.book-cover {
+					width: 100%; /* Ensure the image fits the reduced width */
+				}
+			}
+
+        </style>
+    </head>
+    <body>
+		<script>
+           /*  document.getElementById("book-select").addEventListener("change", function () {
+                if (this.value) {
+                    window.location.href = this.value;
+                }
+            }); */
+
+            function toggleFavorite(element) {
+                // Toggle the 'favorited' class
+                element.classList.toggle("favorited");
+
+                // אם ה-class לא קיים, הסר כל סגנון צבע מוגדר
+                if (!element.classList.contains("favorited")) {
+                    element.style.color = ""; // הסר את הצבע מהסגנונות המוגדרים באופן אינליין
+                }
+
+                // Update the personal feed
+                updatePersonalFeed();
+            }
+			function filterByTag(tag) {
+				// Filter the quotes based on the selected tag
+				var quotes = document.querySelectorAll(".quote");
+				quotes.forEach(function (quote) {
+					// נניח שה-tags מאוחסנים בתוך ה-data-attribute בשם data-tags
+					var quoteTags = quote.dataset.tags ? quote.dataset.tags.split(",") : [];
+
+					// בדיקה אם ה-tag שנבחר קיים בתוך ה-tags של הציטוט או אם כל התגיות נבחרו
+					if (quoteTags.includes(tag) || tag === "") {
+						quote.style.display = "block"; // Show the quote
+					} else {
+						quote.style.display = "none"; // Hide the quote
+					}
+				});
+
+				// Filter the book items (images) based on the matching quote img src
+				var books = document.querySelectorAll(".book-item");
+				books.forEach(function (book) {
+					// Get the full img src of the book in the book-item
+					var bookImgSrc = book.querySelector("img").getAttribute("src");
+
+					// Decode the full file path to handle special characters (like %20 for spaces)
+					var decodedBookImgSrc = decodeURIComponent(bookImgSrc);
+
+					// Extract only the filename from the decoded bookImgSrc (removing the file path)
+					var bookImgFileName = decodedBookImgSrc.split('/').pop(); // Get the last part of the path (the filename)
+
+					// Find the matching quote with the same img filename (without path)
+					var matchingQuote = Array.from(quotes).find(function (quote) {
+						var quoteImgSrc = quote.querySelector("img") ? quote.querySelector("img").getAttribute("src") : "";
+						return quoteImgSrc === bookImgFileName; // Compare only the filenames
+					});
+
+					// Show or hide the book based on whether its matching quote is visible
+					if (matchingQuote && matchingQuote.style.display === "block") {
+						book.style.display = "block"; // Show the book item
+					} else {
+						book.style.display = "none"; // Hide the book item
+					}
+				});
+				}
+
+            function updatePersonalFeed() {
+                var feed = document.querySelector(".personal-feed");
+                var favoriteQuotes = document.querySelectorAll(".favorited");
+
+                feed.innerHTML = "<h3>הפיד האישי שלך</h3>";
+                favoriteQuotes.forEach(function (icon) {
+                    var quote = icon.closest(".quote").cloneNode(true);
+                    quote.querySelector(".favorite-icon").remove(); // הסר את אייקון המועדף מהפיד
+                    feed.appendChild(quote);
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const books = document.querySelectorAll(".quote"); // מוצא את כל הספרים בעמוד
+                const tags = new Set();
+
+                books.forEach((book) => {
+                    const dataTags = book.getAttribute("data-tags");
+                    if (dataTags) {
+                        const bookTags = dataTags.split(",").map((tag) => tag.trim()); // Trim spaces around tags
+                        bookTags.forEach((tag) => {
+                            if (tag) {
+                                // Make sure the tag is not empty
+                                tags.add(tag);
+                            }
+                        });
+                    }
+                });
+
+                const selectElement = document.getElementById("category-select");
+                tags.forEach((tag) => {
+                    const option = document.createElement("option");
+                    option.value = tag;
+                    option.textContent = getHebrewTranslation(tag);
+                    selectElement.appendChild(option);
+                });
+				
+				  document.querySelectorAll('.category').forEach(function(categoryElement) {
+					let tag = categoryElement.getAttribute('data-tag');
+					categoryElement.innerText = getHebrewTranslation(tag);
+				});
+	
+            });
+
+            function getHebrewTranslation(tag) {
+                const translations = {
+					"action": "פעולה",
+					"behavior-change": "שינוי התנהגות",
+					"communication": "תקשורת",
+					"decision-making": "קבלת החלטות",
+					"discipline": "משמעת",
+					"dreams": "חלומות",
+					"effectiveness": "אפקטיביות",
+					"financial-education": "חינוך פיננסי",
+					"financial-wisdom": "חוכמה פיננסית",
+					"frugality": "קמצנות",
+					"goal-setting": "קביעת מטרות",
+					"habits": "הרגלים",
+					"inner-strength": "עוצמה פנימית",
+					"investing": "השקעות",
+					"life-lessons": "לקחי חיים",
+					"life-mastery": "שליטה בחיים",
+					"lifestyle-design": "עיצוב אורח חיים",
+					"mindfulness": "מיינדפולנס",
+					"motivation": "מוטיבציה",
+					"organization": "ארגון",
+					"personal-development": "פיתוח אישי",
+					"personal-freedom": "חירות אישית",
+					"personal-growth": "צמיחה אישית",
+					"personal-power": "כוח אישי",
+					"productivity": "פרודוקטיביות",
+					"relationships": "מערכות יחסים",
+					"resilience": "חוסן",
+					"saving": "חיסכון",
+					"self-awareness": "מודעות עצמית",
+					"self-improvement": "שיפור עצמי",
+					"spirituality": "רוחניות",
+					"success": "הצלחה",
+					"wealth": "עושר",
+					"wisdom": "חכמה",
+					"change-management": "ניהול שינויים",
+					"strategy": "אסטרטגיה",
+					"financial-education": "חינוך פיננסי",
+					"wealth": "עושר",
+					"self-discipline": "משמעת עצמית",
+					"compassion": "חמלה",
+					"good-deeds": "מעשים טובים",
+					"leadership": "מנהיגות"
+				};
+                return translations[tag] || tag;
+            }
+			
+			// פונקציה ליצירת רשימת ה-queues מתוך אלמנטים עם class="quote"
+			function buildQueuesFromQuotes() {
+				const quotes = document.querySelectorAll('.quote');
+				const queues = [];
+
+				quotes.forEach((quote, index) => {
+					const titleElement = quote.querySelector('h2'); // לוקח את הכותרת מתוך ה-h2
+					const imgElement = quote.querySelector('img'); // לוקח את ה-img source
+
+					const title = titleElement ? titleElement.textContent : ''; // מקבל את הכותרת מה-h2
+					const img = imgElement ? imgElement.src : ''; // מקבל את ה-img source
+					const id = quote.id; // לוקח את ה-id של הספר
+
+					queues.push({ title, img, id });
+				});
+
+				return queues;
+			}
+
+			// פונקציה ליצירת התמונות ב-HTML על בסיס ה-queues
+			function createBookList() {
+				const bookGrid = document.getElementById('bookGrid');
+				const queues = buildQueuesFromQuotes(); // יצירת ה-queues מהאלמנטים
+
+				queues.forEach((book, index) => {
+					// יצירת קישור עבור תיבת הספר
+					const bookLink = document.createElement('a');
+					bookLink.href = `#${book.id}`; // הגדרת קישור ל-id של הספר
+					bookLink.classList.add('book-link');
+
+					// יצירת תיבת ספר
+					const bookItem = document.createElement('div');
+					bookItem.classList.add('book-item');
+
+					// הוספת התמונה
+					const bookImage = document.createElement('img');
+					bookImage.src = book.img;
+					bookImage.alt = `תמונת ספר - ${book.title}`;
+					bookImage.classList.add('book-cover');
+
+					// הוספת הכותרת עם מספר
+					const bookTitle = document.createElement('p');
+					bookTitle.textContent = `${index + 1}. ${book.title}`;
+					bookTitle.style.color = 'lavenderblush'; // קביעת צבע לכותרת
+
+					// הוספת התמונה והכותרת ל-bookItem
+					bookItem.appendChild(bookImage);
+					bookItem.appendChild(bookTitle);
+
+					// הוספת bookItem לתוך הקישור
+					bookLink.appendChild(bookItem);
+					bookGrid.appendChild(bookLink); // הוספת הקישור לתוך bookGrid
+				});
+			}
+			
+			// קריאה לפונקציה לאחר טעינת הדף
+			window.onload = createBookList;
+	
+        </script>
+		<div class="container">
+			<!-- Sidebar for category selection -->
+			<div class="sidebar">
+				<label for="category-select" style="font-size: 1.2em;color: lavenderblush;">בחר קטגוריה:</label>
+				<select id="category-select" onchange="filterByTag(this.value)" style="width: 100%; padding: 10px;">
+					<option value="">--בחר קטגוריה--</option>
+				</select>
+			</div>
+					
+			<!-- Main content: Book list with fixed width grid -->
+			<div class="book-list">
+				<div id="bookGrid"  class="book-grid">
+				</div>	
+			</div>
+		</div>
+        
+        <h1>ציטוטי ספרים</h1>
+        <div class="quote" data-tags="mindfulness,personal-growth" id="the-secret">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - הסוד" src="הסוד.jpg" />
+			</div>
+			<h2>הסוד</h2>
+			<!-- הצגת קטגוריות -->
+			<div class="book-categories">
+				<span class="category" data-tag="mindfulness"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+			
+				<!-- סיכום הספר -->
+			<div class="book-summary">
+				<h3>סיכום הספר הסוד</h3>
+				<p>"הסוד" מאת רונדה בירן עוסק בכוח של חוק המשיכה. הספר מלמד שדרך מחשבות ורגשות חיוביים ניתן למשוך חוויות חיוביות אל חיינו. הספר מדגיש את חשיבות החשיבה המודעת והשימוש במילים חיוביות כדי לעצב את המציאות הרצויה. בנוסף, "הסוד" מציע כלים כמו מדיטציה, הכרת תודה ודמיון פעיל כדי לממש את חוק המשיכה בחיי היומיום.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>חוק המשיכה: האנרגיות והמחשבות שלנו משפיעות על מה שקורה בחיינו.</li>
+					<li>מחשבות חיוביות: מחשבות טובות מושכות חוויות חיוביות.</li>
+					<li>כוחן של מילים: השימוש במילים חיוביות משפיע על המציאות שלנו.</li>
+					<li>פעולה: מחשבות חיוביות צריכות להיות מגובות בפעולות כדי להוביל לתוצאות הרצויות.</li>
+					<li>דמיון פעיל: דמיון של הצלחה וחזון אישי משפרים את היכולת להגשמת המטרות.</li>
+				</ul>
+			</div>
+			
+			<p><strong>"המחשבות שלך הופכות לדברים."</strong> - המחשבות שאתה מתמקד בהן הן אלו שמתגשמות במציאות.</p>
+			<p>"הסוד הוא חוק המשיכה. כל מה שנכנס לחייך אתה מושך אל חייך. והוא נמשך אליך בזכות התמונות שאתה מחזיק בתודעתך"</p>
+			<p>"אתה יצירת המופת של חייך אתה מיכאלאנג'לו של חייך"</p>
+			<p>"הכרת תודה היא תהליך רב עוצמה לשינוי האנרגיה שלך ולהבאת יותר ממה שאתה רוצה לתוך חייך"</p>
+			<p>"הסיבה היחידה שלאדם אין מספיק כסף היא כי הוא חוסם כסף מלבוא אליו עם מחשבותיו."</p>
+			<p><strong>"אתה הופך למה שאתה הכי חושב עליו אבל אתה גם מושך את מה שאתה חושב עליו הכי הרבה."</strong> - המחשבות שלך קובעות את הכיוון אליו תלך והדברים שיקרו בחייך.</p>
+			<p>"הרגשות שלך הם הכלים הגדולים ביותר שלך הם שיעזרו לך ליצור את חייך"</p>
+			<p>"כדי ליצור את חיי החלומות שלך הגיע הזמן שתאהב אותך. התמקד בשמחתך. עשה את כל הדברים שגורמים לך להרגיש טוב. תאהב את עצמך מבפנים ומבחוץ"</p>
+			<p>"ראה את הדברים שאתה רוצה כאילו כבר שלך. דע שהם יבואו אליך בעת הצורך אז תן להם לבוא. אל תדאג לגביהם. אל תחשוב על המחסור שלך בהם. תחשוב עליהם כעל שלך"</p>
+			
+		
+		</div>
+        <div class="quote" data-tags="success,financial-wisdom" id="think-and-grow-rich">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - חשוב והתעשר" src="חשוב והתעשר.jpg" />
+            </div>
+            <h2>חשוב והתעשר</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="success"></span>
+				<span class="category" data-tag="financial-wisdom"></span>
+			</div>
+            
+			<div class="book-summary">
+				<h3>סיכום הספר "חשוב והתעשר"</h3>
+				<p>הספר "חשוב והתעשר" מאת נפוליאון היל נחשב לאחד מספרי ההעצמה האישית החשובים ביותר. הוא מתמקד בחשיבות המחשבה החיובית והשגת מטרות, ובתהליך הפנימי והחיצוני שמוביל להשגת עושר והצלחה. הספר מציע שיטה בת 13 שלבים שעשויה לסייע לכל אדם להשיג את מטרותיו האישיות והפיננסיות, כולל התמקדות ברצון עז, תכנון מסודר, והתגברות על פחדים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הכוח של הרצון: הצעד הראשון להשגת כל מטרה הוא רצון עז להשיגה.</li>
+					<li>הדמיה: דמיון ויצירת תמונה מנטלית ברורה של המטרות.</li>
+					<li>תכנון: פיתוח תוכנית מסודרת להגשמת המטרות.</li>
+					<li>אמונה: להאמין בכוחך וביכולתך להשיג את מה שאתה רוצה.</li>
+				</ul>
+			</div>
+			<p><strong>"כל מה שהמוח של האדם יכול להגות ולהאמין הוא יכול להשיג"</strong> - כל מה שאתה יכול לדמיין ולהאמין בו, ניתן להשגה.</p>
+            <p>"נקודת המוצא של כל הישג היא הרצון"</p>
+            <p><strong>"הגדר בדעתך מטרה ברורה וראה באיזו מהירות העולם עומד בצד כדי לאפשר לך לעבור"</strong> - כשאתה ממקד את עצמך במטרה ברורה, העולם יפעל כדי לעזור לך להשיג אותה.</p>
+            <p>"כוח וצמיחה מגיעים רק באמצעות מאמץ ומאבק מתמשכים."</p>
+            <p>"כל מצוקה כל כישלון כל כאב לב נושאים עמו זרע של תועלת שווה או גדולה יותר"</p>
+            <p><strong>"דרך ההצלחה היא הדרך לשאיפה מתמשכת אחר ידע."</strong> - הצלחה מגיעה כשממשיכים ללמוד ולהשתפר כל הזמן.</p>
+            <p>"זכרו שכל מי שמצליח בחיים מתחיל רע ועובר מאבקים קורעי לב רבים לפני"</p>
+            <p>"אל תחכו: הזמן לעולם לא יהיה בדיוק'. התחילו היכן שאתם עומדים והשתמשו בכל הכלים שיהיו לרשותכם כלים טובים יותר יימצאו ככל שתמשיכו"</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="personal-growth,mindfulness" id="monk-who-sold-ferrari">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - הנזיד שמכר את הפרארי שלו" src="הנזיד שמכר את הפרארי שלו.jpg" />
+            </div>
+            <h2>הנזיד שמכר את הפרארי שלו</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="mindfulness"></span>
+			</div>
+            
+			<div class="book-summary">
+				<h3>סיכום הספר "הנזיר שמכר את הפרארי שלו"</h3>
+				<p>הספר "הנזיר שמכר את הפרארי שלו" מספר את סיפורו של עורך דין מצליח המוותר על חיי החומריות והקריירה המפוארת כדי למצוא משמעות ואושר פנימי. דרך מסע רוחני מרתק הוא מגלה את עקרונות החוכמה העתיקה המסייעים לשפר את איכות החיים ולהשיג אושר פנימי, כולל התמקדות בהווה, שיפור עצמי, והכרת תודה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>חשיבות ההווה: לחיות את הרגע ולמקד את תשומת הלב בהווה.</li>
+					<li>פשטות: לצמצם את החומריות ולהתמקד במהות.</li>
+					<li>הכרת תודה: להעריך את הדברים הקטנים בחיים.</li>
+					<li>שיפור עצמי: לעבוד כל הזמן על שיפור עצמי והתפתחות.</li>
+				</ul>
+			</div>
+			שגסס<p><strong>"ה-I CAN (אני יכול) שלך חשוב יותר מה-IQ שלך"</strong> - היכולת שלך להאמין בעצמך חשובה יותר מאשר האינטליגנציה שלך.</p>
+            <p>"איכות חייך נקבעת על פי איכות המחשבות שלך"</p>
+            <p>"לכל אירוע יש מטרה ולכל כישלון הלקח שלו."</p>
+            <p><strong>"הזמן שלך הוא החיים שלך. לכן המתנה הכי גדולה שאתה יכול לתת למישהו היא הזמן שלך"</strong> - הזמן הוא המשאב היקר ביותר, והוא מה שמגדיר את החיים שלך.</p>
+            <p>"מה שאתה מתמקד בו גדל מה שאתה חושב עליו מתרחב ומה שאתה מתעכב עליו קובע את גורלך"</p>
+            <p>"מטרת החיים היא חיים של מטרה."</p>
+            <p>"לעולם אל תתעלם מכוחה של הפשטות"</p>
+            <p>"המגבלות היחידות על חייך הן אלה שאתה מציב לעצמך"</p>
+            <p>"כל שינוי הוא קשה בהתחלה מבולגן באמצע ומהמם בסוף"</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="personal-growth,personal-power" id="unlimited-power">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כוח בלתי מוגבל" src="כוח בלתי מוגבל.jpg" />
+            </div>
+            <h2>כוח בלתי מוגבל</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="personal-power"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כוח בלתי מוגבל"</h3>
+				<p>הספר "כוח בלתי מוגבל" מאת אנתוני רובינס מלמד על הדרך לפיתוח אישי והשגת הצלחה על ידי שימוש במודעות אישית ובתהליכי חשיבה חיוביים. הספר עוסק בטכניקות להעלאת המוטיבציה האישית, בשיפור מיומנויות התקשורת והכישורים החברתיים, ובשיטות להשגת מטרות אישיות ומקצועיות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מודעות עצמית: ההבנה והשליטה במחשבות וברגשות.</li>
+					<li>מוטיבציה: טכניקות לשמירה על מוטיבציה גבוהה והשגת מטרות.</li>
+					<li>תקשורת אפקטיבית: שיפור הכישורים הבין-אישיים לתקשורת טובה יותר.</li>
+					<li>חזון ברור: יצירת חזון ברור של ההצלחה ושאיפה להשגתו.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"החלטה אמיתית נמדדת בעובדה שנקטת פעולה חדשה. אם אין פעולה לא באמת החלטת"</strong> - החלטות אמיתיות מובילות לפעולה. אם לא פעלת, לא באמת החלטת.</p>
+            <p>"האנשים שמייצרים תוצאות יוצאות דופן חושבים בדרך הזו"</p>
+            <p><strong>"אתה מעצב את התפיסות שלך או שמישהו מעצב אותן בשבילך. אתה עושה מה שאתה רוצה לעשות או שאתה מגיב לתוכנית של מישהו אחר עבורך"</strong> - אתה שולט בתפיסות שלך ובפעולות שלך, או שהן נשלטות על ידי אחרים.</p>
+            <p>"אתה יכול לבחור אמונות שמגבילות אותך או שאתה יכול לבחור אמונות שתומכות בך. החוכמה היא לבחור את האמונות שתורמות להצלחה ולתוצאות הרצויות ולזרוק את אלו שמעכבות אותך"</p>
+            <p>"פעולה היא מה שמאחד כל הצלחה גדולה. פעולה היא מה שמייצר תוצאות. ידע הוא רק כוח פוטנציאלי עד שהוא מגיע לידיו של מישהו שיודע לגרום לעצמו לנקוט בפעולה יעילה."</p>
+            <p><strong>"ההצלחה היא פשוטה. ראשית אתה מחליט מה אתה רוצה ספציפית ושנית אתה מחליט שאתה מוכן לשלם את המחיר כדי שזה יקרה - ואז לשלם את המחיר הזה."</strong> - ההצלחה דורשת החלטות ברורות ומחויבות לפעולה.</p>
+            <p>"אל תמצא אשמה תמצא תרופה."</p>
+            <p>"העולם בו אנו חיים הוא העולם שאנו בוחרים לחיות בו בין אם במודע או שלא במודע. אם אנחנו בוחרים באושר זה מה שנקבל. אם נבחר באומללות נקבל גם את זה"</p>
+			
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="habits,personal-growth" id="atomic-habits">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - הרגלים אטומיים" src="הרגלים אטומיים.jpg" />
+            </div>
+            <h2>הרגלים אטומיים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="habits"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "הרגלים אטומיים"</h3>
+				<p>הספר "הרגלים אטומיים" מאת ג'יימס קליר מציע תובנות וכלים לשיפור החיים על ידי שינוי ושיפור ההרגלים שלנו. הוא מסביר כיצד שינויים קטנים ויומיומיים יכולים להוביל לתוצאות משמעותיות לאורך זמן, ומדגיש את חשיבותם של הרגלים חיוביים וחשיבה שיטתית.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>שינויים קטנים: השפעתם של שינויים קטנים שנעשים באופן עקבי.</li>
+					<li>שיטתיות: פיתוח שיטות ושגרות לשיפור הרגלים.</li>
+					<li>התגברות על מכשולים: מציאת דרכים להתמודד עם אתגרים יומיומיים.</li>
+					<li>צמיחה מתמשכת: שאיפה לשיפור מתמיד ולהשגת מטרות.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"הרגלים הם כמו כסף: ההשפעה שלהם גדלה במהירות עם הזמן."</strong> - הרגלים קטנים מצטברים ויוצרים שינוי גדול עם הזמן.</p>
+            <p>"שינוי קטן בהרגלים שלך יכול לשנות את כל חייך."</p>
+            <p>"לצפות לשיפור של 1% בכל יום יגרום לשינוי עצום לאורך זמן."</p>
+            <p>"התמדה היא המפתח לכל הצלחה."</p>
+            <p>"זה לא מה שאתה עושה, זה מה שאתה עושה בעקביות שקובע."</p>
+            <p><strong>"הרגלים הם הזהות שלך. ההרגלים שלך מגדירים מי אתה."</strong> - הרגלים הם חלק בלתי נפרד מהאדם שאתה הופך להיות.</p>
+            <p>"להרגלים קטנים יש השפעה מצטברת חזקה."</p>
+            <p>"מערכות טובות חשובות יותר ממטרות. מטרות נותנות כיוון, אבל מערכות הן מה שמביאות להתקדמות."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="motivation,action" id="5-second-rule">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - חוק ה - 5 שניות" src="חוק חמש השניות.jpg" />
+            </div>
+            <h2>חוק ה-5 שניות</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="motivation"></span>
+				<span class="category" data-tag="action"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "חוק 5 השניות"</h3>
+				<p>"חוק 5 השניות" מאת מל רובינס מציג טכניקה פשוטה להתגבר על דחיינות ועל ספק עצמי. הכלל הוא לספור מחמש לאחת ולבצע פעולה מיידית, מה שמוביל לשינויים חיוביים בחיים ולשיפור הביטחון העצמי.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>התגברות על דחיינות: שימוש בכלל 5 השניות לשבירת דפוסי חשיבה שליליים.</li>
+					<li>שיפור קבלת החלטות: פיתוח ביטחון עצמי על ידי קבלת החלטות מהירה ומניעת חשיבת יתר.</li>
+					<li>פעולה פרואקטיבית: יציאה מאזור הנוחות ולקיחת סיכונים להשגת מטרות אישיות.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"כשאתה מקבל השראה לפעולה, יש לך חלון זמן של 5 שניות לפני שהמוח שלך יהרוס את זה."</strong> - פעל במהירות על פי רעיונות והשראות לפני שהספקות עולים.</p>
+            <p>"הרעיון פשוט: כשיש לך אינסטינקט לעשות משהו שאתה יודע שעליך לעשות, עשה זאת תוך 5 שניות."</p>
+            <p>"חוק ה-5 שניות הוא כלי פשוט אך עוצמתי לשינוי הרגלים."</p>
+            <p><strong>"כל פעולה קטנה שאתה עושה משנה את חייך. אל תתעלם מהכוח של הפעולות הקטנות."</strong> - פעולות קטנות ומיידיות יוצרות השפעה גדולה על חייך.</p>
+            <p>"החוק הזה יכול לשנות את חייך אם תשתמש בו בכוונה."</p>
+            <p>"להתגבר על היסוס הוא המפתח לפעולה אפקטיבית."</p>
+            <p>"חוק ה-5 שניות יכול להיות הבסיס לבניית ביטחון עצמי וביצוע פעולות נחרצות."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="personal-growth,spirituality" id="the-alchemist">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - האלכימאי" src="האלכימאי.jpg" />
+            </div>
+            <h2>האלכימאי</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="spirituality"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "האלכימאי"</h3>
+				<p>"האלכימאי" מאת פאולו קואלו מספר את סיפורו של סנטיאגו, רועה צאן שיוצא למסע למצוא אוצר בפירמידות במצרים. המסע מתמקד בהגשמת חלומות, הקשבה ללב, והתגברות על פחדים. הספר מעודד את הקוראים לרדוף אחרי חלומותיהם ולהאמין בכוחם הפנימי.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>רדיפה אחרי חלומות: כל אחד צריך לעקוב אחרי האגדה האישית שלו.</li>
+					<li>הקשבה ללב: האינטואיציה האישית היא הדרך הנכונה למצוא את היעוד האמיתי.</li>
+					<li>התגברות על פחדים: כל אתגר הוא הזדמנות לצמיחה אישית.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"כשאתה באמת רוצה משהו, כל היקום נחלץ לעזרתך כדי להשיג אותו."</strong> - כאשר יש לך רצון אמיתי, העולם כולו יתמוך בך כדי להשיג את מטרתך.</p>
+            <p>"אל תפחד להיכשל. זו הדרך היחידה לגדול."</p>
+            <p>"אנחנו מפסידים הרבה בגלל שאנו חוששים להתחיל."</p>
+            <p>"הדברים הפשוטים ביותר הם אלו שהכי חשובים."</p>
+            <p><strong>"התשובות לכל השאלות שלך נמצאות בתוכך."</strong> - כל מה שאתה צריך לדעת נמצא כבר בתוכך, אתה רק צריך להקשיב לעצמך.</p>
+            <p>"המזל תומך במי שמחפש את ייעודו ללא היסוס."</p>
+            <p>"החיים עצמם הם ההרפתקה הגדולה ביותר שעלינו לחוות."</p>
+            <p>"אהבה אמיתית היא זאת שאינה עוצרת אותך מלהגשים את החלומות שלך."</p>
+            <p>"הכוח להבין את הלב נמצא בכל מקום סביבנו."</p>
+            <p>"כשהאדם מחפש את הייעוד שלו, כל רגע בחיים הופך להיות גילוי עצמי."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="personal-growth,mindfulness" id="four-agreements">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - הארבע הסכמות" src="ארבע ההסכמות.jpg" />
+            </div>
+            <h2>ארבע ההסכמות</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="mindfulness"></span>
+			</div>
+            
+			<div class="book-summary">
+				<h3>סיכום הספר "ארבע ההסכמות"</h3>
+				<p>"ארבע ההסכמות" מאת דון מיגל רואיס מציע ארבעה עקרונות בסיסיים לחיים מלאים ומספקים יותר: להיות ללא דופי עם המילים שלך, לא לקחת שום דבר באופן אישי, לא להניח הנחות, ותמיד לעשות כמיטב יכולתך. הספר מבוסס על חוכמה עתיקה והוא מדריך לצמיחה רוחנית ולחיים מודעים יותר.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>להיות ללא דופי עם המילים שלך: להשתמש בשפה בצורה חיובית ואמיתית.</li>
+					<li>לא לקחת שום דבר באופן אישי: להבין שמעשיהם של אחרים הם השתקפות של עולמם הפנימי.</li>
+					<li>לא להניח הנחות: לשאול שאלות ולא לקחת דברים כמובן מאליו.</li>
+					<li>תמיד לעשות כמיטב יכולתך: להשתדל בכל מצב ולעשות את המקסימום.</li>
+				</ul>
+			</div>
+			
+			<p><strong>"הסכמה ראשונה: הייה נאמן לדבריך."</strong> - מילותיך הן כוח, השתמש בהן כדי ליצור טוב ולא להרוס.</p>
+            <p>"הסכמה שנייה: אל תיקח שום דבר באופן אישי."</p>
+            <p>"הסכמה שלישית: אל תניח הנחות."</p>
+            <p>"הסכמה רביעית: תמיד עשה כמיטב יכולתך."</p>
+            <p><strong>"הסכמות אלו הן הדרך לחופש אישי."</strong> - קיום ההסכמות האלו יכול לשחרר אותך ולהביא לחיים מלאים ומאושרים.</p>
+            <p>"היכולת לסלוח לאחרים היא המפתח לשחרור כעסים וחיים מלאים יותר."</p>
+            <p>"כל אחד מאיתנו אחראי ליצירת גן העדן או הגיהנום האישי שלו על פני האדמה."</p>
+            <p>"המילים שלך יכולות להיות כמו קסם, ולהשפיע על חייך ועל חיי הסובבים אותך."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="productivity,motivation" id="5am-club">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - מועדון ה - 5 בבוקר" src="מועדון ה-5 בבוקר.jpg" />
+            </div>
+            <h2>מועדון ה-5 בבוקר</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="productivity"></span>
+				<span class="category" data-tag="motivation"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "מועדון ה-5 בבוקר"</h3>
+				<p>"מועדון ה-5 בבוקר" מאת רובין שארמה הוא מדריך להתעוררות מוקדמת כדרך למקסם את היעילות, המוטיבציה וההצלחה האישית. הספר מציע שגרת בוקר מיוחדת שמתחילה בשעה 5 בבוקר ומאפשרת להקדיש זמן לשיפור עצמי לפני תחילת היום העמוס.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>התעוררות מוקדמת: ניצול השעות השקטות של הבוקר להתפתחות אישית.</li>
+					<li>שגרת בוקר: בניית סדר יום קבוע שמתחיל בפעילות גופנית, התפתחות רוחנית ולמידה.</li>
+					<li>משמעת עצמית: התמדה בשגרה היומית כדרך למימוש פוטנציאל אישי.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"הרגלי הבוקר שלך קובעים את האיכות של כל יומך."</strong> - התחלת היום בצורה נכונה משפרת את כל היום שלך.</p>
+            <p>"הדברים הקשים ביותר בחיים הם אלו שמביאים את התמורה הגדולה ביותר."</p>
+            <p>"החיים מתחילים כשאתה יוצא מאזור הנוחות שלך."</p>
+            <p>"הצטרפות למועדון ה-5 בבוקר תשפר את חייך בכל התחומים."</p>
+            <p><strong>"אנשים שמצליחים בחיים מבינים שהזמן הוא המשאב היקר ביותר."</strong> - ניהול נכון של הזמן הוא המפתח להצלחה.</p>
+            <p>"התחל את היום שלך מוקדם כדי להיות צעד אחד לפני כולם."</p>
+            <p>"השלווה הפנימית מתחילה בבוקר, עם ההרגלים שאתה מפתח."</p>
+            <p>"התרגל לקום מוקדם, וזה יהפוך להיות המפתח להצלחה."</p>
+            <p>"בוקר טוב יכול לשנות את כל מהלך היום שלך."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="personal-growth,motivation" id="awaken-the-giant">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - להעיר את הענק שבפנים" src="להעיר את הענק שבפנים.jpg" />
+            </div>
+            <h2>להעיר את הענק שבפנים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="motivation"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "להעיר את הענק שבפנים"</h3>
+				<p>"להעיר את הענק שבפנים" מאת טוני רובינס מציג דרכים מעשיות לשלוט בחיים, במחשבות, וברגשות כדי להגיע להצלחה ולאושר. הספר מציע כלים וטכניקות לשינוי עצמי והתגברות על מחסומים אישיים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>שינוי עצמי: כל אחד יכול לשנות את חייו דרך שינוי המחשבות והאמונות.</li>
+					<li>הצבת מטרות: הצבת יעדים ברורים ופיתוח תוכניות פעולה להשגתם.</li>
+					<li>שליטה ברגשות: שימוש בטכניקות מנטליות לניהול רגשות והתמודדות עם אתגרים.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"הדבר היחיד שמונע ממך להשיג את מה שאתה רוצה הוא הסיפור שאתה מספר לעצמך."</strong> - המחשבות והסיפורים שאתה מספר לעצמך הם אלו שמגבילים אותך.</p>
+            <p>"כשאתה משנה את הסיפור, אתה משנה את חייך."</p>
+            <p><strong>"רק אלה שמוכנים להעז ללכת רחוק מדי מגלים כמה רחוק אפשר להגיע."</strong> - כאשר אתה מוכן לקחת סיכונים, אתה מגלה את הגבולות שלך.</p>
+            <p>"הרגשות שלך אינם משקפים את המציאות. הם משקפים את הפרשנות שלך למציאות."</p>
+            <p>"החלטות הן המפתח לשינוי, לא נסיבות."</p>
+            <p>"הענק שבפנים מתעורר כאשר אתה מקבל החלטות מודעות ובטוחות."</p>
+            <p><strong>"שינוי מתחיל ברגע שאתה מחליט שאתה לא מוכן לחיות כפי שחיית עד עכשיו."</strong> - השינוי האמיתי מתחיל כאשר אתה מקבל החלטה פנימית להפסיק לחיות כפי שחיית.</p>
+            <p>"כוח אמיתי נובע מהיכולת לשלוט במחשבות וברגשות שלך."</p>
+            <p>"החיים שלך הם השתקפות של האמונות והפעולות שלך."</p>
+            <p>"כדי להצליח, עליך להיות נחוש ובלתי מתפשר בקבלת החלטות."</p>
+            <p>"אתה יכול לשנות כל דבר בחייך אם אתה מוכן להתחייב לפעולה ולחשיבה נכונה."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="financial-wisdom,success" id="rich-dad-poor-dad">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - אבא עשיר אבא עני" src="אבא עשיר אבא עני.jpg" />
+            </div>
+            <h2>אבא עשיר אבא עני</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-wisdom"></span>
+				<span class="category" data-tag="success"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "אבא עשיר אבא עני"</h3>
+				<p>"אבא עשיר אבא עני" מאת רוברט קיוסאקי מתמקד בחשיבות החינוך הפיננסי. הספר מציג את ההבדלים בין "אבא עשיר" המייצג חוכמה כלכלית ויזמות, לבין "אבא עני" המייצג גישה מסורתית של עבודה קשה עבור הכנסה. הספר מדגיש את הצורך לפתח נכסים שיוצרים הכנסה פאסיבית ולהשקיע בחינוך פיננסי על מנת להשיג עצמאות כלכלית.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>השקעה בנכסים: בניית נכסים שמניבים הכנסה פסיבית היא הדרך לעצמאות כלכלית.</li>
+					<li>חינוך פיננסי: ידע כלכלי הוא המפתח להצלחה כלכלית ויציבות.</li>
+					<li>חשיבה יזמית: חיפוש הזדמנויות עסקיות והשקעות עם פוטנציאל צמיחה.</li>
+					<li>הימנעות ממלכודת "מרוץ העכברים": לא להסתמך רק על הכנסה מעבודה אלא לחפש מקורות הכנסה נוספים.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"העשירים לא עובדים בשביל כסף, הם גורמים לכסף לעבוד בשבילם."</strong> - העשירים משקיעים את הכסף שלהם כדי לייצר עוד כסף.</p>
+            <p>"רכישת נכסים ולא התחייבויות היא המפתח לבניית עושר."</p>
+            <p>"אחד ההבדלים המרכזיים בין עשירים לעניים הוא כיצד הם מנהלים את הפחד שלהם."</p>
+            <p><strong>"חינוך פיננסי הוא המפתח לחופש כלכלי."</strong> - כדי להיות חופשי כלכלית, עליך להבין כיצד כסף עובד.</p>
+            <p>"הכסף הוא לא המטרה, אלא האמצעי להגיע לחיים שאתה רוצה."</p>
+            <p>"העושר שלך לא נמדד בכמה כסף אתה מרוויח, אלא בכמה כסף אתה מצליח לשמור."</p>
+            <p>"עבודה קשה בלי הבנה פיננסית יכולה להוביל למעגל אין-סופי של חובות."</p>
+            <p><strong>"המפתח להצלחה כלכלית הוא להיות אמיץ, לחשוב אחרת ולא לפחד לקחת סיכונים."</strong> - העשירים לא מפחדים מהסיכון אלא לומדים כיצד לנהל אותו.</p>
+            <p>"הבחירות שאתה עושה היום ישפיעו על החופש הכלכלי שלך בעתיד."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="life-lessons,discipline" id="make-your-bed">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - סדר את המיטה שלך" src="סדר את המיטה שלך.jpg" />
+            </div>
+            <h2>סדר את המיטה שלך</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="life-lessons"></span>
+				<span class="category" data-tag="discipline"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "סדר את המיטה שלך"</h3>
+				<p>"סדר את המיטה שלך" מאת אדמירל ויליאם ה. מקרייבן הוא ספר מוטיבציה המבוסס על שיעורי חיים שנלמדו במהלך הקריירה הצבאית שלו. מקרייבן מדגיש את החשיבות של התחלה עם משימות קטנות, משמעת עצמית, ועבודת צוות. הספר מציע עצות מעשיות להתמודדות עם אתגרים ואימוץ גישה פרואקטיבית לחיים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>התחלה עם משימות קטנות: סידור המיטה בכל בוקר יוצר תחושת הישג ומומנטום להמשך היום.</li>
+					<li>משמעת עצמית: משמעת עקבית היא המפתח להצלחה ארוכת טווח.</li>
+					<li>עבודת צוות: הצלחה תלויה בשיתוף פעולה ותמיכה הדדית.</li>
+					<li>חוסן: התמודדות עם אתגרים בחוסן ובנחישות.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"אם אתה רוצה לשנות את העולם, התחל בסידור המיטה שלך."</strong> - התחלת היום במשימה קטנה תביא לתחושת הישג ותניע אותך לבצע עוד.</p>
+            <p>"המשמעת האישית מתחילה מדברים קטנים."</p>
+            <p>"החיים הם סדרה של אתגרים, והתמודדות עם האתגרים הקטנים מביאה להתמודדות מוצלחת עם הגדולים."</p>
+            <p><strong>"המשמעת הקטנה ביותר יכולה לשנות את מהלך היום כולו."</strong> - משמעת קטנה יכולה להביא להצלחה גדולה.</p>
+            <p>"התמדה במשמעת מביאה להישגים מרשימים."</p>
+            <p>"כשאתה מתחיל את היום במשימה קטנה ומסיימת אותה, זה נותן לך מוטיבציה להמשיך לעוד משימות."</p>
+            <p><strong>"פעולה קטנה בתחילת היום יכולה לקבוע את הגישה שלך למשך שארית היום."</strong> - סידור המיטה בבוקר קובע את הטון לשאר היום שלך.</p>
+            <p>"אם אתה לא יכול לעשות את הדברים הקטנים נכון, איך תעשה את הדברים הגדולים?"</p>
+			
+			
+
+
+
+        </div>
+        <div class="quote" data-tags="relationships,communication" id="how-to-win-friends">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כיצד לרכוש ידידים והשפעה" src="כיצד לרכוש ידידים והשפעה.jpg" />
+            </div>
+            <h2>כיצד לרכוש ידידים והשפעה</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="relationships"></span>
+				<span class="category" data-tag="communication"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כיצד לרכוש ידידים והשפעה"</h3>
+				<p>"כיצד לרכוש ידידים והשפעה" מאת דייל קרנגי הוא מדריך קלאסי לאמנות התקשורת וההשפעה. הספר מציע עקרונות וכלים לבניית קשרים טובים יותר עם אנשים, זיהוי הצרכים שלהם והשגת השפעה חיובית. קרנגי מדגיש את החשיבות של כנות, הקשבה, והתחשבות ברגשות הזולת.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>כנות ואמיתיות: להיות כנה ולפנות לאנשים בצורה אמיתית.</li>
+					<li>הקשבה פעילה: להקשיב יותר ולדבר פחות כדי להבין את הצד השני.</li>
+					<li>כבוד הדדי: להתייחס לכל אדם בכבוד ולהכיר בערכו.</li>
+					<li>אמפתיה: להבין ולהרגיש את רגשותיהם של אחרים.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"התעניינות כנה באחרים היא המפתח ליצירת קשרים טובים."</strong> - כאשר אתה מתעניין באחרים, אתה מפתח קשרים אמיתיים.</p>
+            <p>"השימוש במילה 'אתה' ולא 'אני' יוצרת חיבור עמוק יותר."</p>
+            <p>"הקשבה אמיתית היא אמנות שפותחת דלתות."</p>
+            <p><strong>"הכוח של חיוך הוא לא יסולא בפז."</strong> - חיוך פשוט יכול לשנות את האווירה ולהתחיל קשרים חדשים.</p>
+            <p>"ההערכה הכנה היא אחד המנופים החזקים ביותר ביחסים בין-אישיים."</p>
+            <p>"ביקורת הורסת מערכות יחסים. תמיד השתדל לשבח במקום לבקר."</p>
+            <p>"הכוח לשנות את דעותיהם של אחרים נמצא ביכולת לשוחח באופן מתחשב וקשוב."</p>
+            <p><strong>"אם אתה רוצה שיאהבו אותך, היה נדיב בהבעת הערכה ושבחים כלפי אחרים."</strong> - הפגנת הערכה כנה ואמיתית מביאה לקרבה וידידות אמיתית.</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="mindfulness,spirituality" id="power-of-now">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כוחו של הרגע הזה" src="כוחו של הרגע הזה.jpg" />
+            </div>
+            <h2>כוחו של הרגע הזה</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="mindfulness"></span>
+				<span class="category" data-tag="spirituality"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כוחו של הרגע הזה"</h3>
+				<p>"כוחו של הרגע הזה" מאת אקהרט טול הוא מדריך רוחני לחיים בהווה, ללא חרטות על העבר או דאגות לעתיד. טול מדגיש את החשיבות של להיות נוכח במלואך ברגע הנוכחי כמפתח לשלום פנימי ואושר. הספר כולל תובנות ותרגילים שמטרתם לשחרר אותנו מפטפוטים נפשיים ולהתחבר למודעות עמוקה יותר.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>חיים בהווה: ההתמקדות ברגע הנוכחי מאפשרת למצוא שלווה פנימית.</li>
+					<li>השתחררות מהאגו: האגו הוא מקור לסבל, ולכן יש לשאוף להתרחק ממנו.</li>
+					<li>מיינדפולנס: טיפוח מודעות מלאה לרגע הנוכחי ולהתנסויות בו.</li>
+					<li>קבלה: קבלת המציאות כפי שהיא ללא התנגדות מובילה לשלווה אמיתית.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"העבר הוא זיכרון, העתיד הוא דמיון, הרגע הזה הוא כל מה שיש."</strong> - החיים מתרחשים עכשיו, לא בעבר או בעתיד.</p>
+            <p>"הנוכחות היא המפתח לכל דבר בחיים."</p>
+            <p>"כאשר אתה נוכח, כל פעולה שאתה עושה מלאה ביותר חיים."</p>
+            <p><strong>"הרגע הזה הוא השער לחיים האמיתיים."</strong> - כל מה שיש לך הוא הרגע הנוכחי, והוא מה שמוביל להגשמה אמיתית.</p>
+            <p>"העבר לא יכול לשלוט בך אם אתה לא נותן לו כוח."</p>
+            <p>"הכוח האמיתי נמצא ביכולת לשחרר את העבר ולחיות את הרגע הנוכחי."</p>
+            <p>"כשאתה מתמקד ברגע הנוכחי, אתה מגלה שלווה פנימית ושקט נפשי."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="financial-wisdom,habits" id="richest-man-in-babylon">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - האיש העשיר ביותר בבבל" src="האיש העשיר ביותר בבבל.jpg" />
+            </div>
+            <h2>האיש העשיר ביותר בבבל</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-wisdom"></span>
+				<span class="category" data-tag="habits"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "האיש העשיר ביותר בבבל"</h3>
+				<p>"האיש העשיר ביותר בבבל" מאת ג'ורג' ס. קלאסון הוא ספר קלסי שמלמד עקרונות פשוטים לניהול כספים והשגת עושר אישי. הספר מתבסס על סיפורים מעיר בבל העתיקה ומציע חוקים לניהול כספים, חיסכון והשקעות מוצלחות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הפרשת כסף: לשמור על חלק מההכנסות ולחסוך אותו.</li>
+					<li>השקעה נבונה: להשקיע את הכסף באפיקים בטוחים ומניבי רווח.</li>
+					<li>ניהול חובות: להימנע מחובות מיותרים ולנהל את החובות הקיימים בחוכמה.</li>
+					<li>חיסכון מתמיד: החיסכון הוא הבסיס לעושר אישי והצלחה כלכלית.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"חלק מכל מה שאתה מרוויח הוא שלך לשמור."</strong> - עליך להקפיד לשמור חלק מכל הכנסה שלך ולא לבזבז את הכל.</p>
+            <p>"התחייבתי לחסוך לפחות עשירית מהכנסותיי, ולעולם לא לגעת בחסכון זה, אלא רק להשקיע אותו."</p>
+            <p>"אל תשכח להחזיר את חובותיך בזמן, כך תבנה אמון עם אחרים ותשמור על כבודך."</p>
+            <p><strong>"זהב בא בקלות וגדל במהירות עבור כל אדם שמקצה לפחות עשירית מהכנסותיו להשקעה חכמה."</strong> - כאשר אתה משקיע בצורה חכמה ומחושב, ההכנסה שלך תגדל במהירות.</p>
+            <p>"זהב חומק בקלות מאדם שמנסה להשקיע אותו בעסקים או מטרות שאינו מכיר או שאינם מאושרים על ידי אנשים מנוסים."</p>
+            <p>"השקעה נכונה תגרום להון שלך לצמוח ולהשתמש בכסף שלך בצורה הטובה ביותר."</p>
+            <p><strong>"הכסף עובד עבורך כל עוד אתה עובד עליו בתבונה."</strong> - הכסף יכול לגדול ולהניב רווחים רק אם תנהל אותו בצורה נכונה.</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="habits,behavior-change" id="power-of-habit">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כוחו של ההרגל" src="כוחו של ההרגל.jpg" />
+            </div>
+            <h2>כוחו של ההרגל</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="habits"></span>
+				<span class="category" data-tag="behavior-change"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כוחו של הרגל"</h3>
+				<p>"כוחו של הרגל" מאת צ'ארלס דוהיג הוא ספר שמבאר כיצד הרגלים משפיעים על חיינו האישיים והמקצועיים. הספר מתאר כיצד ניתן לזהות את הדפוסים האוטומטיים שלנו ולשנותם לטובת התנהגויות יעילות יותר, דרך מודל ה-Loop: רמז, שגרה ופרס.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הרגלים מונעים על ידי רמזים ותגמולים: זיהוי הרמזים שמפעילים את ההרגלים שלנו הוא המפתח לשינוי התנהגויות.</li>
+					<li>שינוי שגרות: ניתן לשנות את השגרות המוטבעות שלנו על ידי הכרה והחלפתם בדפוסים חדשים.</li>
+					<li>כוחן של קבוצות: תמיכה חברתית יכולה לסייע בשמירה על הרגלים חדשים.</li>
+					<li>השפעת הסביבה: הסביבה בה אנו חיים משפיעה על דפוסי ההתנהגות שלנו באופן משמעותי.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"הרגל הוא פעולה שמתרחשת שוב ושוב, עד שהיא הופכת לטבע שני."</strong> - כאשר אנחנו מבצעים פעולה שוב ושוב, היא הופכת לחלק בלתי נפרד מאיתנו.</p>
+            <p>"כוחם של ההרגלים הוא בכך שהם פועלים באופן אוטומטי."</p>
+            <p>"כדי לשנות הרגל ישן, יש ליצור הרגל חדש שיחליף אותו."</p>
+            <p><strong>"השליטה על ההרגלים שלנו היא המפתח להצלחה בכל תחום בחיים."</strong> - הרגלים הם הכוח המניע מאחורי הצלחה מתמשכת.</p>
+            <p>"שינוי הרגלים מתחיל במודעות לפעולות שלנו."</p>
+            <p>"ההרגלים שאתה יוצר היום יקבעו את עתידך."</p>
+            <p><strong>"ההרגלים שלנו מגדירים מי אנחנו."</strong> - כל פעולה חוזרת ונשנית הופכת להרגל, וההרגלים שלנו יוצרים את זהותנו.</p>
+            <p>"ההרגלים הטובים ביותר הם אלו שמובילים לשיפור מתמשך."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="success,strategy" id="48-laws-of-power">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - 48 החוקים של הכוח" src="כוח - 48 החוקים.jpg" />
+            </div>
+            <h2>כוח - 48 החוקים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="success"></span>
+				<span class="category" data-tag="strategy"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כוח 48 החוקים"</h3>
+				<p>"כוח 48 החוקים" מאת רוברט גרין הוא ספר המתאר עקרונות של כוח והשפעה, תוך מתן דוגמאות היסטוריות ותובנות פסיכולוגיות. הספר מציג 48 חוקים שמסייעים להבין, לרכוש ולהפעיל כוח במערכות יחסים, עסקאות ותמרון פוליטי.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>חוקי הכוח: הבנה ויישום של עקרונות אלו מסייעים להשיג יתרון בעסקים ובחיים האישיים.</li>
+					<li>אסטרטגיה: כל חוק מציע אסטרטגיות לניהול מערכות יחסים בצורה אפקטיבית.</li>
+					<li>שימור עצמי: הבנת חוקי הכוח מסייעת בהגנה עצמית מפני ניצול או תמרון על ידי אחרים.</li>
+					<li>ערמומיות: חוקים אלו מאפשרים לראות מעבר למניעים המוצהרים של אנשים ולהגיב בהתאם.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"אל תראה את כל הקלפים שלך, השאר מסתוריות."</strong> - שמירת סודות ומסתוריות נותנת לך יתרון במערכות יחסים.</p>
+            <p>"אל תזדהה עם אנשים חלשים, הם יגררו אותך מטה."</p>
+            <p><strong>"המנע מעימותים ישירים, המניע נסתר הוא הכוח האמיתי."</strong> - כוח אמיתי נובע מהתכנון המושלם ומהשפעה מבלי להיראות.</p>
+            <p>"כוח הוא כמו משחק שחמט, עליך לחשוב מספר צעדים קדימה."</p>
+            <p><strong>"חוק הכוח הראשון: לעולם אל תסמוך יותר מדי על חברים, למד לנצל את האויבים שלך."</strong> - ניהול חכם של מערכות יחסים יכול להוביל לשליטה טובה יותר במצבים.</p>
+            <p>"הפוך את עצמך לבלתי צפוי כדי לשלוט בסביבה שלך."</p>
+            <p>"אל תתן לאנשים לדעת מהן הכוונות האמיתיות שלך."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="productivity,goal-setting" id="getting-things-done">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - לגרום לדברים לקרות" src="לגרום לדברים לקרות.jpg" />
+            </div>
+            <h2>לגרום לדברים לקרות</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="productivity"></span>
+				<span class="category" data-tag="goal-setting"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "לגרום לדברים לקרות"</h3>
+				<p>"לגרום לדברים לקרות" מאת דייוויד אלן מציג את גישת ה-GTD (Getting Things Done), המספקת כלים לניהול משימות ופרודוקטיביות. הספר מציע שיטות לאיסוף משימות, עיבודן, ארגון וביצוע יעיל יותר, על מנת לשמור על איזון ושליטה בעומס העבודה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>איסוף משימות: רישום כל המשימות והמחויבויות על מנת להקל על העומס הקוגניטיבי.</li>
+					<li>פירוק משימות: פיצול המשימות לשלבים ניתנים לביצוע כדי להגביר את הבהירות והפרודוקטיביות.</li>
+					<li>ארגון: סיווג משימות לפי עדיפות ומסגרת זמן לניהול יעיל יותר של הזמן.</li>
+					<li>ביצוע: פעולה עקבית על פי המשימות המוגדרות מובילה למימוש מטרות באופן יעיל.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"המוח הוא דבר נפלא להעלות רעיונות, אבל זה מקום נורא לנהל אותם."</strong> - רעיונות טובים יכולים להעלות במוחנו, אבל ללא תכנון וארגון, הם לא יובילו לתוצאות.</p>
+            <p>"בדרך כלל יש פרופורציה הפוכה בין כמה משהו נמצא בראש שלך לבין כמה זה נעשה."</p>
+            <p><strong>"המפתח הוא לא לתעדף את מה שנמצא בלוח הזמנים שלך, אלא לתזמן את סדר העדיפויות שלך."</strong> - חשוב לסדר את המשימות לפי סדר עדיפויות, ולא רק לפי לוח הזמנים.</p>
+            <p>"אם לא תשים לב למה שמושך את תשומת הלב שלך, זה ייקח יותר מתשומת הלב שלך ממה שמגיע לו."</p>
+            <p><strong>"הרבה מהלחץ שאנשים מרגישים לא נובע מכך שיש להם יותר מדי מה לעשות. זה נובע מכך שלא סיימו את מה שהם התחילו."</strong> - חוסר השלמת משימות מוביל ללחץ רב יותר מאשר עומס עבודה בפני עצמו.</p>
+            <p>"אתה לא צריך להיות ברור לחלוטין לגבי כל דבר בחיים שלך. אתה צריך להיות ברור רק לגבי דבר אחד בכל פעם, ברגע שאתה עושה את זה."</p>
+            <p>"הגדר יעדים קטנים כדי ליצור תחושת התקדמות."</p>
+            <p>"ניהול זמן נכון מתחיל בהבנת מה באמת חשוב ומה רק דחוף."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="lifestyle-design,productivity" id="four-hour-work-week">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - 4 שעות עבודה בשבוע" src="4 שעות עבודה בשבוע.jpg" />
+            </div>
+            <h2>4 שעות עבודה בשבוע</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="lifestyle-design"></span>
+				<span class="category" data-tag="productivity"></span>
+			</div>
+			
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "4 שעות עבודה בשבוע"</h3>
+				<p>"4 שעות עבודה בשבוע" מאת טים פריס מציע גישה לחיים שבהם ניתן להשיג יותר באמצעות פחות עבודה. הספר מציג שיטות לניהול זמן, אוטומציה של משימות והאצלת סמכויות כדי לפנות זמן לחוויות חיים משמעותיות יותר.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>ניהול זמן: התמקדות במשימות קריטיות שמביאות את התוצאות הגדולות ביותר.</li>
+					<li>אוטומציה: יצירת תהליכים אוטומטיים להשלמת משימות חוזרות.</li>
+					<li>הצלת סמכויות: האצלת משימות שאינן קריטיות לאחרים כדי לפנות זמן.</li>
+					<li>חוויות חיים: הקדשת הזמן שנחסך לחוויות שמעשירות את החיים.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"התמקד בלהיות פרודוקטיבי במקום עסוק."</strong> - להיות עסוק זה לא מספיק, הפרודוקטיביות היא זו שמביאה לתוצאות.</p>
+            <p><strong>"מה שאנחנו הכי חוששים לעשות זה בדרך כלל מה שאנחנו הכי צריכים לעשות."</strong> - המשימות המאתגרות ביותר הן אלו שיכולות לקדם אותנו בצורה המשמעותית ביותר.</p>
+            <p>"יום אחד היא מחלה שתיקח איתך את החלומות שלך לקבר."</p>
+            <p>"כדי להנות מהחיים, אתה לא צריך שטויות מפוארות, אבל אתה צריך לשלוט בזמן שלך."</p>
+            <p><strong>"השאלה שאתה צריך לשאול היא לא מה אני רוצה? או מהן המטרות שלי? אלא מה ירגש אותי?"</strong> - החיפוש אחר התרגשות ושמחה הוא המפתח לחיים מלאים ומשמעותיים.</p>
+            <p>"ההיפך מאהבה היא אדישות, וההיפך מאושר הוא שעמום."</p>
+            <p><strong>"99% מהאנשים בעולם משוכנעים שהם לא מסוגלים להשיג דברים גדולים, אז הם מכוונים לבינוני."</strong> - רוב האנשים מוותרים על השאיפות הגדולות ומסתפקים במינימום.</p>
+            <p>"כדי לעשות את הבלתי אפשרי, אתה צריך להתעלם מהפופולרי."</p>
+            <p>"הרמזורים של החיים לעולם לא יהיו כולם ירוקים בו זמנית."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="personal-growth,effectiveness" id="seven-habits">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - שבעת ההרגלים של אנשים אפקטיבים במיוחד" src="שבעת ההרגלים של אנשים אפקטיבים במיוחד.jpg" />
+            </div>
+            <h2>שבעת ההרגלים של אנשים אפקטיבים במיוחד</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="effectiveness"></span>
+			</div>
+            <p><strong>"רוב האנשים לא מקשיבים מתוך כוונה להבין, הם מקשיבים מתוך כוונה להשיב."</strong> - הקשבה אמיתית דורשת מאיתנו לשים את עצמנו בנעליו של האחר, ולא לחשוב על תגובה.</p>
+            <p>"הדרך שבה אנחנו רואים את הבעיה היא הבעיה."</p>
+            <p><strong>"תחיה מתוך הדמיון שלך, לא מההיסטוריה שלך."</strong> - הדמיון מאפשר לנו לשנות את העתיד, בעוד ההיסטוריה משאירה אותנו תקועים בעבר.</p>
+            <p>"כדי לשנות את עצמנו בצורה יעילה, אנחנו צריכים קודם כל לשנות את התפיסות שלנו."</p>
+            <p>
+                <strong>"אתה צריך להחליט מה סדר העדיפויות הגבוה ביותר שלך ולהיות אמיץ להגיד 'לא' לדברים אחרים. הדרך לעשות זאת היא בכך ש'כן' גדול יותר בוער בפנים."</strong> - חשוב להתרכז במטרות הגדולות ולהגיד "לא" לדברים שאינם מקדמים אותנו.
+            </p>
+			<div class="book-summary">
+				<h3>סיכום הספר "שבעת ההרגלים של אנשים אפקטיביים במיוחד"</h3>
+				<p>"שבעת ההרגלים של אנשים אפקטיביים במיוחד" מאת סטיבן קובי מציע גישה הוליסטית לאפקטיביות אישית ומקצועית. הספר מציג שבעה הרגלים מרכזיים שמובילים להגשמה, הצלחה ויעילות רבה יותר בחיים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>פרואקטיביות: נטילת אחריות על החיים וההחלטות האישיות.</li>
+					<li>חזון ברור: התחלת כל פעולה עם הסוף בראש, תוך הבנה של המטרות לטווח הארוך.</li>
+					<li>תעדוף: התמקדות במשימות החשובות ביותר ולא בדחופות ביותר.</li>
+					<li>שיתוף פעולה: יצירת סינרגיה ופתרונות מועילים הדדיים במערכות יחסים.</li>
+					<li>חידוש עצמי: טיפוח עצמי בכל היבטי החיים, כולל פיזי, נפשי ורוחני.</li>
+				</ul>
+			</div>
+			
+			
+            <p>"לזרוע מחשבה, לקצור פעולה: לזרוע פעולה, לקצור הרגל: לזרוע הרגל, לקצור דמות: לזרוע דמות, לקצור גורל."</p>
+            <p>"ההרגלים שאנו מפתחים משפיעים על כל תחומי החיים שלנו."</p>
+            <p>"אחריות אישית היא המפתח לשינוי והצלחה."</p>
+			
+			
+
+
+        </div>
+        <div class="quote" data-tags="success,motivation" id="10x-rule">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - חוק הפי 10" src="חוק הפי 10.jpg" />
+            </div>
+            <h2>חוק הפי 10</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="success"></span>
+				<span class="category" data-tag="motivation"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "חוק ה-10X"</h3>
+				<p>"חוק ה-10X" מאת גרנט קרדון מציע גישה עוצמתית להצלחה באמצעות הכפלת המאמצים והמטרות פי עשר מהצפוי. הספר מדגיש את החשיבות של מנטליות עליונה, עבודה קשה, ושאיפה למצוינות בכל תחום.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מנטליות של 10X: העלאת הסטנדרטים והציפיות מעבר לממוצע.</li>
+					<li>עבודה פי עשר: השקעה בעבודה קשה פי עשר מהנדרש.</li>
+					<li>התמדה: עמידות והתמדה מול מכשולים והצלחות קטנות.</li>
+					<li>אחריות אישית: קבלת אחריות מלאה על ההצלחות והכישלונות בחיים.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"הצלחה היא החובה, המחויבות והאחריות שלך."</strong> - הצלחה אינה מטרה אלא חובה שיש לשאוף אליה בכל היבט של החיים.</p>
+            <p>"לא יהיו לך חיים מוצלחים כשאתה מוקף באנשים שליליים."</p>
+            <p>"גש לכל מצב מתוך אמונה ש'אני יכול להבין איך לגרום לזה לעבוד."</p>
+            <p><strong>"לעולם אל תנקוט בעמדה שדברים פשוט קורים לך, במקום זאת, הם קורים בגלל משהו שעשית או לא עשית."</strong> - קח אחריות על פעולותיך ועל התוצאות שלהן.</p>
+            <p>"אתה לא יכול להיות קצת מחויב."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="financial-wisdom,frugality" id="secrets-of-millionaires">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - סודות של מיליונרים" src="סודות של מיליונרים.jpg" />
+            </div>
+            <h2>סודות של מיליונרים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-wisdom"></span>
+				<span class="category" data-tag="frugality"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "סודות של מיליונרים"</h3>
+				<p>"סודות של מיליונרים" מאת דין גרזיוסי מציג את העקרונות להצלחה כלכלית. הספר מדגיש את הצורך במיינדסט נכון, קבלת סיכונים מחושבים, ניהול זמן יעיל והצבת מטרות ברורות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מיינדסט של צמיחה: טיפוח חשיבה מתפתחת ומעצימה.</li>
+					<li>קבלת סיכונים: נטילת סיכונים מחושבים בדרך להצלחה.</li>
+					<li>ניהול זמן: תיעדוף וניהול זמן נכון להשגת מטרות.</li>
+					<li>חוסן והתמדה: עמידות מול כישלונות ואתגרים.</li>
+					<li>חיים עם מטרה: חיים מונעים על ידי ערכים ומטרות אישיות.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"האמונות שלך מכתיבות את המעשים שלך, והמעשים שלך מכתיבים את התוצאות שלך."</strong> - האמונות הן הבסיס לפעולות שמובילות להצלחה.</p>
+            <p>"הצלחה היא עניין של התקדמות, לא שלמות."</p>
+            <p><strong>"גודל ההצלחה שלך נקבע על פי גודל האמונה שלך."</strong> - ככל שתאמין בגדול, כך תוכל להשיג יותר.</p>
+            <p>"הכישלון האמיתי היחיד הוא הכישלון לנסות."</p>
+            <p>"הזדמנויות נמצאות בכל מקום, אבל רק אם אתה מחפש אותן."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="spirituality,resilience" id="man-search-for-meaning">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - האדם מחפש משמעות" src="האדם מחפש משמעות.jpg" />
+            </div>
+            <h2>האדם מחפש משמעות</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="spirituality"></span>
+				<span class="category" data-tag="resilience"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "האדם מחפש משמעות"</h3>
+				<p>"האדם מחפש משמעות" מאת ויקטור פרנקל עוסק בחוויותיו של המחבר במחנות הריכוז במהלך השואה, ובחיפוש אחר משמעות בחיים, במיוחד במצבים של סבל קיצוני.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מציאת משמעות בסבל: חיפוש אחר משמעות גם בתנאים קשים.</li>
+					<li>גישה חיובית: שמירה על גישה חיובית מול מצוקות.</li>
+					<li>כוח האהבה: אהבה וקשרים אנושיים כמקור למשמעות.</li>
+					<li>בחירה אישית: הבחירה שלנו היא בתגובה לאירועים, לא באירועים עצמם.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"כשאיננו מסוגלים עוד לשנות מצב, אנו מאותגרים לשנות את עצמנו."</strong> - השינוי הפנימי נדרש כאשר אין אפשרות לשנות את החיצוני.</p>
+            <p>"מי שיש לו 'למה' לחיות, יכול לסבול כמעט כל איך'."</p>
+            <p><strong>"כוחות שאינם בשליטתך יכולים לקחת את כל מה שיש לך מלבד דבר אחד, החופש שלך לבחור כיצד תגיב למצב."</strong> - הכוח הפנימי טמון בחופש לבחור את תגובתנו.</p>
+            <p>"חיה כאילו אתה חי בפעם השנייה, וכאילו פעלת לא בסדר בפעם הראשונה."</p>
+            <p>"החופש הגדול ביותר שלנו הוא החופש לבחור את הגישה שלנו."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="personal-growth,spirituality" id="life-youve-always-wanted">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - החיים שתמיד רצית" src="החיים שתמיד רצית.jpg" />
+            </div>
+            <h2>החיים שתמיד רצית</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="spirituality"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "החיים שתמיד רצית"</h3>
+				<p>"החיים שתמיד רצית" מציע מדריך לחיים מספקים באמצעות הגדרת הצלחה מעבר לעושר חומרי. הספר מעודד חיפוש אחר משמעות, חוסן אישי, והערכה של מערכות יחסים אמיתיות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הגדרת הצלחה מחדש: חיפוש אחר ערכים כמו הכרת תודה וחיבור אישי.</li>
+					<li>טיפוח חוסן: חיזוק עצמי מול אתגרים ומצוקות.</li>
+					<li>חיים אותנטיים: חיים בהתאם לערכים האישיים והייחודיות.</li>
+					<li>הכרת תודה ומיינדפולנס: תרגול הכרת תודה וחיים ברגע הנוכחי.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"החיים שלך מוגדרים לפי המידה שבה אתה עושה בחירות שחשובות לך, לא לפי הנסיבות שקורות לך."</strong> - הבחירות שאתה עושה הן אלו שמגדירות את חייך, ולא הנסיבות החיצוניות.</p>
+            <p>"כדי לבנות את החיים שאתה רוצה, עבוד אחורה מהיעד. התחל בזיהוי החיים שאתה רוצה לנהל, ואז צור אותם."</p>
+            <p><strong>"כשאנחנו נתקלים במצוקה, אנחנו יכולים להיות מובסים, או שאנחנו יכולים להתחזק."</strong> - המצוקה יכולה להביא להתחזקות או לתבוסה, הבחירה היא בידיך.</p>
+            <p>"צמיחה זה כואב. שינוי זה כואב. אבל שום דבר לא כואב כמו להישאר תקוע במקום שבו אתה לא שייך."</p>
+            <p>"ההחלטה החשובה ביותר שתקבל אי פעם היא האם אתה מחליט לחיות בעולם של שפע או מחסור."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="financial-wisdom,behavior-change" id="psychology-of-money">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - הפסיכולוגיה של הכסף" class="book-image" src="הפסיכולוגיה של הכסף.jpg" />
+            </div>
+            <h2>הפסיכולוגיה של הכסף</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-wisdom"></span>
+				<span class="category" data-tag="behavior-change"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "הפסיכולוגיה של הכסף"</h3>
+				<p>"הפסיכולוגיה של הכסף" מאת מורגן האוסל עוסק בהבנה של ההתנהגויות והתחושות כלפי כסף והשפעתן על קבלת החלטות פיננסיות. הספר מציג גישה מנטלית ושינויים בהרגלים שיכולים להוביל להצלחה פיננסית.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>חוסן מנטלי: הבנה והתמודדות עם הפחדים והתנהגויות כלפי כסף.</li>
+					<li>חיסכון והוצאות: הבנה וניהול הוצאות וחיסכון לטווח הארוך.</li>
+					<li>התמדה וסבלנות: סבלנות והיצמדות לאסטרטגיות פיננסיות בטווח הארוך.</li>
+					<li>ניהול סיכונים: הכרה בסיכונים וניהול נכון שלהם.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"הוצאת כסף כדי להראות לאנשים כמה כסף יש לך היא הדרך המהירה ביותר לקבל פחות כסף."</strong> - הניסיון להרשים אחרים בכסף שלך מוביל לפגיעה כלכלית.</p>
+            <p>"להשיג כסף זה דבר אחד. לשמור אותו זה דבר אחר."</p>
+            <p><strong>"ככל שאתה רוצה שמשהו יהיה אמיתי, כך גדל הסיכוי שתאמין לסיפור שמעריך יתר על המידה את הסיכויים שהוא אמיתי."</strong> - ככל שאנחנו רוצים במשהו יותר, כך אנחנו עלולים להאמין בסיפורים שמגזימים בסיכויים.</p>
+            <p>"אין סיבה לסכן את מה שיש לך וצריך עבור מה שאין לך ולא צריך."</p>
+            <p>"החלק החשוב ביותר בכל תוכנית הוא תכנון לאם לא הולך לפי התוכנית."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="self-improvement,personal-power" id="be-the-hero-of-your-life">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - היה הגיבור של חייך" class="book-image" src="היה הגיבור של חייך.jpg" />
+            </div>
+            <h2>היה הגיבור של חייך</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="self-improvement"></span>
+				<span class="category" data-tag="personal-power"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "היה הגיבור של חייך"</h3>
+				<p>"היה הגיבור של חייך" מאת אדם הול הוא ספר על העצמה אישית והגשמה עצמית. הספר מציע כלים ותובנות לשיפור הביטחון העצמי, התמודדות עם אתגרים, והשגת מטרות אישיות בצורה יעילה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>העצמה אישית: פיתוח ביטחון עצמי והאמונה ביכולת להצליח.</li>
+					<li>התמודדות עם אתגרים: לפתח חוסן והתמדה מול קשיים ומכשולים.</li>
+					<li>הצבת מטרות: הגדרה והשגה של מטרות אישיות בצורה אפקטיבית.</li>
+					<li>נחישות והתמדה: לא לוותר ולהמשיך לפעול למרות הקשיים.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"אף אחד לא יאמין בך עד שאתה מאמין בך."</strong> - האמונה שלך בעצמך היא הבסיס להצלחתך ולהכרה מצד אחרים.</p>
+            <p>"הפעולות הקטנות ביותר תמיד טובות מהכוונות האצילות ביותר."</p>
+            <p>"חלום בגדול, תתחיל בקטן, פעל עכשיו."</p>
+            <p>"אנו גדלים חסרי פחד כאשר אנו עושים את הדברים שאנו חוששים מהם."</p>
+            <p>"שיפורים יומיים קטנים מובילים לתוצאות מדהימות."</p>
+            <p>"איכות חייך נקבעת על פי איכות המחשבות שלך."</p>
+            <p>"הגבולות היחידים שקיימים הם אלה שאתה שם לעצמך."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="resilience,mindfulness" id="when-things-fall-apart">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כשהדברים מתפרקים" class="book-image" src="כשהדברים מתפרקים.jpg" />
+            </div>
+            <h2>כשהדברים מתפרקים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="resilience"></span>
+				<span class="category" data-tag="mindfulness"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כשהדברים מתפרקים"</h3>
+				<p>"כשהדברים מתפרקים" מאת פמה צ'ודרון עוסק באימוץ הכאב והפחד במקום להימנע מהם, ומציע כלים להתמודדות עם קשיים ואי-ודאות. הספר מדגיש את החשיבות של חמלה לעצמנו ולאחרים, קבלת השינויים, ופיתוח חוסן פנימי דרך מיינדפולנס ומדיטציה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>אימוץ אי-ודאות וכאב: לראות באתגרים הזדמנויות לצמיחה.</li>
+					<li>הבנת ארעיות: קבלת השינויים כמצב טבעי של החיים.</li>
+					<li>חמלה עצמית: פיתוח חמלה כלפי עצמנו וכלפי אחרים.</li>
+					<li>מיינדפולנס: טיפוח נוכחות ברגע הנוכחי באמצעות מדיטציה.</li>
+					<li>שחרור האגו: להתגבר על הצורך בביטחון ואימות חיצוניים.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"שום דבר לא נעלם עד שהוא לימד אותנו את מה שאנחנו צריכים לדעת."</strong> - כל חוויה בחיים נושאת עמה שיעור שעלינו ללמוד.</p>
+            <p>"האמת שאתה מאמין בה ואחזת בה גורמת לך להיות בלתי זמין לשמוע שום דבר חדש."</p>
+            <p>
+                <strong>"כשאנחנו מתנגדים לשינוי, זה נקרא סבל. אבל כשאנחנו משחררים לגמרי ולא נאבקים נגדו, כשאנחנו מאמצים את חוסר היסוד של המצב שלנו ונרגשים לאיכות הדינמית שלו, זה נקרא הארה."</strong> - קבלת השינוי והפסקת ההתנגדות מובילות
+                לתובנות עמוקות ולהארה.
+            </p>
+            <p>"מיינדפולנס זה לאהוב את כל עצמך, אפילו את החלקים שאתה לא אוהב."</p>
+            <p>"אנחנו עובדים על עצמנו כדי לעזור לאחרים, אבל גם אנחנו עוזרים לאחרים כדי לעבוד על עצמנו."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="change-management,resilience" id="who-moved-my-cheese">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - מי הזיז את הגבינה שלי" class="book-image" src="מי הזיז את הגבינה שלי.jpg" />
+            </div>
+            <h2>מי הזיז את הגבינה שלי</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="change-management"></span>
+				<span class="category" data-tag="resilience"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "מי הזיז את הגבינה שלי"</h3>
+				<p><strong>"מי הזיז את הגבינה שלי"</strong> הוא ספר המתאר באופן מטאפורי את השינויים בחיים וכיצד להתמודד איתם. הספר מציע תובנות על החשיבות של הסתגלות לשינויים ומהירות התגובה לשינויים בסביבה שלנו.</p>
+				
+				<h4>עקרונות עיקריים:</h4>
+				<ul>
+					<li><strong>הסתגלות לשינויים:</strong> השינויים הם חלק בלתי נמנע מהחיים והיכולת להסתגל אליהם מובילה להצלחה.</li>
+					<li><strong>מהירות תגובה:</strong> התגובה המהירה לשינויים מגדילה את הסיכוי להצלחה בסביבה משתנה.</li>
+					<li><strong>שחרור מהרגלים ישנים:</strong> התגברות על הרגלים ישנים שמונעים התקדמות והצלחה.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"מה היית עושה אם לא היית מפחד?"</strong> - השאלה הזו מזמינה אותנו לחשוב על מה היינו משיגים אם היינו מתגברים על הפחד.</p>
+            <p>"ככל שתשחרר מהר יותר את הגבינה הישנה, כך תמצא גבינה חדשה מהר יותר."</p>
+            <p><strong>"תנועה בכיוון חדש עוזרת לך למצוא גבינה חדשה."</strong> - פעולה לשינוי כיוון יכולה להוביל להזדמנויות חדשות ולא צפויות.</p>
+            <p>"כשאתה עובר מעבר לפחד שלך, אתה מרגיש חופשי."</p>
+            <p><strong>"תשמור לב לשינויים קטנים מוקדם יעזור לך להסתגל לשינויים הגדולים יותר שעומדים לבוא."</strong> - התבוננות בשינויים קטנים מאפשרת לנו להיות מוכנים לשינויים גדולים יותר.</p>
+            <p>"אמונות ישנות לא מביאות אותך לגבינה חדשה."</p>
+            <p><strong>"הפחד שנתן לך להתגבר בנפשך גרוע יותר מהמצב שקיים בפועל."</strong> - הפחד עצמו בדרך כלל קשה יותר מההתמודדות עם המציאות.</p>
+            <p>"מה שאתה מפחד ממנו כל פעם הוא לא כמו שאתה מדמיין."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="life-lessons,resilience" id="the-subtle-art-of-not-giving-a-fuck">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - חוכמת האדישות" class="book-image" src="חוכמת האדישות.jpg" />
+            </div>
+            <h2>חוכמת האדישות</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="life-lessons"></span>
+				<span class="category" data-tag="resilience"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "חוכמת האדישות"</h3>
+				<p>"חוכמת האדישות" מאת מארק מנסון עוסק בהבנת הערכים החשובים באמת בחיים ובשחרור מהצורך לרצות את כולם. הספר מדגיש את החשיבות של קבלת החולשות האישיות, התמודדות עם הקשיים, והצבת גבולות ברורים למה שמקבל תשומת לב בחיינו.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>בחירת ערכים: להתמקד בערכים החשובים ביותר ולהתעלם מהשאר.</li>
+					<li>קבלת החולשות: הבנה שאף אחד לא מושלם וחשיבות קבלת החולשות שלנו.</li>
+					<li>התמודדות עם קשיים: ראיית הקשיים כחלק מהחיים ולא כמשהו שצריך להימנע ממנו.</li>
+					<li>הצבת גבולות: קביעת גבולות למה שמקבל את תשומת הלב והאנרגיה שלנו.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"לאדם יש רק מספר מוגבל של דברים שיכולים לשנות את חייו באמת."</strong> - חשוב להתמקד במה שחשוב באמת ולא לפזר את האנרגיה על דברים זניחים.</p>
+            <p>"מבחינה רגשית אנחנו מגיבים בדיוק כפי שאנחנו מחליטים להגיב, וזה מה שמגדיר את איכות חיינו."</p>
+            <p><strong>"כשאנחנו אומרים 'כן' לדבר אחד, אנחנו אומרים 'לא' לכל דבר אחר."</strong> - כל בחירה היא גם ויתור על משהו אחר.</p>
+            <p>"הכישלון הוא דרך לחיים. אם אתה נמנע מכישלון, אתה נמנע מהחיים עצמם."</p>
+            <p><strong>"לנסות להימנע מכאב הוא דבר בלתי אפשרי. המפתח הוא לבחור את הכאב שלנו בחוכמה."</strong> - הכאב הוא חלק בלתי נפרד מהחיים, ויש לבחור את המאבקים שלך.</p>
+            <p>"הערכים שלנו קובעים את כל מה שאנחנו חווים בחיים, ואם אנחנו לא מודעים לערכים שלנו, אנחנו עלולים למצוא את עצמנו חיים חסרי משמעות."</p>
+            <p><strong>"החיים שלנו מוגדרים לא לפי מה שאנחנו חווים, אלא לפי המשמעות שאנחנו נותנים לחוויות שלנו."</strong> - המשמעות שאנחנו מייחסים לחוויות היא מה שקובע את איכות חיינו.</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="decision-making,success" id="how-to-make-decisions">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כך מקבלים החלטה" class="book-image" src="כך מקבלים החלטה.jpg" />
+            </div>
+            <h2>כך מקבלים החלטה</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="decision-making"></span>
+				<span class="category" data-tag="success"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כך מקבלים החלטה"</h3>
+				<p>"כך מקבלים החלטה" מאת קרוגרוס מייקל ורומן טשפלר הוא מדריך פרקטי לשיפור תהליך קבלת ההחלטות באמצעות מגוון טכניקות ומודלים. הספר מדגיש את חשיבות המידע, ניהול אי-ודאות, והבנת ההשלכות של כל החלטה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מודלים לקבלת החלטות: שימוש במודלים כמו SWOT והערכת סיכונים.</li>
+					<li>חשיבות המידע: הסתמכות על מידע מדויק ואמין.</li>
+					<li>ניהול אי-ודאות: התמודדות יעילה עם סיכונים ותכנון תרחישים.</li>
+					<li>הבנת ההשלכות: חשיבה לטווח ארוך ושקילת ההשפעות של ההחלטות.</li>
+					<li>שימוש באינטואיציה: שילוב בין תחושת בטן לבין נתונים ועובדות.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"ההחלטות שאנו מקבלים היום מעצבות את המציאות של מחר."</strong> - הבחירות והפעולות שלנו היום הן אלו שיוצרות את העתיד שלנו.</p>
+            <p>"ניהול הסיכונים ואי-הוודאות הוא המפתח להצלחה; הכנה מראש ותכנונים לתרחישים שונים יכולים לעשות את ההבדל."</p>
+            <p><strong>"למידה משגיאות היא כלי עוצמתי; כל כישלון הוא הזדמנות לשיפור."</strong> - כל טעות היא הזדמנות ללמוד ולהשתפר.</p>
+            <p>"כל החלטה צריכה לקחת בחשבון לא רק את התוצאות המיידיות, אלא גם את ההשפעות לטווח ארוך על הסביבה והחברה."</p>
+            <p><strong>"למידה מתמשכת והתקדמות לשינויים הם חלק בלתי נפרד מהיכולת לקבל החלטות טובות."</strong> - הצלחה בקבלת החלטות דורשת הסתגלות ושיפור מתמשך.</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="communication,relationships" id="surrounded-by-idiots">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - מוקף באידיוטים" class="book-image" src="מוקף באידיוטים.jpg" />
+            </div>
+            <h2>מוקף באידיוטים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="communication"></span>
+				<span class="category" data-tag="relationships"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "מוקף באידיוטים"</h3>
+				<p>"מוקף באידיוטים" מאת תומס אריקסון מציג מדריך לשיפור התקשורת הבין-אישית באמצעות זיהוי סגנונות אישיות שונים. הספר מתאר ארבעה סגנונות אישיות עיקריים, המסומנים בצבעים אדום, צהוב, ירוק וכחול. כל צבע מייצג דפוסי חשיבה והתנהגות ייחודיים, שמאפשרים להבין את עצמנו ואת הסובבים אותנו טוב יותר.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>זיהוי סגנונות אישיות: הבנת ארבעת הסגנונות (אדום, צהוב, ירוק, כחול) והתאמת התקשורת בהתאם.</li>
+					<li>שיפור מערכות יחסים: הבנת דפוסי התנהגות שונים כדי להפחית מתחים ואי-הבנות.</li>
+					<li>תקשורת אפקטיבית: התאמת סגנון התקשורת שלנו לאחרים לשיפור ההבנה ההדדית.</li>
+					<li>ניהול צוותים: שימוש בסגנונות האישיות לשיפור העבודה בצוותים וליצירת סינרגיה.</li>
+				</ul>
+			</div>
+			
+            <p><strong>"כל אחד ייחודי, ואם לא נבין את סגנון האישיות שלו, תמיד נהיו מוקפים באידיוטים."</strong> - הכרה והבנה של אישיותם של אחרים מסייעת לנו להתמודד ולהבין את התגובות וההתנהגויות שלהם.</p>
+            <p>"ההבנה האמיתית של אחרים מתחילה עם הבנת סגנון האישיות שלהם."</p>
+            <p><strong>"הסגנון האישיותי שלנו משפיע על כל ההחלטות שאנו עושים."</strong> - אישיותנו היא גורם מרכזי בקבלת ההחלטות שלנו ובדרך שבה אנו רואים את העולם.</p>
+            <p>"לא יש להפעיל אשמה על אנשים ששונים ממך - תפלו אשמה על עצמכם אם לא תבינו את ההבדלים."</p>
+            <p><strong>"לימוד סגנון האישיות שלך ושל אחרים הוא הדרך לשפר את התקשורת ולהפחית קונפליקטים."</strong> - הבנה עמוקה של סגנונות אישיות מאפשרת תקשורת טובה יותר ומצמצמת חיכוכים וקונפליקטים.</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="success,personal-growth" id="100-things-successful-people-do">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - 100 דברים שאנשים מצליחים עושים" class="book-image" src="100 דברים שאנשים מצליחים עושים.jpg" />
+            </div>
+            <h2>100 דברים שאנשים מצליחים עושים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="success"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "100 דברים שאנשים מצליחים עושים"</h3>
+				<p>"100 דברים שאנשים מצליחים עושים" מאת נייג'ל קמברלנד הוא מדריך מעשי להצלחה אישית ומקצועית. הספר מציג 100 עקרונות ופועלות פשוטות שניתן ליישם בחיי היומיום כדי להגיע להישגים מרשימים בכל תחומי החיים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הצבת מטרות ברורות: הגדרת מטרות ברורות ומדידות עם תוכנית פעולה מפורטת להשגתן.</li>
+					<li>ניהול זמן אפקטיבי: שימוש ביומנים וכלי ניהול זמן לזיהוי סדרי עדיפויות והתמקדות במשימות החשובות.</li>
+					<li>פיתוח מוטיבציה והתמדה: מציאת מקורות השראה ושמירה על גישה חיובית כדי להתמיד מול אתגרים.</li>
+					<li>התמודדות עם כישלונות: ראיית הכישלונות כהזדמנויות ללמוד ולהשתפר.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"הצלחה אינה מקרית, היא תוצאה של הצבת מטרות ברורות וצעדיה מתמשכת לעברן."</strong> - הצלחה מגיעה דרך תכנון וביצוע עקבי של צעדים קטנים שמובילים למטרה.</p>
+            <p>"ניהול זמן נכון הוא המפתח להגשמת חלומותיכם."</p>
+            <p><strong>"המוטיבציה וההתמדה הם המנועים שמניעים אתכם קדימה גם בזמנים הקשים ביותר."</strong> - יכולת ההתמדה והדחף הפנימי הם מה שדוחפים אותנו להמשיך גם כאשר הכל נראה קשה.</p>
+            <p>"כישלון הוא לא סוף הדרך, אלא הזדמנות ללמוד ולהתחזק."</p>
+            <p><strong>"איזון בין עבודה לחיים אישיים הוא חיוני לחיים מלאים ומשמעותיים."</strong> - השגת האיזון בין עבודה לחיים אישיים היא חלק חשוב מאיכות החיים.</p>
+            <p>"הקשרים החברתיים שלכם הם המפתח ליצירת קשרים משמעותיים והצלחות משותפות."</p>
+            <p><strong>"שיפור עצמי תמידי הוא הדרך הבטוחה להצלחה לאורך זמן."</strong> - השקעה מתמדת בשיפור עצמי היא הדרך להבטיח התקדמות מתמשכת והצלחה.</p>
+            <p>"הקפדה על בריאות פיזית ונפשית היא הבסיס לתפקוד מיטבי בכל תחומי החיים."</p>
+            <p><strong>"תשובה חיובית ואופטימית לחיים היא כלי עוצמתי להתמודדות עם אתגרים והתקדמות בחיים."</strong> - גישה חיובית ואופטימית תעזור לך להתמודד עם כל אתגר בחיים ולהשיג את מטרותיך.</p>
+            <p>"תרומה לחברה ולסביבה היא דרך לתת משמעות וערך לחיים."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="spirituality,self-improvement" id="fifth-agreement">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - ההסכמה החמישית" class="book-image" src="ההסכמה החמישית.jpg" />
+            </div>
+            <h2>ההסכמה החמישית</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="spirituality"></span>
+				<span class="category" data-tag="self-improvement"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "ההסכמה החמישית"</h3>
+				<p>"ההסכמה החמישית" מאת דון מיגל רואיס ודון חוזה רואיס מציג הסכמה חדשה: "תהיה סקפטי, אך תלמד להקשיב". הספר מרחיב את התובנות של "ארבע ההסכמות" ומדגיש את חשיבות הפתיחות המחשבתית והקשבה עמוקה כדי לחיות חיים אותנטיים ומשוחררים מאמונות מגבילות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>תהיה סקפטי, אך תלמד להקשיב: לבחון כל מידע ולא להאמין בו כמובן מאליו.</li>
+					<li>כבד את המילים שלך: להשתמש במילים בצורה מודעת ואחראית.</li>
+					<li>אל תיקח שום דבר באופן אישי: להבין שתגובות אחרים משקפות את המציאות שלהם.</li>
+					<li>אל תניח הנחות: לשאול שאלות ולא להניח הנחות לגבי אחרים.</li>
+					<li>תעשה תמיד כמיטב יכולתך: להשקיע את מירב המאמצים בכל דבר שאתה עושה.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"אל תאמין לי, אל תאמין לעצמך, ואל תאמין לאף אחד אחר. פשוט למד להקשיב. הטל ספק בכל מה שאתה שומע. האמת לא זקוקה לך כדי להאמין בה, האמת פשוט קיימת, והיא שורדת גם אם אינך מאמין בה."</strong></p>
+            <p>"המילים הן הכוח שבאמצעותו אתה יוצר, ומילים הן גם הכוח שבאמצעותו אתה הורס כל מה שסביבך."</p>
+            <p><strong>"שום דבר שאחרים עושים אינו באשמתך. מה שאחרים אומרים ועושים הוא תוצאה של חלום שלהם, זו המציאות שלהם."</strong></p>
+            <p>"במקום להניח הנחות, שאל שאלות. ודא שתקשורתך ברורה. אם אינך מבין, שאל. היה לך האומץ לשאול שאלות ולהביע את מה שאתה באמת רוצה."</p>
+            <p>"תעשה תמיד כמיטב יכולתך, לא פחות ולא יותר. אבל זכור שהמיטב שלך משתנה מרגע לרגע, וזה שונה כאשר אתה בריא לעומת כאשר אתה חולה. בכל מצב, פשוט עשה כמיטב יכולתך, וכך תמנע משיפוט עצמי ומחרטות."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="motivation,goal-setting" id="achieve-everything">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - להשיג הכול" class="book-image" src="להשיג הכול.jpg" />
+            </div>
+            <h2>להשיג הכול</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="motivation"></span>
+				<span class="category" data-tag="goal-setting"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "להשיג הכל"</h3>
+				<p>"להשיג הכל" מאת רומיה סמית' מציע כלים ואסטרטגיות להצלחה בחיים תוך התמקדות בבניית מנטליות חיובית והתמדה. הספר מדגיש את החשיבות של חזון ברור, מוטיבציה והתמדה כדי להגיע להישגים מרשימים בכל תחום.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>חזון ברור: הגדרת מטרות ברורות ומפורטות לטווח הארוך.</li>
+					<li>ניהול זמן: תכנון וניהול זמן בצורה יעילה להשגת המטרות.</li>
+					<li>מוטיבציה והתמדה: שמירה על מוטיבציה גבוהה והתגברות על מכשולים לאורך הדרך.</li>
+					<li>חשיבה חיובית: פיתוח חשיבה חיובית כהכרח להצלחה ולסיפוק אישי.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"המטרות שלך צריכות להיות גדולות מספיק כדי לעורר בך התרגשות, אך ברות השגה כדי לשמור על המוטיבציה."</strong></p>
+            <p>"החיים שלך הם כמו גן. אם אתה לא משגיח בו פרחים של מחשבות חיוביות, עשבים של מחשבות שליליות יצמחו מעצמם."</p>
+            <p><strong>"כאשר אתה מאתגר את עצמך לראות עד כמה אתה יכול לדחוף את עצמך קדימה, אתה מגלה את כל הכוח שלך."</strong></p>
+            <p>"הצלחה היא לא רק עניין של כישרון או הזדמנויות, אלא גם שמחת חיים והתמדה."</p>
+            <p>"הפחדים שלך הם רק דמיונות של המוח. כאשר הם מופיעים, תזכיר לעצמך שהם לא המציאות אלא רק מחשבות חולפות."</p>
+            <p><strong>"חוסן נפשי נבנה כאשר אתה מתמודד עם האתגרים שלך ולא בורח מהם."</strong></p>
+            <p>"הדמיה היא הכלי שבו אתה יכול לראות את העתיד שלך כבר עכשיו, וליצור אותו במציאות."</p>
+            <p><strong>"הצלחה היא לא יעד, אלא דרך חיים. היא בניית מההרגלים היומיים שלך ומהמחשבות שאתה בוחר לחשוב."</strong></p>
+            <p>"אנשים תומכים הם כמו מצפן. הם עוזרים לך לשמור על המסלול גם כשאתה מרגיש אבוד."</p>
+            <p><strong>"המשמעת שלך היא הכוח שמונע את המציאות שלך. ככל שהרגלים חיוביים ומוקדים, כן הופכות לכלים לבניית חיים מוצלחים ומספקים."</strong></p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="mindfulness,personal-power" id="power-of-subconscious">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - כוחו של התת־מודע" class="book-image" src="כוחו של התת־מודע.jpg" />
+            </div>
+            <h2>כוחו של התת־מודע</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="mindfulness"></span>
+				<span class="category" data-tag="personal-power"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "כוחו של התת-מודע"</h3>
+				<p>"כוחו של התת-מודע" מאת ג'וזף מרפי מתמקד בכוח העצום של התת-מודע שלנו וביכולתו להשפיע על חיינו. הספר מציע טכניקות וכלים לתכנת את התת-מודע שלנו באופן חיובי, להתגבר על פחדים, ולהגשים מטרות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>כוח המחשבה החיובית: שמירה על מחשבות חיוביות והצהרות חיוביות יומיומיות לשינוי מציאות.</li>
+					<li>השפעת התת-מודע על הבריאות: מחשבות חיוביות יכולות לקדם בריאות טובה ולהתגבר על מחלות.</li>
+					<li>התגברות על פחדים: התת-מודע ככלי עוצמתי להתגברות על פחדים ומכשולים.</li>
+					<li>הגשמת מטרות: שימוש בתת-מודע להגשמת מטרות וחלומות על ידי דמיון והאמונה העצמית.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"המחשבות שלנו הן הגורם לכל המצבים בחיינו. כל דבר שאנו חווים בעולם החיצוני שלנו נובע קודם כל מהמחשבות שלנו."</strong></p>
+            <p>"האמונה היא סוד הכוח. כל דבר שאתה מאמין בו באמת ובתמים, הופך להיות חלק מהחיים שלך."</p>
+            <p><strong>"המחשבה היא זרם של אנרגיה. כאשר אתה ממקד את המחשבות שלך בכיוון חיובי, אתה מושך אליך מצבים חיוביים."</strong></p>
+            <p>"מה שאתה אומר לעצמך מדי יום, הוא מה שאתה הופך להיות."</p>
+            <p>"החוק שלו הוא כלי שניתן לתכנן אותו מחדש בכל זמן, וזה תלוי רק בך לבחור בתכנונים החיוביים."</p>
+            <p><strong>"אין מגבלות על מה שאתה יכול להשיג, מלבד המגבלות שאתה שם על עצמך."</strong></p>
+            <p>"המחשבה והרגש הן יחידה אחת. כאשר אתה משדר מחשבות יחד עם רגש חיובי, אתה יוצר מציאות חיובית."</p>
+			
+			
+
+        </div>
+        <div class="quote" data-tags="financial-wisdom,behavior-change" id="money-illusion">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - אשליית הכסף" class="book-image" src="אשליית הכסף.jpg" />
+            </div>
+            <h2>אשליית הכסף</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-wisdom"></span>
+				<span class="category" data-tag="behavior-change"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "אשליית הכסף"</h3>
+				<p>"אשליית הכסף" מאת קייל סיז עוסק בהבנה שכסף אינו המטרה, אלא אמצעי. הספר מזמין את הקוראים להשתחרר מהפחדים הכלכליים ולהתמקד במהות החיים, פיתוח חופש פנימי, והשגת סיפוק אמיתי שאינו תלוי בחומריות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>שחרור מהפחד הכלכלי: להבין שכסף אינו צריך להיות מקור לפחד.</li>
+					<li>השגת חופש פנימי: ניתוק מהתלות בחומריות ובכסף.</li>
+					<li>כסף כמשאב ולא כמטרה: להבין שכסף הוא כלי ולא המטרה הסופית.</li>
+					<li>יצירתיות ותשוקה כמפתח לשפע: השפע מגיע מעיסוק במה שממלא אותנו תשוקה.</li>
+					<li>הפחתת תלות בחומריות: בדיקת הרגלי הצריכה והפחתת התלות ברכוש.</li>
+				</ul>
+			</div>
+			
+			
+            <p><strong>"הכסף לא יכול לפתור את הבעיות הפנימיות שלנו; הוא רק מגביר את מה שכבר קיים בתוכנו."</strong></p>
+            <p>"כשאתה מפסיק לרדוף אחרי הכסף, אתה מגלה שמה שתמיד רצית לא היה הכסף עצמו, אלא תחושת החופש שהאמנת שהוא יעניק לך."</p>
+            <p><strong>"האושר אינו נמדד לפי מה שיש לנו, אלא לפי מה שאנחנו מוכנים לשחרר."</strong></p>
+            <p>"הדרך לשפע אמיתי מתחילה כשאנחנו משחררים את הצורך לשלוט בכל דבר ומתחילים לבטוח בחיים."</p>
+            <p>"החופש הפנימי שלך הוא הנכס היקר ביותר שיש לך. הוא מה שמאפשר לך ליצור חיים שהם באמת שלך."</p>
+        </div>
+        <div class="quote" data-tags="self-improvement,resilience" id="from-self-destruction-to-self-worth">
+            <span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+            <div class="book-image-container">
+                <img alt="תמונת ספר - מהרס עצמי לערך עצמי" class="book-image" src="מהרס עצמי לערך עצמי.jpg" />
+            </div>
+            <h2>מהרס עצמי לערך עצמי</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="self-improvement"></span>
+				<span class="category" data-tag="resilience"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "מהרס עצמי לערך עצמי"</h3>
+				<p>"מהרס עצמי לערך עצמי" מאת ריצ'ארד אוקונור עוסק במאבק הפנימי בין התנהגויות שמובילות להרס עצמי לבין הרצון לחיות חיים בעלי משמעות וערך. הספר מציע כלים פרקטיים לשינוי דפוסי חשיבה והתנהגות כדי להגיע לצמיחה אישית והערכה עצמית בריאה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>זיהוי התנהגויות הרס עצמי: הכרת דפוסים והתנהגויות שמזיקים לחיים.</li>
+					<li>שינוי דפוסי חשיבה שליליים: טיפול בדפוסי חשיבה שליליים שמובילים להרס עצמי.</li>
+					<li>תרגול מיינדפולנס: שילוב מיינדפולנס בחיים כדי להיות נוכחים יותר ולהפחית השפעה שלילית של מחשבות אוטומטיות.</li>
+					<li>סליחה עצמית: פיתוח היכולת לסלוח לעצמנו על טעויות העבר ולהתקדם קדימה.</li>
+				</ul>
+			</div>
+            <p><strong>"אנחנו הפוגעים הגדולים ביותר בעצמנו. אנו מפתחים דפוסים של הרס עצמי מתוך ניסיונות להתמודד עם פחד, כאב ואכזבה."</strong></p>
+            <p>"שינוי אמיתי מתחיל בהכרה במחשבות שלנו – באותם רגעים קטנים ויומיומיים שבהם אנחנו בוחרים שוב ושוב לפעול על פי אותם דפוסים ישנים."</p>
+            <p><strong>"כדי לשבור את המעגל ההרסני, עלינו לפתח מודעות עצמית ולעבוד על שינוי הרגלים דרך התממשכות וסבלנות."</strong></p>
+            <p>"אנו נקוקים למיינדפולנס כדי לעמוד באתגרים של חיינו בצורה מודעת ולא תגובתית, ולבחור בתגובות שמקדמות את הרווחה האישית שלנו."</p>
+            <p><strong>"סליחה עצמית היא מפתח לצמיחה אישית, ללא היכולת לסלוח לעצמנו, אנחנו נשארים כבולים לכשלונות העבר שלנו."</strong></p>
+        </div>
+		<div class="quote" data-tags="behavior-change,personal-growth" id="breaking-the-habit-of-being-yourself">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - לשבור את ההרגל להיות עצמכם"  class="book-image" src="לשבור את ההרגל להיות עצמכם.jpg" />
+			</div>
+			<h2>לשבור את ההרגל להיות עצמכם</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="behavior-change"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "לשבור את ההרגל להיות עצמכם"</h3>
+				<p>"לשבור את ההרגל להיות עצמכם" מאת ד"ר ג'ו דיספנזה מתמקד בהבנה ושבירת הרגלים מגבילים שמונעים מאיתנו לחיות חיים מלאים ומספקים. הספר מציע שיטות מדעיות ומודעות עצמית לשינוי הרגלים והשגת מטרות חדשות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הבנת הרגלים מגבילים: הכרה בהרגלים שמונעים מאיתנו להשיג מטרות.</li>
+					<li>מדיטציה ומודעות עצמית: שימוש במדיטציה ומודעות עצמית כדי לשנות דפוסים אוטומטיים.</li>
+					<li>יצירת זהות חדשה: יצירת זהות חדשה המבוססת על המטרות והערכים שאנו שואפים להשיג.</li>
+					<li>שינוי מחשבות: המחשבות שלנו משפיעות על המציאות ולכן שינוי מחשבות יכול לשנות את חיינו.</li>
+				</ul>
+			</div>
+			
+			
+			<p><strong>"המוח שלנו אינו נועד לשמר את מי שאנחנו היום, הוא נועד לשנות אותנו לגרסה הטובה ביותר של עצמנו."</strong></p>
+			<p>"כשאתה חי בעבר, אתה ממשיך ליצור את אותו העתיד. עליך להשתחרר מהעבר כדי ליצור עתיד חדש."</p>
+			<p>"אתה לא צריך לחכות למשהו חיצוני שישנה כדי להרגיש טוב יותר, אתה יכול לבחור להרגיש טוב יותר עכשיו, וכך לשנות את העולם הפנימי שלך."</p>
+			<p>"ההרגלים הם התוכנות שלנו. אם איננו מודעים להם, אנחנו נשארים לכודים במעגל אותה התנהגות אוטומטית."</p>
+			<p>"אתה לא קורבן של המציאות שלך, אתה הבורא של המציאות שלך."</p>
+			<p>"כשאנחנו מדמיינים את עצמנו במצב חדש ומתחברים לרגשות שקשורים אליו, אנחנו מתחילים לשנות את המוח כך שיכין את עצמו לעתיד הזה."</p>
+			<p>"אנחנו לא צריכים יותר עבודות וידע כדי להשתנות, אנחנו צריכים ניסיון חדש שיגרום לנו להרגיש אחרת לגבי עצמנו."</p>
+			<p>"שינוי אמיתי הוא כאשר האני החדש שלך נהיה יותר טבעי מאשר האני הישן שלך."</p>
+			<p>"אנחנו יוצרים את העולם שלנו מבחנים החוצה – המחשבות והרגשות שלנו משפיעים על המציאות הפיזית שלנו."</p>
+			<p>"כשאתה מפסיק לחשוב ולחוש לפי חוויות העבר, אתה נותן לעצמך את ההזדמנות לכתוב מחדש את התסריט של חייך."</p>
+			
+		</div>
+		<div class="quote" data-tags="personal-growth,resilience" id="grit">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - גריט" class="book-image" src="גריט.jpg" />
+			</div>
+			<h2>גריט</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="resilience"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "גריט"</h3>
+				<p>הספר "גריט" מאת אנג'לה דאקוורת' מדגיש את התכונות של נחישות והתמדה כסוד להצלחה, מעל לכישרון מולד. דאקוורת' משתמשת במחקר פסיכולוגי ובמקרים אמיתיים כדי להראות כיצד אנשים בעלי נחישות מצליחים יותר מאלו שתלויים בכישרון בלבד. היא מציעה שבניית הרגלים ושאיפה מתמשכת הן הדרך להצלחה ארוכת טווח.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הנחישות חשובה מכישרון: הצלחה נבנית מעבודה קשה והתמדה לאורך זמן.</li>
+					<li>מוטיבציה ארוכת טווח: הצלחה דורשת מטרה ותשוקה לטווח ארוך.</li>
+					<li>כישלון הוא חלק מהתהליך: התמדה אחרי כישלונות היא המפתח לשיפור.</li>
+					<li>שיפור מתמיד: בניית הרגלי עבודה ושיפור אישי מתמשך.</li>
+				</ul>
+			</div>
+
+			<div class="quotes">
+				<h4>ציטוטים משמעותיים מהספר</h4>
+				<p><strong>"הצלחה היא לא על כמה אתה חכם, אלא כמה אתה נחוש."</strong> - הדגש כאן הוא שהנחישות היא הקובעת את ההצלחה ולא הכישרון המולד.</p>
+				<p>"האתגר האמיתי הוא לא להיות מושלם, אלא להיות טוב יותר ממה שהיית אתמול."</p>
+				<p><strong>"אם אתה רוצה לשפר משהו, תתאמן על מה שאתה הכי מתקשה בו."</strong> - הציטוט מדגיש את חשיבות ההתמקדות בחולשות כדי להגיע להישגים גדולים יותר.</p>
+				<p>"מטרה ראויה מספקת לך סיבה להמשיך גם כאשר כל דבר אחר מושך אותך לעצור."</p>
+				<p><strong>"אם יש לך חזון ברור ואתה מוכן לעבוד קשה, אתה יכול להגיע למקומות שלא חלמת עליהם."</strong> - חזון ועבודה קשה הם המפתח להשגת הישגים יוצאי דופן.</p>
+				<p><strong>"מה שמבדיל בין המצליחנים לשאר הוא לא עד כמה הם טובים כשהם מתחילים, אלא עד כמה הם משתפרים עם הזמן."</strong> - הציטוט הזה מדגיש את חשיבות השיפור המתמשך על פני הזמן ולא רק את נקודת ההתחלה.</p>
+			</div>
+		</div>
+
+		<div class="quote" data-tags="productivity,discipline,mindfulness" id="deep-work">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - DEEP WORK" class="book-image" src="DEEP WORK.jpg" />
+			</div>
+			<h2>DEEP WORK</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="productivity"></span>
+				<span class="category" data-tag="discipline"></span>
+				<span class="category" data-tag="mindfulness"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "DEEP WORK"</h3>
+				<p>הספר "DEEP WORK" מאת קאל ניופורט מדגיש את החשיבות של עבודה עמוקה בעידן של הסחות דעת דיגיטליות. הספר מסביר כיצד לפתח משמעת עצמית ומיומנויות ריכוז כדי להגיע למצב של עבודה עמוקה ולמקסם את היעילות והיצירתיות בעבודה. ניופורט מציע אסטרטגיות להתמודדות עם הסחות דעת ומדגיש את החשיבות של ניהול זמן יעיל.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הבדל בין עבודה עמוקה לעבודה שטחית: עבודה עמוקה דורשת ריכוז מלא ומובילה לתוצאות משמעותיות.</li>
+					<li>יצירת שגרה של עבודה עמוקה: קביעת פרקי זמן במהלך היום המוקדשים לעבודה ממוקדת.</li>
+					<li>הפחתת הסחות דעת: ניופורט מציע לצמצם את השימוש במדיה חברתית ובגורמי הסחה נוספים כדי להגביר את הריכוז.</li>
+					<li>ניהול זמן: תכנון זמן הפנאי והעבודה כדי לשמור על רמות ריכוז גבוהות.</li>
+				</ul>
+			</div>
+			
+			<p><strong>"מה שאנו בוחרים להתמקד בו ומה שאנו בוחרים להתעלם ממנו משפיע על איכות חיינו."</strong> - המיקוד שלך הוא מה שמייצר את התוצאות המשמעותיות בחייך.</p>
+			<p>"בהירות לגבי מה שחשוב מביאה בהירות לגבי מה שאינו חשוב."</p>
+			<p><strong>"כדי להצליח בעבודה עמוקה, עליך לאמן את המוח שלך להתנגד להסחות דעת."</strong> - פיתוח יכולת הריכוז דורש אימון מתמשך והתמודדות עם הסחות דעת.</p>
+			<p>"היכולת להתרכז היא גורם מרכזי בכמות שאתה מצליח להשיג."</p>
+			<p><strong>"חיים המבוססים על עבודה עמוקה דורשים שינויים דרסטיים בהרגלים, אבל התמורה היא עצומה."</strong> - פיתוח משמעת עצמית לעבודה עמוקה דורש מאמץ, אך מוביל לתוצאות משמעותיות.</p>
+		</div>
+
+		<div class="quote" data-tags="decision-making,mindfulness" id="thinking-fast-and-slow">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - לחשוב מהר לחשוב לאט" src="לחשוב מהר לחשוב לאט.jpg" />
+			</div>
+			<h2>לחשוב מהר לחשוב לאט</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="decision-making"></span>
+				<span class="category" data-tag="mindfulness"></span>
+			</div>
+	
+			<div class="book-summary">
+				<h3>סיכום הספר "לחשוב מהר לחשוב לאט"</h3>
+				<p>הספר "לחשוב מהר לחשוב לאט" מאת דניאל כהנמן מתאר את שתי מערכות החשיבה השונות של בני האדם: מערכת 1 האינטואיטיבית והמהירה, ומערכת 2 האיטית והאנליטית. כהנמן, זוכה פרס נובל לכלכלה, מסביר כיצד כל אחת מהמערכות משפיעה על תהליכי קבלת החלטות והשיפוט האנושי.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מערכת 1: חשיבה אינטואיטיבית, מהירה, ואוטומטית, המתבססת על חוויות עבר.</li>
+					<li>מערכת 2: חשיבה איטית, מבוקרת, ודורשת מאמץ מנטלי, המופעלת כאשר נדרשים להחלטות מורכבות.</li>
+					<li>הטיות קוגניטיביות: טעויות שיפוט הנובעות מחשיבה אינטואיטיבית, כמו אפקט המסגור או ביטחון עצמי מופרז.</li>
+					<li>אושר חווייתי ואושר זכור: הבחנה בין האושר שאנו חווים ברגע הנתון לבין האושר שאנו זוכרים אחרי החוויה.</li>
+				</ul>
+			</div>
+
+			<p><strong>"אנשים נוטים להעריך יתר על המידה את היכולת שלהם להבין את העבר, וכן את יכולתם לחזות את העתיד."</strong> - כהנמן מסביר שהמוח האנושי מושפע מהטיות שגורמות לנו לחשוב שיש לנו יותר שליטה והבנה ממה שיש לנו בפועל.</p>
+			<p>"הגזמה בחשיבותה של הצלחה מפחיתה את התשוקה ללמידה."</p>
+			<p>"מערכת 2 עצלנית ומעדיפה לא לעבוד אם אפשר להימנע מכך."</p>
+			<p><strong>"אמונה באינטואיציה היא אמונה באשליה."</strong> - כהנמן מציין שהחלטות שמבוססות על אינטואיציה עלולות להוביל אותנו לטעויות בגלל ההטיות הקוגניטיביות שלנו.</p>
+        
+		</div>
+		
+		<div class="quote" data-tags="financial-education,wealth" id="millionaire-in-a-minute">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - מיליונר ברגע" src="מיליונר ברגע.jpg" />
+			</div>
+			<h2>מיליונר ברגע</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-education"></span>
+				<span class="category" data-tag="wealth"></span>
+			</div>
+
+			<!-- סיכום הספר -->
+			<div class="book-summary">
+				<h3>סיכום הספר "מיליונר ברגע"</h3>
+				<p>הספר מציג גישה מעשית וחדשנית להגעה לעצמאות כלכלית במהירות יחסית, תוך פיתוח מיינדסט של הצלחה ושימוש בכלים כמו מינוף זמן, משאבים ורשתות קשרים ליצירת הכנסה פסיבית דרך יזמות והשקעות. המחברים מדגישים את החשיבות של פעולה מהירה, מינוף הזדמנויות והפיכת חלומות לעשייה ממוקדת המובילה לתוצאות פיננסיות בזמן קצר.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מיינדסט של שפע: פיתוח חשיבה של שפע ולאמץ את האמונה שיש מספיק כסף והזדמנויות לכולם.</li>
+					<li>מינוף מערכות יחסים ומשאבים: עבודה חכמה על ידי מינוף זמן, אנשים וכסף לצמיחה כלכלית.</li>
+					<li>יצירת הכנסה פסיבית: פיתוח נכסים או עסקים שממשיכים להניב הכנסות גם ללא מעורבות ישירה יומיומית.</li>
+					<li>פיתוח רעיונות עסקיים מרובים: יצירת מקורות הכנסה מרובים כדי להפחית סיכון.</li>
+				</ul>
+			</div>
+
+			<!-- ציטוטים מרכזיים -->
+			<p><strong>"המפתח להצלחה כלכלית הוא לא כמה קשה אתה עובד, אלא כמה חכם אתה עובד."</strong> - הצלחה כלכלית תלויה בשימוש חכם במשאבים ולא רק בעבודה קשה.</p>
+			<p>"תתחיל לחשוב על כסף כמוצר של רעיונות, לא של עבודה."</p>
+			<p>"העולם מלא באנשים שמחכים להזדמנויות – רק צריך לפתוח את העיניים ולראות אותן."</p>
+			<p>"הסוד להתעשרות הוא לבנות מערכת הכנסה שאינה תלויה בזמן שלך."</p>
+			<p><strong>"כל אחד יכול להיות מיליונר, אבל זה מתחיל בבחירה. הבחירה שלך לפעול ולהתחייב להצלחה היא הצעד הראשון."</strong> - הצלחה מתחילה בהחלטה לפעול ולהתחייב.</p>
+		</div>
+		
+		<div class="quote" data-tags="effectiveness, productivity" id="80-20-principle">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - עיקרון 80/20" src="עקרון 20-80.jpg" />
+			</div>
+			<h2>עיקרון 80/20</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="effectiveness"></span>
+				<span class="category" data-tag="productivity"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "עיקרון 80/20"</h3>
+				<p>הספר "עיקרון 80/20" מאת ריצ'רד קוק מציג את עקרון פארטו, לפיו 80% מהתוצאות נובעות מ-20% מהמאמצים. 
+				   הספר מלמד כיצד ליישם עקרון זה בתחומים שונים כגון עסקים, ניהול זמן ומערכות יחסים, 
+				   ולעצב תהליכים שמאפשרים להשיג יותר תוצאות בפחות מאמץ על ידי זיהוי המיקוד הנכון.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מיקוד במאמץ קריטי: השקעת משאבים ב-20% הפעילויות שמביאות את מירב התוצאות.</li>
+					<li>ניהול זמן אפקטיבי: זיהוי המשימות החשובות ביותר והתמקדות בהן.</li>
+					<li>שחרור מדברים לא חשובים: וויתור על פעולות שמביאות ערך נמוך.</li>
+					<li>יצירת הצלחה מתמשכת: פיתוח תהליכים ממוקדים המבוססים על תוצאות מוכחות.</li>
+				</ul>
+			</div>
+			
+			<p><strong>"אנו יכולים להשיג הרבה יותר עם הרבה פחות מאמץ, אם ניישם את עקרון 80/20 בצורה מודעת ומתמדת."</strong></p>
+			<p>"מעטים הם הדברים שבאמת משנים, אך הדברים שמעטים משנים – משנים הרבה."</p>
+			<p><strong>"כדי להפיק תוצאות מרשימות, עלינו לחפש את האזורים שבהם מאמץ מועט יוצר את התוצאות המרביות."</strong></p>
+			<p>"יותר חשוב לדעת מה לא לעשות מאשר לדעת מה לעשות."</p>
+		</div>
+		<div class="quote" data-tags="self-discipline,personal-development" id="no-excuses">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - בלי תירוצים" src="בלי תירוצים.jpg" />
+			</div>
+			<h2>בלי תירוצים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="self-discipline"></span>
+				<span class="category" data-tag="personal-development"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "בלי תירוצים"</h3>
+				<p>הספר "בלי תירוצים" מאת בריאן טרייסי מציג את כוח המשמעת העצמית ככלי מרכזי להצלחה בחיים. 
+				   טרייסי מתאר גישה אחראית ובלתי מתפשרת להשגת הצלחה בתחומי הקריירה, מערכות יחסים, בריאות 
+				   וצמיחה אישית, תוך דגש על אחריות אישית, התגברות על דחיינות והצבת מטרות ארוכות טווח.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>לקיחת אחריות אישית: ניהול החיים על ידי לקיחת אחריות מלאה ושחרור מתירוצים.</li>
+					<li>מיקוד במטרות לטווח הארוך: הקרבה בטווח הקצר עבור תוצאות עתידיות.</li>
+					<li>משמעת עצמית: שימוש בדד-ליינים ותגמולים קטנים כדי להישאר מחויבים למשימות.</li>
+					<li>פיתוח הרגלים חיוביים: בניית בסיס של הרגלים שמובילים להצלחה מתמשכת.</li>
+				</ul>
+			</div>
+
+			<p><strong>"המשמעת העצמית היא היכולת לעשות את מה שאתה צריך לעשות, מתי שאתה צריך לעשות את זה, בין אם אתה רוצה או לא."</strong></p>
+			<p>"כשאתה לוקח אחריות מלאה על חייך, אתה משיג תחושת שליטה אמיתית על חייך."</p>
+			<p><strong>"המחיר של הצלחה תמיד משולם מראש, במאמץ ובהתמדה."</strong></p>
+			<p>"אנשים מצליחים לא בהכרח חכמים או כשרוניים יותר, הם פשוט פועלים באופן עקבי בעזרת משמעת עצמית."</p>
+			<p><strong>"אם אתה רוצה יותר מהחיים, עליך להפוך ליותר ממה שאתה עכשיו."</strong></p>
+		</div>
+
+		<div class="quote" data-tags="personal-development,decision-making" id="clear-thinking">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - חשיבה צלולה" src="חשיבה צלולה.jpg" />
+			</div>
+			<h2>חשיבה צלולה</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-development"></span>
+				<span class="category" data-tag="decision-making"></span>
+			</div>
+			
+			<div class="book-summary">
+				<h3>סיכום הספר "חשיבה צלולה"</h3>
+				<p>הספר "חשיבה צלולה" מאת שיין פאריש מתמקד בפיתוח חשיבה בהירה וממוקדת לשיפור קבלת ההחלטות בחיים ובעסקים. פאריש מציג כלים מעשיים להתמודד עם הטיות קוגניטיביות, ומסביר כיצד ניתן להתמקד בעקרונות יסוד ולראות את התמונה הגדולה לקבלת החלטות מבוססות יותר. הספר מדגיש את החשיבות של חשיבה עצמאית ולמידה מטעויות כדי להתפתח ולצמוח.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מודעות להטיות קוגניטיביות: הבנה כיצד הטיות כמו הטיית אישור והטיית השליליות משפיעות על שיקול הדעת.</li>
+					<li>חשיבה מערכתית: ראייה של התמונה הרחבה וכיצד חלקים שונים באינטראקציה משפיעים זה על זה.</li>
+					<li>פיתוח חשיבה עצמאית: לפעול לפי ערכים אישיים ולא להסתמך על דעות חיצוניות.</li>
+					<li>למידה מטעויות: ניתוח עצמי והפקת לקחים משגיאות כדי להשתפר.</li>
+				</ul>
+			</div>
+			
+			<p><strong>"חשיבה עצמאית מתחילה כשאנחנו מפסיקים לחפש אישור מבחוץ, ומתחילים להקשיב לערכים ולמטרות הפנימיים שלנו."</strong> – מדגיש את הצורך לפתח חשיבה מבוססת על ערכים אישיים ולהתמקד בהחלטות שנובעות מאמונות פנימיות.</p>
+			<p><strong>"הטעויות הגדולות ביותר שלנו אינן נובעות מהעדר מידע, אלא מהטיות שמסיטות אותנו מהאמת."</strong> – מראה עד כמה חשוב להיות מודע להטיות כדי לקבל החלטות נכונות.</p>
+			<p>"רק דרך הבנה כנה של ההצלחות והכישלונות שלנו, נוכל ללמוד, להשתפר ולהתקדם." – מציין את חשיבות הניתוח העצמי ללמידה והתפתחות.</p>
+			<p><strong>"אדם חושב אינו זה שמכיר את כל התשובות – אלא זה שיודע כיצד לשאול את השאלות הנכונות."</strong> – מדגיש את החשיבות של שאילת שאלות נכונות לקבלת הבנה עמוקה יותר.</p>
+		</div>
+
+		<div class="quote" data-tags="personal-growth,compassion,good-deeds" id="activate-your-goodness">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - לממש את הטוב שבך" src="לממש את הטוב שבך.jpg" />
+			</div>
+			<h2>לממש את הטוב שבך</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="compassion"></span>
+				<span class="category" data-tag="good-deeds"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "לממש את הטוב שבך"</h3>
+				<p>הספר "לממש את הטוב שבך" מאת שרי אריסון מזמין את הקוראים למסע פנימי לגילוי הפוטנציאל הטוב שבהם. אריסון מציעה כלים לעשיית טוב מתוך בחירות יומיומיות, פיתוח חמלה ואחריות אישית, ואמונה שכל אחד מאיתנו יכול ליצור השפעה חיובית בעולם דרך מעשים קטנים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>גילוי הפוטנציאל הפנימי: התחברות לערכים ולחיפוש אחר משמעות פנימית.</li>
+					<li>חמלה: פיתוח חמלה כלפי עצמנו והסביבה להעצמת מערכות יחסים.</li>
+					<li>אחריות אישית: לקיחת יוזמה לשינוי מתוך בחירה אישית.</li>
+					<li>עשיית טוב יומיומית: ערך לפעולות קטנות הנעשות מתוך כוונה טובה.</li>
+				</ul>
+			</div>
+			
+			<p><strong>"כל אחד מאיתנו נושא בתוכו אור ייחודי, עלינו לבחור להאיר אותו ולעשות טוב בעולם."</strong> - הציטוט מדגיש את היכולת הפנימית שלנו להשפיע וליצור שינוי חיובי.</p>
+			<p>"חמלה היא היכולת לראות את האחר, אך גם לתת לעצמנו את המקום להרגיש ולהיות מי שאנחנו."</p>
+			<p>"איננו צריכים להמתין להזדמנויות כדי לעשות טוב – הן נמצאות סביבנו, בכל רגע ורגע."</p>
+			<p>"היכולת לסלוח לעצמנו על טעויות מאפשרת לנו להמשיך הלאה ולצמוח מתוכן."</p>
+			<p><strong>"אנו יוצרים את המציאות שלנו דרך בחירות קטנות של עשיית טוב – כל יום מחדש."</strong> - מדגיש את הכוח של פעולות יומיומיות קטנות לשנות את המציאות סביבנו.</p>
+		</div>
+
+		<div class="quote" data-tags="personal-growth,happiness" id="the-happiness-advantage">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - יתרון האושר" src="יתרון האושר.jpg" />
+			</div>
+			<h2>יתרון האושר</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="happiness"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "יתרון האושר"</h3>
+				<p>שון אייקור מדגיש שאושר הוא מניע ולא תוצאה של הצלחה. מתוך מחקרים מעמיקים, הספר מציג כיצד חשיבה חיובית יכולה לשפר את איכות חיינו ואת מערכות היחסים שלנו.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>אפקט הטטריס:</strong> התמקדות בתבניות חיוביות משפרת את הדרך שבה אנו רואים את העולם.</li>
+					<li><strong>מעגלי זורו:</strong> השגת מטרות קטנות בונה ביטחון עצמי ומחזקת שליטה.</li>
+					<li><strong>חוק 20 השניות:</strong> הפחתת חיכוך בתחילת הרגלים חדשים מובילה להתמדה.</li>
+					<li><strong>נפילה לצמיחה:</strong> למידה מכישלונות והפיכתם להזדמנויות לצמיחה.</li>
+					<li><strong>השקעה חברתית:</strong> טיפוח קשרים חברתיים משפר את החוסן האישי.</li>
+				</ul>
+			</div>
+			<p><strong>"ההצלחה אינה מקור האושר, האושר הוא מקור ההצלחה."</strong> - אושר מוביל להצלחות גדולות יותר.</p>
+			<p><strong>"כשהמוח שלך מרגיש טוב, הוא עובד טוב יותר."</strong> - המוח במצב חיובי מביא לתוצאות טובות.</p>
+			<p><strong>"כשאנחנו משקיעים באושר שלנו, אנחנו רואים תוצאות חיוביות בכל תחומי החיים."</strong> - אושר הוא השקעה שמחזירה את עצמה.</p>
+			<p><strong>"כשהמוח שלנו מתמקד בחיובי, אנחנו רואים יותר הזדמנויות."</strong> - חשיבה חיובית משנה את תפיסת המציאות.</p>
+			<p><strong>"החיים הם לא תוצאה של מה שקרה לנו, אלא של איך בחרנו להגיב לכך."</strong> - המסר הוא לפעול במקום להישאר פסיבי.</p>
+			<p><strong>"הדרך להצלחה עוברת דרך צמיחה מתוך הכישלונות שלנו."</strong> - כישלון הוא שלב חיוני להצלחה.</p>
+		</div>
+
+
+		<div class="quote" data-tags="personal-growth,vulnerability" id="daring-greatly">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - האומץ להעז" src="האומץ להעז.jpg" />
+			</div>
+			<h2>האומץ להעז</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="vulnerability"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "האומץ להעז"</h3>
+				<p>ברנה בראון מסבירה כי פגיעות היא לא חולשה, אלא מקור לעוצמה ולחוסן רגשי. האומץ להעז כולל את החשיפה שלנו לפגיעות, ודרך זה יצירת קשרים משמעותיים, חיזוק תחושת הערך העצמי, וניהול ביקורת. הספר מציע כלים יומיומיים להתמודד עם פחדים ולהתחבר לערכים ולשאיפות שלנו.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>פגיעות כמקור כוח:</strong> חיבור רגשי אמיתי מתרחש כשאנו חושפים את עצמנו.</li>
+					<li><strong>התמודדות עם ביקורת:</strong> ביקורת אינה מגדירה אותנו; היא כלי לצמיחה.</li>
+					<li><strong>אומץ יומיומי:</strong> פעולות קטנות שמתחברות לערכים האישיים שלנו מובילות לחיים מספקים יותר.</li>
+					<li><strong>שחרור מביקורת עצמית:</strong> קבלת עצמנו מובילה לשלווה וצמיחה.</li>
+				</ul>
+			</div>
+			<p><strong>"אומץ הוא לא המחשבה על מה יקרה אם נכשלתי, אלא ההבנה שאני יכול להיכשל ועדיין להיות ראוי לאהבה ולכבוד."</strong> - הערך העצמי אינו תלוי בהצלחה או כישלון.</p>
+			<p><strong>"הפגיעות היא לא חולשה – היא עוז. זהו המקום שבו אנו בוחרים להיות אמיתיים, לא מושלמים."</strong> - הפגיעות מאפשרת חיבור עמוק לאחרים.</p>
+			<p><strong>"כדי להתחיל להיות חופשי, עלינו להפסיק לחשוש מכישלון."</strong> - גישה חיובית לחיים שמכירה בכישלון כחלק מהמסע.</p>
+			<p><strong>"אנחנו לא יכולים לשלוט במה שאחרים חושבים עלינו, אבל אנחנו בהחלט יכולים לשלוט איך אנחנו רואים את עצמנו."</strong> - העצמה אישית מתחילה בשחרור מחשש מביקורת.</p>
+			<p><strong>"לגלות את האומץ להיות מי שאנחנו באמת זה להיות אמיצים מספיק להתנסות, להיכשל ולהיות פגיעים."</strong> - התנסות וכישלון הם חלק מרכזי בצמיחה.</p>
+			<p><strong>"הכאב הוא חלק בלתי נפרד מהחיים, אבל אנחנו יכולים לבחור איך להגיב אליו."</strong> - הבחירה בתגובה היא זו שמעצבת אותנו.</p>
+		</div>
+
+
+		<div class="quote" data-tags="innovation,business" id="zero-to-one">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - מאפס לאחד" src="מאפס לאחד.jpg" />
+			</div>
+			<h2>מאפס לאחד</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="innovation"></span>
+				<span class="category" data-tag="business"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "מאפס לאחד"</h3>
+				<p>פיטר ת'יל, מייסד שותף של PayPal, מציג עקרונות לבניית עסקים חדשניים וייחודיים. הוא מדגיש כי חדשנות אמיתית אינה שיפור הדרגתי (מאחד לאחד), אלא יצירת רעיון חדש לגמרי (מאפס לאחד). הספר מציע כלים ואסטרטגיות למי שרוצה לחדש וליצור ערך ייחודי בשוק.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>חדשנות ויצירת מונופול:</strong> יצירת נישה חדשה במקום תחרות בשוק רווי.</li>
+					<li><strong>חשיבה לטווח ארוך:</strong> הצלחה אמיתית דורשת סבלנות ואסטרטגיה מתמשכת.</li>
+					<li><strong>שימוש בטכנולוגיה:</strong> ככלי עיקרי ליצירת יתרון תחרותי ושיפור בשוק.</li>
+					<li><strong>גיוס אנשים יוצאי דופן:</strong> לבנות צוות איכותי המחויב לחזון החברה.</li>
+				</ul>
+			</div>
+			<p><strong>"התחרות היא לתלמידים, והחדשנות היא למובילים."</strong> - חדשנות מבדילה אותך מהמתחרים ופותחת דלתות.</p>
+			<p><strong>"כל רגע בעסקים קורה רק פעם אחת. מארק צוקרברג הבא לא יבנה רשת חברתית. הממציאים הבאים של מנוע חיפוש לא יבנו את גוגל."</strong> - הצלחה דורשת חשיבה חדשה ולא חיקוי.</p>
+			<p><strong>"הדרך היחידה באמת לשנות את העולם היא ליצור משהו חדש, ולא להתחרות על מה שכבר קיים."</strong> - חדשנות היא הדרך לשינוי אמיתי.</p>
+			<p><strong>"אנשים שאפתניים שואפים ללכת בדרך שונה מההמון. הם יודעים שפריצות הדרך הגדולות לא מגיעות מהליכה בשבילים מוכרים."</strong> - שאפתנות ויצירתיות הן המפתח לפריצת דרך.</p>
+			<p><strong>"כדי לעבור מאפס לאחד, עלינו להבין שחדשנות לא נובעת מחיקוי, אלא מהסתכלות רעננה על בעיות קיימות."</strong> - פתרונות ייחודיים מובילים לשינויים גדולים.</p>
+		</div>
+
+		<div class="quote" data-tags="personal-growth,mindset" id="grit">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - כוחה של נחישות" src="כוחה של נחישות.jpg" />
+			</div>
+			<h2>כוחה של נחישות</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="mindset"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "כוחה של נחישות"</h3>
+				<p>
+					הספר מאת קרול דווק עוסק בהבדל בין "מיינדסט מקובע" לבין "מיינדסט מתפתח". 
+					הוא מדגיש כיצד אנשים עם גישה מתפתחת מתמודדים עם כישלונות כשלב חיובי בלמידה וממשיכים לצמוח, 
+					בניגוד לאלו הרואים בכישלון סיום התהליך.
+				</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>מיינדסט מתפתח מאפשר התגברות על כישלונות וצמיחה מהאתגרים.</li>
+					<li>חשיבות התמקדות בתהליך ולא רק בתוצאה.</li>
+					<li>כוחן של מילים ומשוב חיובי תורמים לעידוד ושיפור.</li>
+					<li>השפעת הסביבה והתרבות על פיתוח חשיבה מתפתחת.</li>
+				</ul>
+			</div>
+			<p><strong>"האמונה שאפשר לשפר את היכולות באמצעות מאמץ היא הלב של מיינדסט מתפתח."</strong></p>
+			<p><strong>"כישלון הוא לא תעודת גמר – הוא שלב בתהליך למידה מתמשך."</strong></p>
+			<p>"מי שמאמין שהוא יכול ללמוד מכל חוויה, יגדל ויתקדם יותר ממי שמנסה להימנע מכישלונות."</p>
+			<p>"מוח שמתרגל להתמודדות, מאמץ והתקדמות הופך חזק יותר ומסוגל ליותר."</p>
+			<p>"אלו שלא פוחדים מכישלון אלא מתמודדים איתו ומפיקים ממנו לקחים הם אלו שמשיגים את ההצלחות המשמעותיות ביותר."</p>
+			<p>"השאלה היא לא 'כמה טוב אני עכשיו', אלא 'כמה טוב אני יכול להיות עם הזמן והמאמץ'."</p>
+		</div>
+
+		<div class="quote" data-tags="success,productivity" id="maximum-achievement">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - הישג מקסימלי" src="הישג מקסימלי.jpg" />
+			</div>
+			<h2>הישג מקסימלי</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="success"></span>
+				<span class="category" data-tag="productivity"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "הישג מקסימלי"</h3>
+				<p>
+					הספר של בריאן טרייסי הוא מדריך מעשי להגשמת מטרות אישיות ומקצועיות. 
+					הוא מציע טכניקות לניהול זמן, התגברות על פחדים, ופיתוח הרגלי חשיבה והתנהגות שיביאו להצלחה עקבית.
+				</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li>הצבת חזון ומטרות ברורות וממוקדות.</li>
+					<li>שימוש בעקרון ה-80/20 לתעדוף יעיל.</li>
+					<li>לקיחת אחריות מלאה על החיים והפעולות שלך.</li>
+					<li>פיתוח הרגלים של עשייה והתמדה.</li>
+					<li>ניהול פחדים ועיכובים באמצעות צעדים קטנים ומתמשכים.</li>
+				</ul>
+			</div>
+			<p><strong>"הצלחה היא לא יעד, אלא תוצאה של פעולות יומיומיות והרגלים עקביים."</strong></p>
+			<p><strong>"קח שליטה מלאה על חייך, כי רק אתה אחראי להצלחותיך או כישלונותיך."</strong></p>
+			<p>"המשימות החשובות ביותר הן אלו שלעיתים קרובות דוחים – התמודד איתן ראשונות."</p>
+			<p>"פחד הוא רק תחושת אי-נוחות זמנית. התמודדות עם הפחדים שלך תהפוך אותך לאדם חזק ובטוח יותר."</p>
+			<p>"80% מהתוצאות שלך יגיעו מ-20% מהפעולות שלך. למד לזהות ולהתמקד בהן."</p>
+			<p>"כל רגע שאתה משקיע בלמידה הוא השקעה ישירה בהצלחה העתידית שלך."</p>
+			<p>"אנשים מצליחים פועלים אפילו כשלא נוח להם. הם יודעים שההתמדה מביאה תוצאות."</p>
+		</div>
+
+		<div class="quote" data-tags="personal-growth,self-awareness" id="the-big-leap">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - הקפיצה הגדולה" src="הקפיצה הגדולה.png" />
+			</div>
+			<h2>הקפיצה הגדולה</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="personal-growth"></span>
+				<span class="category" data-tag="self-awareness"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "הקפיצה הגדולה"</h3>
+				<p>הספר "הקפיצה הגדולה" מאת גיא הנדריקס הוא מדריך להתגברות על פחדים ואמונות מגבילות המשפיעות על הצלחתנו ואושרנו. הוא מציע כלים לזיהוי "תקרת הזכוכית" הפנימית שלנו – האמונות והפחדים שמונעים מאיתנו לממש את הפוטנציאל המלא שלנו, ולעבור אל "אזור הגאונות" שבו הכישרונות הייחודיים שלנו באים לידי ביטוי מלא.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>זיהוי והתגברות על מגבלות פנימיות:</strong> זיהוי האמונות המגבילות והפחדים הפנימיים שמפריעים להתקדמות שלנו.</li>
+					<li><strong>מעבר לאזור הגאונות:</strong> גילוי תחומים שבהם אנו חווים שמחה, יצירתיות ותחושת מימוש עצמי, והשקעת זמן בפיתוחם.</li>
+					<li><strong>אחריות אישית:</strong> הבנת החשיבות של קבלת אחריות על האושר וההצלחה שלנו.</li>
+					<li><strong>חיים מתוך מודעות:</strong> יצירת שגרה יומית של הכרת תודה ושיפור עצמי.</li>
+				</ul>
+			</div>
+			<p><strong>"ההצלחה הגדולה ביותר לא מגיעה מהימנעות מכישלונות, אלא מהיכולת להמשיך למרות הפחדים."</strong> - הכישלון הוא חלק בלתי נפרד מהדרך להצלחה. ההתמדה היא המפתח.</p>
+			<p><strong>"לכולנו יש 'תקרת זכוכית' פנימית שמגבילה אותנו, אבל אנו יכולים לבחור לשבור אותה."</strong> - ציטוט מעורר השראה שמזכיר לנו את היכולת להתגבר על מגבלות שנראות בלתי אפשריות.</p>
+			<p><strong>"כשאתה עובר את הגבול שלך, אתה מתחיל לחיות במלוא הפוטנציאל שלך."</strong> - החיים המשמעותיים מתחילים כאשר אנו יוצאים מאזור הנוחות שלנו.</p>
+			<p><strong>"החיים לא נועדו להיות קשים ומלאים במאבקים – הם נועדו להיות מלאים בשפע והזדמנויות."</strong> - גישה של שפע מאפשרת לנו להאמין ולהשיג יותר.</p>
+			<p>"המרדף אחר השקט והביטחון יוביל אותנו לאי-מימוש. האומץ לחיות מתוך יצירתיות הוא הדרך היחידה לעבור את הגבול הפנימי."</p>
+		</div>
+		
+		<div class="quote" data-tags="self-discipline,personal-growth" id="cant-hurt-me">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - לא יכול לפגוע בי" src="לא יכול לעצור אותי.jpg" />
+			</div>
+			<h2>לא יכול לפגוע בי</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="self-discipline"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "לא יכול לפגוע בי"</h3>
+				<p>הספר מספר את סיפור חייו של דייוויד גוגינס, מילדות קשה רוויית אלימות ועוני ועד להפיכתו ללוחם עילית וספורטאי עולמי. גוגינס מציג כיצד עמד מול האתגרים הפיזיים והמנטליים הקשים ביותר בחייו, ומדגים כיצד לשבור גבולות מנטליים באמצעות משמעת עצמית, עמידה באתגרים ושימוש בכאב כמנוע לצמיחה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>חוק ה-40%:</strong> כאשר אנו חושבים שהגענו לגבול היכולת שלנו, אנחנו למעשה רק ב-40% מהפוטנציאל שלנו.</li>
+					<li><strong>התמודדות עם פחדים וכאב:</strong> עמידה מול טראומות העבר ושימוש בכאב כמניע להתפתחות.</li>
+					<li><strong>קבלת אחריות:</strong> האחריות לחיינו היא בידינו בלבד, ללא תלות בנסיבות העבר.</li>
+					<li><strong>משמעת עצמית:</strong> יצירת שגרה ברורה ועמידה ביעדים קטנים כסוד להצלחה מתמשכת.</li>
+				</ul>
+			</div>
+			<p><strong>"הכאב הוא זמני. הוא עלול להימשך דקה, שעה, או אפילו שנה, אבל בסוף הוא יחלוף. מה שיישאר לנצח הוא איך שבחרתם להתמודד איתו."</strong> - מסר שמזכיר לנו כי כוחנו מתגלה בדרך שבה אנו מתמודדים עם כאב.</p>
+			<p><strong>"החיים שלכם הם מאבק נגד עצמכם. ברגע שתלמדו לנצח את המוח שלכם, תנצחו כל אתגר."</strong> - דגש על החשיבות של התמודדות פנימית לשם הצלחה חיצונית.</p>
+			<p><strong>"כשאתם מסתכלים במראה, אתם לא יכולים לשקר לעצמכם. היו אמיתיים, הודו בחולשות שלכם, ואז לכו לתקן אותן."</strong> - קריאה לכנות עצמית כבסיס לצמיחה.</p>
+			<p><strong>"אל תחכו שנסיבות החיים ישתנו. קחו שליטה על החיים שלכם ותיצרו את המציאות שאתם רוצים."</strong> - ציטוט שמעודד לקחת יוזמה ואחריות על החיים.</p>
+			<p>"אל תתנו לעבר שלכם להגדיר את העתיד שלכם. השתמשו בו כדלק להתקדמות ולא ככבלים שמעכבים אתכם."</p>
+		</div>
+
+		<div class="quote" data-tags="digital-marketing,business-strategy" id="dotcom-secrets">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - DotCom Secrets" src="Dotcom Secret.jpg" />
+			</div>
+			<h2>DotCom Secrets</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="digital-marketing"></span>
+				<span class="category" data-tag="business-strategy"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "DotCom Secrets"</h3>
+				<p>הספר מציע אסטרטגיות מתקדמות לשיווק דיגיטלי, במיוחד בתחום מכירת מוצרים ושירותים באינטרנט. ראסל ברונסון משתף כיצד לבנות משפכי מכירה ממירים, להבין את קהל היעד, וליצור מערכת אוטומטית ליצירת הכנסות יציבות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>יצירת משפכים ממירים:</strong> תהליך של שלבים בהם מבקר הופך ללקוח, החל מתוכן חינמי ועד מכירה ושירותים נוספים.</li>
+					<li><strong>הבנת הלקוחות:</strong> זיהוי הבעיות שהלקוחות מנסים לפתור והתאמת פתרונות מדויקים.</li>
+					<li><strong>שיווק תוכן:</strong> יצירת תוכן בעל ערך שמושך לקוחות חדשים ומחזק את המותג.</li>
+					<li><strong>אוטומציה:</strong> הקמת מערכות חכמות שמביאות מכירות ללא מעורבות ישירה.</li>
+				</ul>
+			</div>
+			<p><strong>"המטרה של משפך מכירה מצליח היא לא רק לסגור עסקה אלא לבנות לקוח לכל החיים."</strong> - ההצעה שלך צריכה לבנות אמון ולקדם מערכת יחסים ארוכה.</p>
+			<p><strong>"אנשים לא קונים מוצרים – הם קונים את השינוי שהם מאמינים שהמוצר יביא לחייהם."</strong> - הדגש הוא על הערך האמיתי שהמוצר מספק.</p>
+			<p><strong>"מחשבה מבולבלת תמיד אומרת 'לא', לכן, ההצעה שלך צריכה להיות ברורה וממוקדת."</strong> - הצעה ברורה ופשוטה מגדילה את הסיכוי להמרה.</p>
+			<p><strong>"ככל שתבין את הלקוח שלך טוב יותר, כך תוכל ליצור הצעה שהוא פשוט לא יוכל לסרב לה."</strong> - הבנת צרכי הלקוח היא המפתח להצלחה בשיווק.</p>
+			<p>"אנשים אוהבים לקנות, אבל הם שונאים שמוכרים להם."</p>
+		</div>
+
+		<div class="quote" data-tags="financial-management,investments" id="master-the-money-game">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - לשלוט במשחק הכסף" src="לשלוט במשחק הכסף.jpg" />
+			</div>
+			<h2>לשלוט במשחק הכסף</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="financial-management"></span>
+				<span class="category" data-tag="investments"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "לשלוט במשחק הכסף"</h3>
+				<p>הספר הוא מדריך לניהול פיננסי השגת עצמאות כלכלית. טוני רובינס מציע שבעה שלבים פשוטים ומעשיים, תוך שהוא משלב עצות מהמובילים בעולם הפיננסים. הוא מדגיש את חשיבות החינוך הפיננסי, השקעה חכמה ותכנון לטווח ארוך.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>חינוך פיננסי:</strong> להבין את ההכנסות, ההוצאות וההשקעות ולבנות תוכנית פעולה.</li>
+					<li><strong>ריבית דריבית:</strong> השקעה מוקדמת לטווח ארוך יכולה להוביל לצמיחה משמעותית של ההון.</li>
+					<li><strong>פיזור סיכונים:</strong> חלוקת נכסים לפי מטרות וסיבולת סיכון אישית.</li>
+					<li><strong>משמעת פיננסית:</strong> להישאר מחויבים לתוכנית השקעה יציבה, ללא תזמון השוק.</li>
+				</ul>
+			</div>
+			<p><strong>"הסוד לחופש כלכלי הוא להרוויח כסף גם כשאתה ישן."</strong> - חיסכון והשקעות נכונות יכולים ליצור הכנסה פאסיבית לטווח ארוך.</p>
+			<p><strong>"עושר הוא לא רק שאלה של כמה כסף יש לך, אלא איך אתה מרגיש לגבי מה שיש לך."</strong> - תפיסה של שפע מתחילה במחשבה וביחס לכסף.</p>
+			<p><strong>"תמיד תשלם לעצמך קודם. חיסכון הוא הבסיס לביטחון כלכלי."</strong> - גישה שמקדמת שמירה על הרגלי חיסכון בריאים.</p>
+			<p><strong>"פיזור השקעות הוא הביטוח הזול ביותר נגד טעויות בעולם הפיננסי."</strong> - דרך חכמה למזעור סיכונים בעולם ההשקעות.</p>
+			<p>"החלטות קטנות היום יוצרות את החיים הגדולים של המחר."</p>
+			<p>"כסף הוא רק חלק מהמשחק; המשמעות האמיתית היא איך אתה משתמש בו כדי להשפיע."</p>
+		</div>
+
+		<div class="quote" data-tags="mental-health,self-improvement" id="trapped-in-overthinking">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - לכוד בחשיבת יתר" src="לכוד בחשיבת יתר.jpg" />
+			</div>
+			<h2>לכוד בחשיבת יתר</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="mental-health"></span>
+				<span class="category" data-tag="self-improvement"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "לכוד בחשיבת יתר"</h3>
+				<p>הספר מיועד לכל מי שמרגיש לכוד במעגלים אינסופיים של מחשבות טורדניות. הוא מציע כלים פרקטיים לשחרור מניתוח יתר, טיפוח אהבה עצמית ושחרור הצורך בשליטה מוחלטת. הספר מדגיש את החשיבות של מודעות עצמית, מיינדפולנס והקניית הרגלים שמובילים לשקט נפשי.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>מודעות לדפוסי חשיבה:</strong> זיהוי מחשבות טורדניות ושאלת שאלות כמו "האם המחשבה הזו עוזרת לי?".</li>
+					<li><strong>טיפוח אהבה עצמית:</strong> שימוש באמירות חיוביות וקבלת עצמנו כפי שאנחנו.</li>
+					<li><strong>שחרור השליטה:</strong> קבלה של חוסר הוודאות והפסקת הניסיון לשלוט בכל מצב.</li>
+					<li><strong>הרגלים יומיים:</strong> מיינדפולנס, תיעוד מחשבות, והגבלת זמן למסכים לשמירה על איזון נפשי.</li>
+				</ul>
+			</div>
+			<p><strong>"מחשבות הן רק גלים שעוברים דרך התודעה שלך – הן לא מי שאתה."</strong> - מסר עוצמתי המפריד בין המחשבות לבין הזהות העצמית שלך.</p>
+			<p><strong>"אהבה עצמית היא לא מותרות – היא הצעד הראשון לבניית חיים חופשיים ממחשבות טורדניות."</strong> - קריאה לטיפוח עצמי כאמצעי ליצירת איזון נפשי.</p>
+			<p>"ככל שאתה מנסה לשלוט בכל דבר, כך תחושת השליטה שלך קטנה. השחרור מתחיל בקבלה."</p>
+			<p>"כשאתה שואל את עצמך 'האם המחשבה הזו עוזרת לי?', אתה מחזיר לעצמך את הכוח."</p>
+			<p>"הניסיון למצוא ודאות בכל דבר הוא האשליה הגדולה ביותר שמוחנו יוצר."</p>
+			<p>"הפסק להילחם במחשבות שלך – התבונן בהן, למד מהן, ושחרר אותן כשאין בהן ערך."</p>
+			<p>"כשאתה לומד לדבר אל עצמך כמו אל חבר טוב, המחשבות שלך מתחילות להשתנות."</p>
+			<p><strong>"השקט הנפשי שאתה מחפש לא יגיע מבחוץ – הוא תוצאה של ההרגלים שלך ושל הבחירה לשחרר."</strong> - חיזוק המסר שהשקט נובע מפעולות פנימיות.</p>
+		</div>
+
+		<div class="quote" data-tags="leadership,personal-development" id="strong-character">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - אופי חזק" src="אופי חזק.jpg" />
+			</div>
+			<h2>אופי חזק</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="leadership"></span>
+				<span class="category" data-tag="personal-development"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "אופי חזק"</h3>
+				<p>הספר עוסק בפיתוח מנהיגות מבוססת ערכים ואופי. קאסלן משתף תובנות מניסיונו הצבאי ומציג כלים לפיתוח יושרה, משמעת עצמית ודוגמה אישית. הספר מדגיש את החשיבות של השפעה חיובית על אחרים, התמדה ושמירה על עקרונות גם במצבים מורכבים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>מנהיגות מתחילה באופי:</strong> אנשים עוקבים אחרי מנהיגים שהם מאמינים בהם וסומכים עליהם.</li>
+					<li><strong>משמעת עצמית:</strong> עמידה בעקרונות, גם מול פיתויים רגעיים.</li>
+					<li><strong>כישלונות הם שיעור:</strong> להתייחס לכישלונות כהזדמנויות ללמידה והתפתחות.</li>
+					<li><strong>אמון:</strong> בניית מערכות יחסים מבוססות יושרה ותקשורת פתוחה.</li>
+				</ul>
+			</div>
+			<p><strong>"האופי שלך הוא הדבר היחיד שאיש לא יכול לקחת ממך – אבל אתה יכול להרוס אותו בעצמך ברגע אחד של פשרה."</strong> - שמירה על עקרונות חיונית לאורך זמן.</p>
+			<p><strong>"אנשים לא עוקבים אחרי דרגות או תארים, הם עוקבים אחרי אופי."</strong> - מנהיגות אמיתית נבנית דרך דוגמה אישית.</p>
+			<p><strong>"העולם מלא בפיתויים להקל על עצמך, לעגל פינות, ולמצוא קיצורי דרך. אבל אלה שמצליחים באמת הם אלה שמסרבים להתפשר על הערכים שלהם."</strong> - תזכורת לעמידה מול פיתויים.</p>
+			<p><strong>"תמיד קל להאשים את הנסיבות, את האחרים, או את המזל הרע. אבל אנשים עם אופי חזק תמיד שואלים: מה אני יכול לעשות אחרת?"</strong> - דגש על לקיחת אחריות אישית.</p>
+			<p><strong>"נכשלת? טוב מאוד. עכשיו קום, למד מזה, וודא שהכישלון הזה הופך למקפצה ולא למחסום."</strong> - מסר לעידוד התקדמות מתוך כישלונות.</p>
+			<p><strong>"לעשות את הדבר הנכון כשאף אחד לא רואה – זו ההגדרה האמיתית של אופי."</strong> - יושרה ומנהיגות קשורים זה בזה.</p>
+			<p>"לא משנה כמה חזק תיפול, מה שיקבע את גורלך הוא כמה מהר תקום ואיך תבחר להמשיך קדימה."</p>
+			<p>"אנשים לא יזכרו מה אמרת, אבל הם לעולם לא ישכחו איך גרמת להם להרגיש."</p>
+			<p>"אמון נבנה בטיפין, אך נהרס בשנייה. הגן עליו כאילו הוא הנכס היקר ביותר שלך."</p>
+			<p>"השאלה אינה כמה הצלחת, אלא איך השתמשת בהצלחה שלך כדי להרים אחרים וליצור שינוי אמיתי."</p>
+		</div>
+		
+		<div class="quote" data-tags="mindfulness,personal-growth" id="mindfulness-for-beginners">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - מיינדפולנס למתחילים" src="מיינדפולנס למתחילים.jpg" />
+			</div>
+			<h2>מיינדפולנס למתחילים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="mindfulness"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+			<div class="book-summary">
+				<h3>סיכום הספר "מיינדפולנס למתחילים"</h3>
+				<p>הספר "מיינדפולנס למתחילים" מאת פרי ברוסנן משמש כמדריך מעשי להפחתת מתח ולחיים מודעים יותר. הספר מציע תרגול מיינדפולנס ככלי לשיפור איכות החיים, תוך הצעת תרגילים פשוטים ונגישים שמאפשרים לכל אחד להתחבר לרגע הנוכחי, להפחית חרדה ולחזק את המודעות העצמית.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>חיבור לרגע הנוכחי:</strong> תרגול מיינדפולנס מאפשר להתמקד בחוויה הנוכחית, להפסיק את ההתמקדות בעבר ובעתיד, וליהנות מהרגע.</li>
+					<li><strong>ניהול מחשבות ורגשות:</strong> התבוננות במחשבות ורגשות ללא הזדהות עימם מפחיתה לחצים.</li>
+					<li><strong>שחרור מהאוטומטיות:</strong> מיינדפולנס שובר את המחזורים האוטומטיים ומאפשר תגובה מודעת ומחושבת.</li>
+					<li><strong>הפחתת מתח וחרדה:</strong> מיינדפולנס עוזר להירגע ולמנוע מתח על ידי תרגילים פשוטים.</li>
+					<li><strong>מוטיבציה יומיומית:</strong> שגרות יומיות של מודעות תורמות לתחושת שלמות ונינוחות.</li>
+				</ul>
+			</div>
+			<p><strong>"נשימה מודעת היא הגשר בין התודעה לבין הגוף, בין הלחץ לבין השקט הפנימי."</strong> - הנשימה היא כלי בסיסי אך עוצמתי לשחרור מתח ולהחזרת מיקוד פנימי.</p>
+			<p><strong>"מחשבות הן כמו עננים – הן חולפות ומשתנות כל הזמן. אין צורך להיאחז בהן או להגדיר את עצמך דרכן."</strong> - גישה משחררת שמזכירה לנו לא להזדהות עם המחשבות החולפות.</p>
+			<p><strong>"השקט שאתה מחפש אינו נמצא במקום רחוק – הוא כבר קיים בתוכך, מתחת לרעש המחשבות."</strong> - תזכורת שהשקט הפנימי זמין תמיד, אם רק נבחר להתחבר אליו.</p>
+			<p><strong>"סבל נולד מההתנגדות שלנו למה שקורה. קבלה אינה ויתור, אלא ההבנה שהדברים הם כפי שהם כרגע."</strong> - מסר חזק שמבהיר את הקשר בין קבלה לבין שלווה פנימית.</p>
+			<p>"המיינדפולנס אינו ניסיון לשנות את מה שקורה, אלא ללמוד להיות נוכחים עם מה שיש, בדיוק כפי שהוא."</p>
+			<p>"רוב הסבל שלנו אינו נובע ממה שקורה עכשיו, אלא מהסיפורים שאנו מספרים לעצמנו על העבר או העתיד."</p>
+			<p>"כשאתה באמת מקשיב, אתה לא רק שומע את המילים – אתה מרגיש את האדם שמולך."</p>
+			<p>"להיות ברגע הזה משמעו לתת לכל רגע את מלוא תשומת הלב שלך, מבלי לרוץ קדימה אל הדבר הבא."</p>
+			<p>"במקום להילחם ברגשות שלך, נסה להתבונן בהם בסקרנות. הם כאן כדי ללמד אותך משהו."</p>
+			<p>"הדרך לשקט פנימי אינה דורשת מאמץ – היא פשוט דורשת לעצור, לנשום, ולהיות עם מה שיש."</p>
+		</div>
+		
+		<div class="quote" data-tags="wealth,success" id="five-types-of-wealth">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - 5 סוגי העושר" class="book-image" src="5 סוגי האושר.jpg" />
+			</div>
+			<h2>5 סוגי העושר</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="wealth"></span>
+				<span class="category" data-tag="success"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "5 סוגי העושר"</h3>
+				<p>הספר "5 סוגי העושר" מאת סאהיל בלום מציג גישה חדשה לעושר – לא רק כסף, אלא שילוב מאוזן של חמישה סוגי עושר: כלכלי, חברתי, זמן, נפשי ופיזי. הספר מסביר כיצד כל אחד מהם תורם לחיים מספקים ומאוזנים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>עושר כלכלי:</strong> לא רק צבירת כסף, אלא שימוש חכם בו להשגת חופש כלכלי.</li>
+					<li><strong>עושר חברתי:</strong> מערכות יחסים חזקות הן נכס חשוב יותר מכסף.</li>
+					<li><strong>עושר זמן:</strong> ניהול זמן חכם מאפשר להשקיע בדברים החשובים באמת.</li>
+					<li><strong>עושר נפשי:</strong> חוסן מנטלי, חשיבה חיובית ולמידה מתמשכת.</li>
+					<li><strong>עושר פיזי:</strong> שמירה על בריאות הגוף משפרת את איכות החיים.</li>
+				</ul>
+			</div>
+
+			<p><strong>"העושר האמיתי הוא לא רק במה שאתה מרוויח, אלא במה שאתה בונה."</strong> – עושר אמיתי נמדד ביצירה ובהשפעה ולא רק בכסף.</p>
+			<p><strong>"הזמן הוא העושר הכי יקר שיש לנו – לא משנה כמה כסף יש לך, הזמן לא ניתן להחזר."</strong> – אין דרך לקנות או להחזיר זמן מבוזבז.</p>
+			<p><strong>"כשהבריאות שלך לא בסדר, כל העושר בעולם לא שווה כלום."</strong> – בריאות פיזית היא הבסיס לכל הישג אחר בחיים.</p>
+			<p><strong>"כשאתה שואף לאיזון בין כל סוגי העושר, אתה יוצר חיים מלאים ומשמעותיים יותר."</strong> – עושר אמיתי מגיע מאיזון בין כל חמשת התחומים.</p>
+			<p><strong>"אם תעבוד רק כדי להרוויח כסף, אתה תחמיץ את העושר האמיתי שמצוי בכל תחום אחר בחיים."</strong> – כסף הוא רק כלי, לא המטרה הסופית.</p>
+		</div>
+
+		<div class="quote" data-tags="decision-making,personal-growth" id="choose-your-hard">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - בחר את הקשה שלך" class="book-image" src="בחר את הקשה שלך.jpg" />
+			</div>
+			<h2>בחר את הקשה שלך</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="decision-making"></span>
+				<span class="category" data-tag="personal-growth"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "בחר את הקשה שלך"</h3>
+				<p>הספר "בחר את הקשה שלך" מאת אשי ביינס מציע גישה מעצימה להתמודדות עם אתגרי החיים. הוא מדגיש שאין דרך להימנע מקשיים, אך ניתן לבחור בקשיים שמובילים לצמיחה. הספר מספק כלים לקבלת החלטות מודעות ולהתגברות על דחיינות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>בחירת הקושי הנכון:</strong> להבין שכל בחירה כרוכה בקושי ולבחור את הקושי שיוביל להצלחה.</li>
+					<li><strong>אחריות אישית:</strong> הפסקת האשמת גורמים חיצוניים והתמקדות במה שניתן לשנות.</li>
+					<li><strong>צמיחה דרך אתגרים:</strong> לראות בקשיים כהזדמנויות להתפתחות אישית.</li>
+					<li><strong>לא לדחות – לפעול עכשיו:</strong> לנקוט צעדים קטנים ולמנוע דחיינות.</li>
+					<li><strong>חשיבה חיובית והתמדה:</strong> לשמור על מיקוד ואמונה עצמית גם מול קשיים.</li>
+				</ul>
+			</div>
+
+			<p><strong>"אתה יכול לבחור את הקושי שלך, אך אינך יכול להימנע מקשיים."</strong> – אין חיים ללא אתגרים, אך יש לך בחירה אילו אתגרים לקחת.</p>
+			<p><strong>"הצלחה לא קשורה להימנעות מקשיים, אלא בבחירת הקשיים שאתה מוכן להתמודד איתם."</strong> – לא ניתן לברוח מקשיים, אך ניתן לבחור כאלה שמובילים להצלחה.</p>
+			<p><strong>"אל תחכה לרגע המושלם כדי להתחיל. התחל עם מה שיש לך."</strong> – פעולה מיידית עדיפה על המתנה לתנאים מושלמים.</p>
+			<p><strong>"הדרך להצלחה לא קלה, אבל היא שווה את זה."</strong> – ההצלחה כרוכה בקשיים, אך הם משתלמים בטווח הארוך.</p>
+			<p><strong>"החיים שלך הם סך הבחירות שלך, תעשה שהן יחשבו."</strong> – הבחירות שאנו עושים מעצבות את עתידנו.</p>
+			<p><strong>"אתה מסוגל ליותר ממה שאתה חושב – בחר את הקושי שלך, ותראה את עצמך משגשג."</strong> – כאשר אתה בוחר בקשיים הנכונים, אתה צומח ומשתפר.</p>
+		</div>
+
+		<div class="quote" data-tags="self-confidence,motivation" id="high-five-habit">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - תרימו לעצמכם" class="book-image" src="תרימו לעצמכם.jpg" />
+			</div>
+			<h2>תרימו לעצמכם</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="self-confidence"></span>
+				<span class="category" data-tag="motivation"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "תרימו לעצמכם"</h3>
+				<p>הספר "תרימו לעצמכם" מאת מל רובינס מציע שיטות מעשיות לבניית ביטחון עצמי ושינוי דפוסי חשיבה מגבילים. הספר מסביר כיצד פעולות קטנות, כמו שינוי הדיבור העצמי וטכניקת ה-"High Five", יכולות לשנות את הדרך שבה אנו רואים את עצמנו ולחזק מוטיבציה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>אתה לא חייב להרגיש מוכן כדי לפעול:</strong> הצלחה מגיעה מתוך עשייה, לא מתוך המתנה לרגע המושלם.</li>
+					<li><strong>הדרך שבה אתה מדבר לעצמך מעצבת את המציאות שלך:</strong> אימון על דיבור פנימי חיובי משפר ביטחון עצמי.</li>
+					<li><strong>הביטחון העצמי שלך נבנה מתוך פעולות:</strong> ככל שתפעל יותר, תרגיש בטוח יותר.</li>
+					<li><strong>שינוי מתחיל בהרגלים קטנים ועקביים:</strong> פעולות יומיומיות פשוטות מביאות לשינוי גדול.</li>
+					<li><strong>אתה אחראי לרגשות שלך:</strong> ניתן לשלוט במחשבות ובתחושות דרך שינוי התפיסה.</li>
+					<li><strong>טכניקת ה-"High Five":</strong> מחווה קטנה של עידוד עצמי יכולה לחזק את תחושת המסוגלות שלך.</li>
+				</ul>
+			</div>
+
+			<p><strong>"הדבר הכי חשוב שתעשה בחיים זה ללמוד להיות החבר הכי טוב של עצמך."</strong> – הדרך שלך להצלחה מתחילה באהבה עצמית ובתמיכה פנימית.</p>
+			<p><strong>"אתה לא תוכל לשלוט תמיד במה שקורה סביבך, אבל אתה תמיד יכול לשלוט בדרך שבה אתה בוחר להגיב."</strong> – התגובה שלך למצבים היא הכוח האמיתי שלך.</p>
+			<p><strong>"אף אחד לא מגיע כדי להציל אותך – אם אתה רוצה שינוי, אתה זה שצריך לקום ולעשות אותו."</strong> – האחריות על השינוי שלך נמצאת רק אצלך.</p>
+			<p><strong>"המוח שלך כבר מלא בביקורת עצמית – הגיע הזמן למלא אותו באהבה עצמית."</strong> – דיבור פנימי חיובי מחזק ביטחון ומוטיבציה.</p>
+			<p><strong>"אתה לא צריך להרגיש מוכן כדי להתחיל. אתה רק צריך להתחיל, ואז תרגיש מוכן."</strong> – הפעולה יוצרת ביטחון ומוטיבציה, לא להפך.</p>
+			<p><strong>"כשאתה נותן לעצמך היי-פייב בבוקר, אתה לא רק מעודד את עצמך – אתה משדר למוח שלך שאתה ראוי לניצחון."</strong> – חיזוק עצמי קטן יכול לשנות את כל היום שלך.</p>
+			<p>"חגוג כל ניצחון קטן – הם אלה שבונים את הביטחון העצמי שלך לטווח הארוך."</p>
+			<p>"תסתכל במראה ותזכור: אתה ראוי לאהבה, להצלחה ולחיים שאתה חולם עליהם."</p>
+			<p>"במקום לחכות למוטיבציה, פשוט תפעל – כי הפעולה היא זו שיוצרת את המוטיבציה."</p>
+			<p>"אם אתה לא תהיה בעד עצמך, מי כן?"</p>
+		</div>
+
+
+		<div class="quote" data-tags="productivity,minimalism" id="essentialism">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - רק מה שחשוב" class="book-image" src="רק מה שחשוב.jpg" />
+			</div>
+			<h2>רק מה שחשוב</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="productivity"></span>
+				<span class="category" data-tag="minimalism"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "רק מה שחשוב"</h3>
+				<p>הספר "רק מה שחשוב" מאת גרג מקיואן מציג את גישת האיסנטיאליזם – התמקדות במה שבאמת חיוני ושחרור מכל מה שמיותר. הספר מסביר כיצד לומר "לא", לקבוע סדרי עדיפויות ברורים, וליצור שגרות שמובילות להצלחה.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>פחות, אבל טוב יותר:</strong> במקום לנסות לעשות הכול, עדיף להתמקד בפעולות שמביאות לתוצאות הטובות ביותר.</li>
+					<li><strong>ללמוד לומר "לא":</strong> קביעת גבולות חיונית לשמירה על מיקוד ואנרגיה.</li>
+					<li><strong>בהירות לפני הכול:</strong> הבנה ברורה של המטרות מאפשרת קבלת החלטות טובות יותר.</li>
+					<li><strong>יצירת שגרות תומכות:</strong> הרגלים יומיומיים חוסכים זמן ומאפשרים עשייה אפקטיבית.</li>
+					<li><strong>פעולה ממוקדת, לא מרדף אינסופי:</strong> הצלחה מגיעה ממיקוד במהותי ולא מהתפזרות בלתי נגמרת.</li>
+					<li><strong>שמירה על אנרגיה ומנוחה:</strong> איזון נכון בין עבודה למנוחה משפר את היצירתיות והתפקוד.</li>
+				</ul>
+			</div>
+
+			<p><strong>"אם אתה לא קובע את סדרי העדיפויות שלך, מישהו אחר יעשה את זה בשבילך."</strong> – אם אינך בוחר במה להתמקד, אחרים יבחרו עבורך.</p>
+			<p><strong>"איסנטיאליזם אינו אומר לעשות פחות לשם הפחות – הוא אומר לעשות רק את מה שבאמת משמעותי."</strong> – הפחתה היא לא המטרה, אלא התמקדות במה שחשוב באמת.</p>
+			<p><strong>"רוב הדברים אינם חשובים. מעטים בלבד הם חיוניים באמת."</strong> – רוב העומס שאנו חווים נובע מעיסוק במטלות לא הכרחיות.</p>
+			<p><strong>"כאשר אנו אומרים 'כן' לדבר אחד, אנו אומרים 'לא' לאינספור דברים אחרים."</strong> – כל בחירה כוללת ויתור על אפשרויות אחרות.</p>
+			<p><strong>"אנשים מצליחים לא עושים יותר – הם עושים את הדברים הנכונים."</strong> – מיקוד במהותי הוא המפתח להצלחה.</p>
+			<p>"אי אפשר להצליח באמת כשמנסים להיות הכול לכולם."</p>
+		</div>
+
+		<div class="quote" data-tags="psychology,manipulation" id="surrounded-by-psychopaths">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - מוקף בפסיכופתים" class="book-image" src="מוקף בפסיכופטים.jpg" />
+			</div>
+			<h2>מוקף בפסיכופתים</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="psychology"></span>
+				<span class="category" data-tag="manipulation"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "מוקף בפסיכופתים"</h3>
+				<p>הספר "מוקף בפסיכופתים" מאת תומס אריקסון מספק כלים לזיהוי ולהתמודדות עם אנשים מניפולטיביים, כולל כאלה עם נטיות פסיכופתיות. הוא מסביר כיצד לזהות מניפולציות, להציב גבולות, ולשמור על שליטה רגשית מול אנשים שפועלים במכוון כדי לנצל אחרים.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>זיהוי מניפולציות והתנהגות רעילה:</strong> פסיכופתים ומניפולטורים מזהים חולשות אצל אחרים ומשתמשים בהן לטובתם.</li>
+					<li><strong>הגנה מפני מניפולציות רגשיות:</strong> הצבת גבולות ברורים ושמירה על שליטה רגשית הם המפתח להתמודדות.</li>
+					<li><strong>הבנת סגנונות תקשורת שונים:</strong> מודל הצבעים (אדום, צהוב, ירוק, כחול) מסייע לזהות מי פגיע למניפולציות וכיצד להימנע מהן.</li>
+					<li><strong>הבנת הפסיכולוגיה של אנשים חסרי אמפתיה:</strong> הדרך הטובה ביותר להתמודד עם פסיכופתים היא לזהות אותם ולהימנע מהם.</li>
+				</ul>
+			</div>
+
+			<p><strong>"פסיכופתים הם לא בהכרח רוצחים סדרתיים. הם יכולים להיות קולגות, חברים או בני משפחה. הם פשוט מנצלים את הנכונות שלך להאמין בטוב שבאדם."</strong> – לא כל פסיכופת נראה מסוכן ממבט ראשון.</p>
+			<p><strong>"לא כל מניפולציה היא מובהקת. לפעמים זו התנהגות עדינה שמניעה אותך לפעול נגד האינטרסים שלך."</strong> – מניפולציות יכולות להיות סמויות ומתוחכמות.</p>
+			<p><strong>"החיים אינם נמדדים בכמה אנשים אתה מכיר, אלא בכמה אתה יכול לסמוך עליהם."</strong> – איכות הקשרים שלך חשובה יותר מהכמות שלהם.</p>
+			<p><strong>"הפסיכופתים מבינים איך לשחק על החולשות של אחרים, כי הם מכירים את עצמם טוב יותר ממה שהם מכירים את כל השאר."</strong> – פסיכופתים מנצלים חולשות רגשיות ואישיות לטובתם.</p>
+			<p><strong>"ההגנה הכי טובה נגד מניפולציות היא פיתוח של מודעות עצמית גבוהה. אם אתה יודע מה אתה רוצה, אתה פחות חשוף להשפעה חיצונית."</strong> – אנשים שמודעים לעצמם ולערכים שלהם פגיעים פחות למניפולציות.</p>
+			<p>"תשכח מהרגשות, תחשוב בצורה לוגית. המניפולטורים יודעים איך להפעיל עליך את רגשות האשמה והפחד."</p>
+			<p>"הפסיכופתים לא מבינים את המונח 'אמפתיה'. הם מנצלים את האמפתיה של אחרים כדי להשיג את מטרותיהם."</p>
+		</div>
+
+		<div class="quote" data-tags="productivity,life-mastery" id="effortless">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - אפס מאמץ" class="book-image" src="אפס מאמץ.jpg" />
+			</div>
+			<h2>אפס מאמץ</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="productivity"></span>
+				<span class="category" data-tag="life-mastery"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "אפס מאמץ"</h3>
+				<p>הספר "אפס מאמץ" מציג גישה חדשנית לפרודוקטיביות והצלחה: השגת תוצאות יוצאות דופן במינימום מאמץ, על ידי פישוט משימות, הסרת חיכוך, ושחרור שליטה. גרג מקיואן מציע כלים מעשיים לחיים אפקטיביים וזורמים יותר, תוך שמירה על רווחה נפשית והנאה מהתהליך.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>עבודה חכמה, לא קשה:</strong> מאמץ אינו בהכרח המדד להצלחה – הסוד הוא בפישוט נכון.</li>
+					<li><strong>פשטות:</strong> להפוך פעולות לחזרתיות, אוטומטיות, וקלות לביצוע.</li>
+					<li><strong>הסרת חיכוך:</strong> ארגון סביבה ותהליכים כדי לצמצם התנגדות פנימית וחיצונית.</li>
+					<li><strong>זרימה:</strong> להפוך משימות למהנות כך שיהיו טבעיות ורצויות.</li>
+					<li><strong>המינימום החיוני:</strong> התמקדות בפעולות הקטנות שמניבות תוצאות גדולות.</li>
+					<li><strong>מנוחה כהשקעה:</strong> אנרגיה מחודשת היא חלק מהצלחת התהליך.</li>
+					<li><strong>שחרור שליטה:</strong> לא כל דבר בשליטתנו – מיקוד רק במה שניתן להשפיע עליו.</li>
+				</ul>
+			</div>
+
+			<p><strong>"ההצלחה אינה תוצאה של מאמץ אינסופי, אלא של פישוט מושלם."</strong> – תוצאה איכותית מגיעה מתוך תכנון ופשטות, לא מאבק מתמשך.</p>
+			<p><strong>"הכח האמיתי טמון ביכולת להוריד את המיותר ולפשט את הדרך."</strong> – המפתח האמיתי להצלחה הוא לא מה שנוסף, אלא מה שנגרע.</p>
+			<p><strong>"המאבק הוא לא מה שמביא את התוצאה, אלא הכוונה, הפשטות והיכולת לאפשר לדברים לקרות."</strong> – תוצאות נוצרות כשמאפשרים להן להתרחש, לא כשכופים אותן.</p>
+			<p>"הדרך להצלחה לא תמיד כרוכה בעבודה קשה יותר, אלא בהבנה איך לעבוד פחות ולתפקד טוב יותר."</p>
+			<p>"כדי להשיג יותר, עליך ללמוד איך להסיר את מה שמסיח אותך."</p>
+			<p>"המפתח להצלחה טמון בהסרת החיכוך בין הרצון לבין הביצוע."</p>
+		</div>
+		
+		<div class="quote" data-tags="relationships,communication" id="how-to-make-people-fall-in-love">
+			<span class="favorite-icon" onclick="toggleFavorite(this)">★</span>
+			<div class="book-image-container">
+				<img alt="תמונת ספר - איך לגרום לאנשים להתאהב בך" src="איך לגרום לאנשים להתאהב בך.jpg" />
+			</div>
+			<h2>איך לגרום לאנשים להתאהב בך</h2>
+			<div class="book-categories">
+				<span class="category" data-tag="relationships"></span>
+				<span class="category" data-tag="communication"></span>
+			</div>
+
+			<div class="book-summary">
+				<h3>סיכום הספר "איך לגרום לאנשים להתאהב בך"</h3>
+				<p>הספר "איך לגרום לאנשים להתאהב בך" מאת ניקולס בותמן מציע טכניקות מעשיות לבניית קשרים אישיים עמוקים, באמצעות כלים פשוטים אך אפקטיביים שמובילים לתחושת נוחות, אמון וחיבור רגשי מיידי. הוא מתמקד בעיקר ביצירת רושם ראשוני חיובי, שפת גוף, הקשבה פעילה ויצירת תחושת שייכות.</p>
+				<h4>עקרונות עיקריים</h4>
+				<ul>
+					<li><strong>הקשבה פעילה:</strong> הקשבה אמיתית יוצרת תחושת הבנה וחיבור רגשי.</li>
+					<li><strong>שפת גוף חיובית:</strong> חיוך, יציבה פתוחה וקשר עין מעבירים ביטחון ויוצרים נוחות.</li>
+					<li><strong>מכנה משותף:</strong> מציאת נושאים משותפים לשיחה מחזקת קשרים ומפחיתה ניכור.</li>
+					<li><strong>הערכה אמיתית:</strong> מחמאות כנות מגבירות תחושת ערך עצמי וקרבה.</li>
+					<li><strong>אותנטיות:</strong> להיות עצמך ולא לנסות להרשים – יוצר חיבור עמוק ואמיתי.</li>
+				</ul>
+			</div>
+
+			<p><strong>"אנשים לא זוכרים מה אמרת, הם זוכרים איך גרמת להם להרגיש."</strong> - הדגש המרכזי של הספר: רגשות מנצחים מילים. הדרך שלך ללב של מישהו אחר מתחילה בתחושות שאתה משדר.</p>
+			<p><strong>"כדי לגרום לאנשים להתאהב בך, אל תנסה לשנות את עצמך, פשוט תהיה עצמך."</strong> - אותנטיות וכנות הן הדרך היעילה ביותר לבנות קשרים משמעותיים.</p>
+			<p>"כשאתה מחייך, אתה לא רק משנה את האופן שבו אחרים רואים אותך, אתה משנה את איך שאתה מרגיש על עצמך."</p>
+			<p>"הדרך לגרום לאנשים להרגיש אהובים היא להקשיב להם ולהראות להם שאתה שם בשבילם."</p>
+			<p>"אנשים זוכרים את האנרגיה שאתה משדר הרבה יותר מהמילים שאתה אומר."</p>
+		</div>
+
+
+
+		<div
+            class="daily-success-plan"
+            style="
+                background-color: #e0f7fa;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                font-family: 'Segoe UI', sans-serif;
+                color: #003366;
+                line-height: 1.8;
+                margin-top: 60px;
+                margin-bottom: 60px;
+                border: 3px solid #005b9a;
+                background: linear-gradient(to bottom, #d0f7ff, #80deea);
+            ">
+            <h2 class="daily-plan-title" style="font-size: 2.8em; text-align: center; color: #002851; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); margin-bottom: 30px;">תכנית יומית להצלחה מקסימלית</h2>
+			<div class="daily-success-plan-table">
+				<table>
+					<tr>
+						<td class="section-title">פתיחת היום:</td>
+						<td>
+							<ul>
+								<li>תכנן את שלוש המשימות הכי חשובות להיום ודאג לקבוע אותן לביצוע במהלך היום, כדי להבטיח השגת יעדים מוגדרים (מ"<strong>הרגלים אטומיים</strong>").</li>
+								<li>בחר חלון זמן במהלך היום שבו תתמקד אך ורק במשימות שדורשות ריכוז גבוה (מ"<strong>DEEP WORK</strong>").</li>
+								<li>קבע זמן קבוע לעבודה עמוקה שבו תמנע מכל הסחות דעת כדי להגיע לתפוקה מרבית (מ"<strong>DEEP WORK</strong>").</li>
+								<li>התחל את היום במדיטציה קצרה ותרגילי נשימה לשחרור מתחים וקביעת כוונות חיוביות ליום, כדי ליצור תחושת שלווה וביטחון (מ"<strong>הסוד</strong>" ו"<strong>האלכימאי</strong>").</li>
+								<li>קרא ציטוט או פסקה מהספר שהשפיע עליך ביותר בשבוע האחרון לקבלת השראה וחיזוק, מה שיעזור לך להגדיר את יעדי היום (מ"<strong>האדם מחפש משמעות</strong>").</li>
+								<li>שאל את עצמך שאלות לבחינת הטיות: "האם אני מחפש אישור למה שכבר חשבתי?" כדי להבטיח בהירות מחשבתית (מ"<strong>חשיבה צלולה</strong>").</li>
+								<li>התמקד במטרה מתוך תחושת שליחות פנימית, המחברת אותך לערכים הפנימיים שלך, כמו חמלה ויושרה (מ"<strong>לממש את הטוב שבך</strong>").</li>
+								<li>התחל את היום במדיטציה קצרה לשחרור מתחים, חיזוק אושר (מ"<strong>יתרון האושר</strong>"), והתחברות לערכים האישיים שלך (מ"<strong>האומץ להעז</strong>").</li>
+								<li>בצע "תרגיל זורו" בו תתמקד במשימה קטנה ומשמעותית כדי לחוות תחושת הצלחה מוקדמת (מ"<strong>יתרון האושר</strong>").</li>
+								<li>הצהר על אמירה חיובית כמו "אני משתפר בכל יום" כדי לעודד מיינדסט מתפתח (מ"<strong>כוחה של נחישות</strong>").</li>
+								<li>ראה כישלון כהזדמנות לצמוח וללמוד: <strong>"כישלון הוא לא תעודת גמר – הוא שלב בתהליך למידה מתמשך."</strong> (מ"<strong>כוחה של נחישות</strong>").</li>
+								<li><strong>עמוד מול המראה ותן לעצמך היי-פייב.</strong> פעולה זו שולחת למוח שלך מסר חיובי ויוצרת מוטיבציה טבעית לפתוח את היום באנרגיה גבוהה (מ"<strong>תרימו לעצמכם</strong>").</li>
+								<li><strong>איזה קושי אני בוחר להתמודד איתו היום?</strong> שאלה זו תעזור לך לבחור את האתגרים שיובילו לצמיחה (מ"<strong>בחר את הקשה שלך</strong>").</li>
+								<li>הפוך את היום שלך לפשוט ככל האפשר כבר בתחילתו – הסר החלטות מיותרות וארגן את סביבת העבודה שלך כך שתזרים את היום בקלות (מ"<strong>אפס מאמץ</strong>").</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title">מיקוד במשימות עיקריות:</td>
+						<td>
+							<ul>
+								<li>זהה את 20% מהמשימות שלך שיובילו ל-80% מהתוצאות, והתמקד בהן במהלך היום (מ"<strong>עיקרון 80/20</strong>").</li>
+								<li>האצל או שחרר 80% מהמשימות הפחות חשובות שאינן תורמות משמעותית להצלחה היומית.</li>
+								<li>בתחילת היום, בחר חלון זמן מרוכז שבו תתמקד במשימות אלו בלבד, תוך הגבלת הסחות דעת ככל האפשר.</li>
+								<li>השתמש בעקרון "אפקט הטטריס" לזיהוי דפוסים חיוביים והזדמנויות במשימות יומיות (מ"<strong>יתרון האושר</strong>").</li>
+								<li>עודד חשיבה יצירתית וגמישות בפתרון בעיות, תוך שאיפה לחדשנות (מ"<strong>מאפס לאחד</strong>").</li>
+								<li>חלק מטרות גדולות למשימות קטנות וברורות, כדי לחוות תחושת הצלחה מוקדמת (מ"<strong>הישג מקסימלי</strong>").</li>
+								<li>שמרו על מיינדסט מתפתח: זכרו שכל הצלחה מתחילה במחשבה חיובית ובנכונות להתמודד עם אתגרים (מ"<strong>כוחה של נחישות</strong>").</li>
+								<!-- הוספה -->
+								<li>בחר שלוש משימות בלבד לביצוע היום כדי להבטיח מיקוד ולא לבזבז זמן על מטלות שוליות (מ"<strong>רק מה שחשוב</strong>").</li>
+								<li>לפני קבלת משימה חדשה, שאל את עצמך: <strong>"האם המשימה הזו באמת מקדמת את המטרות שלי?"</strong> (מ"<strong>מוקף בפסיכופתים</strong>").</li>
+								<li>במקום לרדוף אחרי משימות רבות, השקיע את האנרגיה שלך רק במה שמוביל לתוצאה הגבוהה ביותר במאמץ הקטן ביותר – זהו את המינימום החיוני (מ"<strong>אפס מאמץ</strong>").</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title">ניהול עצמי ומשמעת:</td>
+						<td>
+							<ul>
+								<li>הציב דד-ליין לכל משימה עיקרית, והשתמש במערכת של תגמולים אישיים להשלמת כל משימה. כלי זה ישמור עליך ממוקד ומלא מוטיבציה (מ"<strong>בלי תירוצים</strong>").</li>
+								<li>קח אחריות מלאה על המשימות שלך, וזכור שכל פעולה היא חלק מההתקדמות שלך לעבר המטרות הגדולות.</li>
+								<li>פצל משימות גדולות לתתי-משימות שניתן להשלים אחת אחת, כך שההתקדמות תהיה מדידה ומספקת.</li>
+								<li>פעלו מתוך מודעות לערכים שלכם בעת ביצוע כל משימה. שמרו על עקביות ויושרה בעשייה היומיומית (מ"<strong>לממש את הטוב שבך</strong>").</li>
+								<li>עודד פעולה מתוך חזון אישי וערכים מנחים ליצירת משמעות (מ"<strong>מאפס לאחד</strong>").</li>
+								<li>שחרר ביקורת עצמית והתמקד בטעויות ככלים ללמידה וצמיחה (מ"<strong>האומץ להעז</strong>").</li>
+								<li>חזק קשרים חברתיים ושיתוף הצלחות יומיות (מ"<strong>יתרון האושר</strong>").</li>
+								<li>פעל מתוך נחישות והתמדה, ותתייחס לכישלונות כהזדמנויות לצמיחה (מ"<strong>כוחה של נחישות</strong>").</li>
+								<li>שמרו על פרספקטיבה חיובית באמצעות צעדים קטנים וממוקדים כל יום (מ"<strong>הישג מקסימלי</strong>").</li>
+								<!-- הוספה -->
+								<li>פעל מתוך בחירה מודעת, לא מתוך אילוץ: <strong>"אני עושה זאת כי אני בוחר בכך, לא כי אני חייב"</strong> (מ"<strong>תרימו לעצמכם</strong>").</li>
+								<li>בכל רגע של אתגר, שאל את עצמך: <strong>"האם הקושי הזה מקדם אותי או שומר אותי במקום?"</strong> (מ"<strong>בחר את הקשה שלך</strong>").</li>
+								<li>אם אתה מוצא שהמשימות מכבידות, שאל את עצמך: <strong>"איך אני הופך את זה לזורם, קל ומהנה?"</strong> – כשיש חיכוך, יש בזבוז אנרגיה (מ"<strong>אפס מאמץ</strong>").</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="section-title">משימות עיקריות:</td>
+						<td>
+							<ul>
+								<li>דאג להתמקד במשימות שיכולות להביא לתוצאות משמעותיות, נצל כל רגע פנוי לקידום מטרות אלו, תוך יצירת תוצאות מדידות (מ"<strong>כוח ה-10X</strong>" ו"<strong>כוח בלתי מוגבל</strong>").</li>
+								<li>שמור על פעילות גופנית קלה במהלך היום לשיפור המוטיבציה והאנרגיה, מה שישפר את הביצועים בכל התחומים (מ"<strong>הנזיר שמכר את הפרארי שלו</strong>").</li>
+								<li>השתמש בגישה "מעגלי זורו" כדי להתמקד במשימות קטנות ולהרגיש תחושת הצלחה מוקדמת (מ"<strong>יתרון האושר</strong>").</li>
+								<li>שמור על ריכוז מלא בפרקי זמן מוגדרים למשימות הדורשות חשיבה מעמיקה, והגבל את השימוש במדיה חברתית או פעילויות שטחיות באותם זמנים (מ"<strong>DEEP WORK</strong>").</li>
+								<li>פעל מתוך חזון אישי ושאיפה ליצירת ערך ייחודי בעבודתך (מ"<strong>מאפס לאחד</strong>").</li>
+								<li>חלק מטרות גדולות למשימות קטנות ומדידות, כדי לחוות תחושת הצלחה מוקדמת (מ"<strong>הישג מקסימלי</strong>").</li>
+								<li>התייחס לכישלונות כחלק טבעי מהתהליך והשתמש בהם כדי לשפר את הביצועים שלך (מ"<strong>כוחה של נחישות</strong>").</li>
+								<!-- הוספה -->
+								<li>לפני שאתה מתחיל משימה, שאל את עצמך: <strong>"האם היא באמת חשובה, או שאני עושה אותה מתוך הרגל?"</strong> (מ"<strong>רק מה שחשוב</strong>").</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="section-title">אמצע היום:</td>
+						<td>
+							<ul>
+								<li>קח הפסקת צהריים פעילה: טייל, קרא ספר, או עסוק בתחביב שמרגיע אותך, כדי לאפשר למוח לנוח ולשקם אנרגיות (מ"<strong>הסוד</strong>").</li>
+								<li>בצע סיכום ביניים של היום, ובדוק אילו משימות נותרו ואילו כבר הושלמו, מה שיעזור לשפר את תכנון החלק השני של היום (מ"<strong>כוחו של ההרגל</strong>").</li>
+								<li>בדוק את דפוסי החשיבה שלך ונסה לזהות דפוסים חיוביים שעזרו לך להתקדם (מ"<strong>יתרון האושר</strong>").</li>
+								<li>הקדש זמן למחשבה על היום שעבר עד כה ובדוק אם היו הטיות קוגניטיביות שהשפיעו על קבלת ההחלטות שלך במהלך המשימות (מ"<strong>לחשוב מהר לחשוב לאט</strong>").</li>
+								<li>הקדש זמן לפיתוח רעיונות עסקיים ויצירת הכנסה פסיבית, כפי שנדון בספר "<strong>מיליונר ברגע</strong>".</li>
+								<li>נצל את המשאבים והזדמנויות סביבך להגדלת ההכנסה שלך ולהשקעות פסיביות.</li>
+								<li>בצעו מעשה קטן של חסד או עזרה, וראו כיצד פעולה חיובית יכולה לשפר את סביבתכם ולהשפיע על הרגשתכם הפנימית (מ"<strong>לממש את הטוב שבך</strong>").</li>
+								<li>התמקד במציאת פתרונות יצירתיים לבעיות יומיומיות כחלק ממחשבה חדשנית (מ"<strong>מאפס לאחד</strong>").</li>
+								<li>בזמן ההפסקה, תתמקדו בכוח של מילים חיוביות להניע את עצמכם קדימה ולשפר את מצב הרוח שלכם (מ"<strong>כוחה של נחישות</strong>").</li>
+								<!-- הוספה -->
+								<li>שאל את עצמך: <strong>"האם הפעולות שלי עד עכשיו תואמות את סדרי העדיפויות שקבעתי בבוקר?"</strong> (מ"<strong>רק מה שחשוב</strong>").</li>
+								<li>בחן אילו משימות מרגישות "תקועות" ונסה לפשט אותן – אולי תוכל לקדם אותן דרך שינוי גישה או סביבה (מ"<strong>אפס מאמץ</strong>").</li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="section-title">סיום היום:</td>
+						<td>
+							<ul>
+								<li>בצע סיכום יומי: ערוך ביקורת עצמית כדי להבין מה היה טוב ומה יכול להשתפר, כדי לתכנן את השיפורים ליום הבא (מ"<strong>האדם מחפש משמעות</strong>" ו"<strong>הנזיר שמכר את הפרארי שלו</strong>").</li>
+								<li>בסיכום יומי, בחן את ההחלטות שקיבלת ונסה להבין אם הן הושפעו מהטיות קוגניטיביות או מהחלטות מהירות מדי. השתמש במסקנות הללו כדי לתכנן שיפורים ליום הבא (מ"<strong>לחשוב מהר לחשוב לאט</strong>").</li>
+								<li>השתמש בגישה "נפילה לצמיחה" כדי לנתח טעויות יומיות וללמוד מהן (מ"<strong>יתרון האושר</strong>").</li>
+								<li>הקדש זמן לרגיעה והתמקדות עם פעילות מרגיעה כמו קריאה, כתיבה, או ציור, מה שיכין אותך ליום הבא ויעזור לך לשמור על מצב רוח חיובי (מ"<strong>האלכימאי</strong>").</li>
+								<li>בצע סיכום יומי ובדוק את ההתקדמות שלך לעבר יצירת הכנסות פסיביות והגדרת מטרות חדשות (מ"<strong>מיליונר ברגע</strong>").</li>
+								<li>עדכן רשימת משימות ליום הבא, תוך דגש על פעולות שיסייעו בהגדלת ההכנסה הפאסיבית שלך (מ"<strong>מיליונר ברגע</strong>").</li>
+								<li>בצע ניתוח של היום ובחן את תוצאות החלטותיך כדי לזהות הטיות קוגניטיביות שהשפיעו על שיקול דעתך (מ"<strong>חשיבה צלולה</strong>").</li>
+								<li>בדוק אם עמדת בערכים שלך והאם פעלת באופן התואם את עקרונותיך האישיים (מ"<strong>לממש את הטוב שבך</strong>").</li>
+								<li>פעל מתוך חזון יומי שמוביל להשגת מטרות ארוכות טווח (מ"<strong>מאפס לאחד</strong>").</li>
+								<li>בסיום היום, הקדש זמן ללמידה מהטעויות ולשיפור העתיד (מ"<strong>כוחה של נחישות</strong>").</li>
+								<!-- הוספה -->
+								<li>רשום שלושה דברים חיוביים שעשית היום, גם אם הם קטנים, כדי לסיים את היום בתחושת הצלחה (מ"<strong>תרימו לעצמכם</strong>").</li>
+								<li>שאל את עצמך: <strong>"האם פעלתי היום לפי סדרי העדיפויות שלי, או שהתפזרתי?"</strong> (מ"<strong>רק מה שחשוב</strong>").</li>
+								<li>במקום לחשוב על הקשיים שחווית, רשום כיצד הם תרמו להתפתחות שלך (מ"<strong>בחר את הקשה שלך</strong>").</li>
+								<li>שאל את עצמך בסיכום היום: <strong>"איפה היה חיכוך מיותר היום, ואיך אפשר להסיר אותו מחר?"</strong> – סילוק חיכוך מייצר תנועה חופשית (מ"<strong>אפס מאמץ</strong>").</li>
+							</ul>
+						</td>
+					</tr>
+
+				</table>
+			</div>
+			<div class="implementation-guidelines">
+				<h3 style="font-size: 2em; text-align: center; color: #002851; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); margin-bottom: 20px;">הנחיות ליישום משודרגות</h3>
+				<table>
+					<tr>
+						<td width="20%" class="section-title"><strong>מיקוד במשימות עיקריות:</strong></td>
+						<td>
+							זהה את 20% המשימות שיביאו ל-80% מהתוצאות וקדש להן את המאמץ הראשי שלך (מ"<strong>עיקרון 80/20</strong>"). 
+							שחרר או האצל 80% מהמשימות שאינן קריטיות להצלחה. 
+							הוסף התמקדות בזיהוי דפוסים חיוביים וחדשנות יומיומית באמצעות "<strong>יתרון האושר</strong>" ו"<strong>מאפס לאחד</strong>".
+							<!-- הוספה -->
+							<p>לפני שתתחיל משימה, שאל את עצמך: <strong>"האם היא באמת מקדמת אותי או רק גורמת לי להרגיש עסוק?"</strong> (מ"<strong>רק מה שחשוב</strong>").</p>
+							<p>בחר בכל יום משימה אחת מאתגרת, אך משמעותית להתקדמות האישית שלך (מ"<strong>בחר את הקשה שלך</strong>").</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>גישה מעמיקה לפתרון בעיות:</strong></td>
+						<td>
+							למד לזהות ולפתור בעיות באמצעות "<strong>מאפס לאחד</strong>" תוך עידוד חשיבה יצירתית על פתרונות ייחודיים. 
+							השתמש בשיטות מ"<strong>חוכמת האדישות</strong>" ו"<strong>ההסכמה החמישית</strong>" להתמודד עם אתגרים בצורה יצירתית ולא קונבנציונלית.
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>ניהול זמן ומשאבים:</strong></td>
+						<td>
+							פתח שיטות לניהול זמן בהשראת "<strong>כוחו של ההרגל</strong>" ו"<strong>כוח בלתי מוגבל</strong>". 
+							יישם את עקרון "<strong>מעגלי זורו</strong>" מתוך "<strong>יתרון האושר</strong>" כדי להתמקד במטרות קטנות ובהשגת הצלחות מוקדמות.
+							<!-- הוספה -->
+							<p>במקום לנסות לעשות הכול, התמקד רק במשימות שבהן אתה יכול לייצר את הערך הגבוה ביותר (מ"<strong>רק מה שחשוב</strong>").</p>
+							<p>יישם עקרונות של פשטות והסרת חיכוך בתכנון יומי: מה שניתן להפוך לאוטומטי – הפוך. מה שמכביד – הסר או שנה (מ"<strong>אפס מאמץ</strong>").</p>
+						</td>
+					</tr>
+		
+					<tr>
+						<td class="section-title"><strong>התמודדות עם חששות:</strong></td>
+						<td>
+							השתמש בשיטות מ"<strong>האומץ להעז</strong>" להתמודדות עם פחדים וביקורת עצמית. 
+							השתמש בטכניקות מ"<strong>הרגלים אטומיים</strong>" ליצירת פעולות קטנות שמביאות לתוצאות משמעותיות.
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>קידום מטרות אישיות:</strong></td>
+						<td>
+							קבע מטרות ברורות ומדידות שמעודדות שאיפה ופעולה, כמתואר ב"<strong>האדם מחפש משמעות</strong>" 
+							ו"<strong>הנזיר שמכר את הפרארי שלו</strong>". 
+							עבוד להשגתן באופן מסודר ומתוזמן, תוך פיתוח תכנית עבודה שבועית ויומית.
+							<!-- הוספה -->
+							<p>בכל בוקר, הצהר לעצמך: <strong>"אני לא מחכה להרגיש מוכן – אני פועל עכשיו!"</strong> (מ"<strong>תרימו לעצמכם</strong>").</p>
+							<p>בחר מטרה מאתגרת אחת והתחייב אליה באופן פומבי כדי להעלות את הסיכוי להתמיד בה (מ"<strong>בחר את הקשה שלך</strong>").</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>שיפור בינאישי:</strong></td>
+						<td>
+							שפר את היחסים הבינאישיים והתקשורת שלך באמצעות הכלים מ"<strong>כיצד לרכוש ידידים ולהשפיע על אנשים</strong>" 
+							ו"<strong>האלכימאי</strong>". 
+							תרגל הקשבה אקטיבית והבעת עניין אמיתי באחרים.
+							<p>ליישם הקשבה פעילה, שפת גוף חיובית ואותנטיות כדי לשפר קשרים עם אחרים (מ"<strong>איך לגרום לאנשים להתאהב בך</strong>").</p>
+							<p>הקף את עצמך באנשים שתומכים בך ויכולים לעזור לך לשמור על הנחישות ולהמשיך לשאוף לשיפור (מ"<strong>גריט</strong>").</p>
+							<p>בכל אינטראקציה, נסו להבין את הצרכים והרגשות של האחרים, ותרגלו חמלה כחלק מיחסים בינאישיים מעמיקים ומחוברים יותר (מ"<strong>לממש את הטוב שבך</strong>").</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>חיזוק המוטיבציה:</strong></td>
+						<td>
+							מצא מקורות השראה חיצוניים ופנימיים שיחזקו את הרצון להצליח שלך, בהשראת "<strong>כוח ה-10X</strong>" 
+							ו"<strong>הנזיר שמכר את הפרארי שלו</strong>". 
+							שמור על רוטינה של חשיבה חיובית והפגת נחישות (מ"<strong>יתרון האושר</strong>"). 
+							שלב גישות חדשניות המגיעות מתוך חזון אישי (מ"<strong>מאפס לאחד</strong>") ועבוד מתוך חיבור לערכים האישיים שלך (מ"<strong>האומץ להעז</strong>").
+							<!-- הוספה -->
+							<p>תרגל הענקת "היי-פייב" לעצמך בכל בוקר כדי להחדיר אמונה ביכולות שלך ולהגביר את המוטיבציה (מ"<strong>תרימו לעצמכם</strong>").</p>
+							<p>סיים כל יום בהכרת תודה על שלושה הישגים, גם אם הם קטנים – זה יחזק את הדימוי העצמי שלך (מ"<strong>תרימו לעצמכם</strong>").</p>
+							<p>זכור שהשגת תוצאות לא מחייבת מאבק – ככל שאתה מוריד את ההתנגדות, כך הדרך להצלחה נהיית קלה וזורמת (מ"<strong>אפס מאמץ</strong>").</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>שמירה על בריאות:</strong></td>
+						<td>
+							הטמע רגלים בריאותיים שישמרו על גופך ונפשך בכושר, בהשראת "<strong>האדם מחפש משמעות</strong>" ו"<strong>הרגלים אטומיים</strong>". 
+							כלול פעילות גופנית קבועה ותזונה מאוזנת בשגרתך היומיומית. 
+							הוסף תרגול יומי לחיזוק האושר והחיוביות (מ"<strong>יתרון האושר</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>שיפור יכולת הריכוז:</strong></td>
+						<td>
+							תרגל עבודה עמוקה ע"י קביעת זמן יומי ייעודי להתרכזות במשימות משמעותיות ללא הסחות דעת (מ"<strong>DEEP WORK</strong>"). 
+							השתמש בטכניקות זיהוי הזדמנויות חיוביות מתוך "<strong>יתרון האושר</strong>" כדי לשפר את התפוקה.
+							<p>פשט את סביבת העבודה שלך והפחת רעש מנטלי וחזותי – כך תוכל להגיע לריכוז עמוק במאמץ מינימלי (מ"<strong>אפס מאמץ</strong>").</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>הפחתת הסחות דעת:</strong></td>
+						<td>
+							צמצם את השימוש במדיה חברתית ושאר גורמי הסחה כדי להגדיל את זמן הריכוז והיעילות בעבודה היומית (מ"<strong>DEEP WORK</strong>"). 
+							הגדר חלון זמן לעבודה ממוקדת וחדשנות (מ"<strong>מאפס לאחד</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>התמודדות עם חששות:</strong></td>
+						<td>
+							השתמש בשיטות מ"<strong>האומץ להעז</strong>" להתמודדות עם פחדים וביקורת עצמית. 
+							השתמש בטכניקות מ"<strong>הרגלים אטומיים</strong>" ליצירת פעולות קטנות שמביאות לתוצאות משמעותיות.
+							<!-- הוספה -->
+							<p>הבין שקשיים הם חלק טבעי מהדרך: <strong>"אתה לא יכול לבחור חיים בלי אתגרים, אבל אתה יכול לבחור איזה אתגרים לקחת על עצמך."</strong> (מ"<strong>בחר את הקשה שלך</strong>").</p>
+							<p>אם אתה מתמודד עם ביקורת חיצונית, זכור: הדרך להצלחה עוברת דרך רגעים לא נוחים של ספק עצמי (מ"<strong>תרימו לעצמכם</strong>").</p>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							למד לזהות את השפעת הביטחון העצמי המופרז וההטיות הקוגניטיביות בעבודה עם פחדים והתמודדויות (מ"<strong>לחשוב מהר לחשוב לאט</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>פיתוח מקורות הכנסה פסיביים:</strong></td>
+						<td>
+							הקדש זמן לפיתוח רעיונות הכנסה פסיביים, כמו השקעות בנדל"ן, מניות או יזמות (מ"<strong>מיליונר ברגע</strong>"). 
+							חפש הזדמנויות ייחודיות לשוק מתוך חשיבה חדשנית (מ"<strong>מאפס לאחד</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>יישום עקרון 80/20:</strong></td>
+						<td>
+							זהה את 20% מהפעולות שמניבות את מרבית התוצאות והקדש להן את עיקר המאמץ (מ"<strong>עיקרון 80/20</strong>"). 
+							חפש תבניות חיוביות ומועילות שמעצימות את ההשפעה (מ"<strong>יתרון האושר</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>מיקוד ואופטימיזציה:</strong></td>
+						<td>
+							שחרר 80% מהפעולות הפחות תורמות כדי לפנות זמן ואנרגיה למשימות בעלות השפעה גבוהה. 
+							פעל מתוך חזון אישי שמנחה את המאמצים שלך (מ"<strong>מאפס לאחד</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>יישום עקרון המשמעת העצמית:</strong></td>
+						<td>
+							קבע מטרות קטנות וברות השגה, תוך התחייבות לעמוד בהן ללא תירוצים. התמקד בעשייה מתמדת ולא בחיפוש מוטיבציה רגעית (מ"<strong>בלי תירוצים</strong>"). 
+							השתמש בשיטת "מעגלי זורו" להשגת יעדים קטנים שהולכים ומתרחבים (מ"<strong>יתרון האושר</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>פיתוח הרגלים ומטרות ארוכות טווח:</strong></td>
+						<td>
+							השתמש בהרגלים יומיים כדי לקדם מטרות ארוכות טווח, וזכור כי כל מאמץ קטן מביא לתוצאות לאורך זמן. פעולה יומית קטנה יכולה לחולל שינוי גדול בטווח הארוך. 
+							שלב חשיבה יצירתית בגיבוש הרגלים למימוש חזון אישי (מ"<strong>מאפס לאחד</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>מודעות להטיות קוגניטיביות:</strong></td>
+						<td>
+							זיהוי הטיות כמו הטיית אישור והטיית השליליות יכול לסייע בקבלת החלטות נבונות יותר (מ"<strong>חשיבה צלולה</strong>"). 
+							תרגל שחרור מהשפעת ביקורת עצמית מוגזמת (מ"<strong>האומץ להעז</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>חשיבה מערכתית:</strong></td>
+						<td>
+							למד לראות את התמונה הגדולה והבין כיצד חלקים שונים במערכת משפיעים זה על זה (מ"<strong>חשיבה צלולה</strong>"). 
+							השתמש בתובנות כדי לזהות נקודות חדשנות ייחודיות (מ"<strong>מאפס לאחד</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>פיתוח חשיבה עצמאית:</strong></td>
+						<td>
+							פעל על פי הערכים והשאיפות האישיות שלך כדי להגדיל את האותנטיות והאפקטיביות שלך בקבלת החלטות (מ"<strong>חשיבה צלולה</strong>"). 
+							מצא דרכים לבטא את עצמך מתוך ביטחון עצמי (מ"<strong>האומץ להעז</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>למידה מטעויות:</strong></td>
+						<td>
+							הפוך את הטעויות לכלי לימוד חשוב שיקדם אותך (מ"<strong>חשיבה צלולה</strong>"). 
+							ראה בכישלונות הזדמנות לצמיחה ולחדשנות (מ"<strong>מאפס לאחד</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td width="20%" class="section-title"><strong>מיקוד במשימות עיקריות:</strong></td>
+						<td>
+							תכננו את המשימות המרכזיות שלכם ליום הקרוב תוך התמקדות בתעדוף: <strong>"80% מהתוצאות יגיעו מ-20% מהפעולות."</strong> 
+							חלקו את המטרות הגדולות לצעדים קטנים, מדידים וברורים (מתוך "<strong>הישג מקסימלי</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>חיזוק מנטלי:</strong></td>
+						<td>
+							עבדו על פיתוח "מיינדסט מתפתח". זכרו: <strong>"כישלון הוא שלב בלמידה וצמיחה."</strong>  
+							חפשו את ההזדמנות ללמוד מכל כישלון ולשפר את עצמכם (מתוך "<strong>כוחה של נחישות</strong>").
+						</td>
+					</tr>
+					<tr>
+						<td class="section-title"><strong>ניהול פחדים:</strong></td>
+						<td>
+							התמודדו עם פחדים על ידי ביצוע צעדים קטנים ובטוחים. לדוגמה: אם אתם מפחדים להציג בפני קהל, התחילו בקבוצה קטנה.
+							זכרו: <strong>"פחד הוא זמני, התמודדות איתו בונה ביטחון."</strong> (מתוך "<strong>הישג מקסימלי</strong>").
+						</td>
+					</tr>					
+				</table>
+			</div>
+        </div>
+        <!-- Personal feed that updates based on user interaction -->
+        <div class="personal-feed">
+            <h3>הפיד האישי שלך</h3>
+            <!-- Favorite quotes will be appended here -->
+        </div>
+        <footer>
+            © כל הזכויות שמורות - ציטוטי ספרים
+        </footer>
+    </body>
+</html>
